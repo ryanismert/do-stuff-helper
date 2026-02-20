@@ -1,7 +1,7 @@
 ---
 description: Start a guided discovery interview to produce a detailed brief for a project or activity
 argument-hint: <optional activity description>
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash(git add:git commit), Skill, Task, AskUserQuestion
+allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch, Bash(git:*), Bash(gh:*), Bash(claude:*), Bash(mkdir:*), Skill, Task, AskUserQuestion
 disable-model-invocation: true
 ---
 
