@@ -7,7 +7,8 @@ A Claude Code plugin providing skills, commands, and subagents for thoughtful ex
 ```
 do-stuff-helper/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin metadata
+│   ├── plugin.json          # Plugin metadata
+│   └── marketplace.json     # Marketplace registry for plugin distribution
 ├── commands/                # Slash commands (user-invoked)
 │   └── *.md
 ├── skills/                  # Skills (model-invoked)
@@ -15,6 +16,8 @@ do-stuff-helper/
 │       └── SKILL.md
 ├── agents/                  # Subagents (long-running autonomous tasks)
 │   └── *.md
+├── activities/              # Activity directories (created by organize skill)
+│   └── <activity-slug>/
 ├── CLAUDE.md
 └── README.md
 ```
@@ -58,7 +61,7 @@ activities/
 Skills are invoked in this order to take an activity from idea to execution:
 
 1. **organize** — Creates the activity directory structure
-2. **discovery** — Conducts an expert interview and produces a detailed brief
+2. **discover** — Conducts an expert interview and produces a detailed brief
 3. **roadmap** _(future)_ — Builds an execution plan from the brief
 
 ### Cross-Skill Invocation
@@ -75,3 +78,9 @@ Activity artifacts follow the pattern `<type>-<activity-slug>.md`:
 - Use the `skill-creator` plugin to create and test new skills
 - Test skills locally before committing by installing the plugin at project scope
 - Keep skill descriptions precise — vague descriptions cause false triggers
+
+### Plugin Distribution
+- `marketplace.json` uses `"./"` as source for self-referencing plugins — other formats (`"."`, `github`, `url`) failed or used SSH
+- After updating skills, bump `version` in both `plugin.json` and `marketplace.json`
+- Users install via: `/plugin marketplace add ryanismert/do-stuff-helper` then `/plugin install do-stuff-helper@do-stuff-helper`
+- Skills are not hotloaded — a new conversation is required after installing or updating

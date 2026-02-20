@@ -1,5 +1,5 @@
 ---
-name: discovery
+name: discover
 description: This skill should be used when the user says "I want to do X", "help me plan X", "let's figure out X", "I'm thinking about X", "help me think through X", or otherwise describes a new project, program, or activity they want to undertake. Conducts an expert-driven interview to produce a detailed brief that serves as the foundation for future planning.
 ---
 
