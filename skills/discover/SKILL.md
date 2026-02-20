@@ -65,7 +65,7 @@ Conduct the interview one question at a time. Each question should:
 - Ask ONE question per message
 - Wait for the user's response before asking the next question
 - Adapt follow-up questions based on what the user reveals
-- If the user's answer surfaces a topic that would benefit from research, invoke `do-stuff-helper:research` — but only when it would materially improve the brief
+- Research can be invoked **at any point during the interview** when a topic surfaces that would benefit from investigation — trust your judgment on when research helps
 
 **Coverage targets** (ensure the interview addresses all of these before moving to step 7):
 - Goal and motivation
@@ -160,4 +160,4 @@ If no gaps were found, skip to step 11.
 ## Cross-Skill Invocation
 
 - **`do-stuff-helper:organize`** — Invoke in step 2 for new activities. Required before any files can be saved to the activity directory.
-- **`do-stuff-helper:research`** — Invoke during step 6 when domain research would materially improve the brief. Do not invoke speculatively.
+- **`do-stuff-helper:research`** — Invoke at any point during the interview (step 6) when a topic surfaces that would benefit from investigation.
