@@ -10,7 +10,12 @@
   "plugins": [
     {
       "name": "do-stuff-helper",
-      "source": ".",
+      "source": {
+        "source": "github",
+        "repo": "ryanismert/do-stuff-helper",
+        "ref": "main",
+        "sha": "d69394cd0159bc5cd81090fa6a1703aff316d469"
+      },
       "description": "A collection of skills, commands, and subagents for thoughtful execution of personal projects and programs.",
       "version": "0.1.0",
       "author": {
