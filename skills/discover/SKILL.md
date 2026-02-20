@@ -1,9 +1,9 @@
 ---
 name: discover
-description: This skill should be used when the user says "I want to do X", "help me plan X", "let's figure out X", "I'm thinking about X", "help me think through X", or otherwise describes a new project, program, or activity they want to undertake. Conducts an expert-driven interview to produce a detailed brief that serves as the foundation for future planning.
+description: This skill should be used when the user says "help me plan X", "let's figure out X", "I'm thinking about X", "help me think through X", or otherwise describes a new project, program, or activity they want to undertake. Conducts an expert-driven interview to produce a detailed brief that serves as the foundation for future planning.
 ---
 
-# Discovery
+# Discover
 
 Conduct an iterative, expert-driven interview to produce a descriptive brief for any project, program, or activity. The brief must contain enough detail that a future roadmap skill can plan execution without re-interviewing the user.
 
@@ -13,19 +13,14 @@ Complete each step in strict order. Do not skip steps. Do not proceed to brief c
 
 ### Step 1: Determine New vs. Existing Activity
 
-Check whether an `activities/` directory exists and whether it contains a subdirectory matching the described activity.
+Ask the user if they want to plan a new activity. 
 
-- **If a matching activity exists:** Confirm with the user. Load any existing brief or materials from that directory.
-- **If no match or no `activities/` directory:** This is a new activity. Proceed to step 2.
-- **If ambiguous:** Ask the user to clarify.
+- **If the user says no:** Do not use this skill. Just proceed with the conversation and ask the user how you can help.
+- **If the user says yes:** This is a new activity. Proceed to step 2.
 
-### Step 2: Invoke Organize (New Activities Only)
-
-**Hard gate: Cannot skip this step for new activities.**
+### Step 2: Invoke Organize
 
 Invoke `do-stuff-helper:organize` to create the activity directory structure. Pass the activity name. Confirm the slug and path with the user.
-
-Skip this step for existing activities.
 
 ### Step 3: Collect Existing Materials
 
@@ -112,6 +107,9 @@ Concrete, observable indicators that the activity has succeeded.
 ## Measurement
 How each success criterion will be measured or evaluated.
 
+## Description
+What is the end state? What intermediate steps or accomplishments does the user imagine taking on the way. If the activity includes building something, what is that thing and what does it do?
+
 ## Scope
 
 ### In Scope
@@ -155,8 +153,8 @@ If no gaps were found, skip to step 11.
 
 ### Step 11: Save and Commit
 
-1. Save the brief to `<activity-dir>/brief-<activity-slug>.md`
-2. Stage and commit the brief with message: `discovery: add brief for <activity-slug>`
+1. Save the brief to `<activity-dir>/docs/brief-<activity-slug>.md`
+2. Stage and commit the brief with message: `discover: add brief for <activity-slug>`
 3. Report the file path and confirm the brief is saved.
 
 ## Cross-Skill Invocation
