@@ -1,7 +1,7 @@
 {
   "name": "do-stuff-helper",
   "description": "A collection of skills, commands, and subagents for thoughtful execution of personal projects and programs.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Ryan Ismert",
     "email": "ryanismert@users.noreply.github.com"
