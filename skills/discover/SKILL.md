@@ -151,11 +151,20 @@ If the self-review surfaced gaps, ask the user targeted questions to fill them. 
 
 If no gaps were found, skip to step 11.
 
-### Step 11: Save and Commit
+### Step 11: Save and Update CLAUDE.md
 
 1. Save the brief to `<activity-dir>/docs/brief-<activity-slug>.md`
-2. Stage and commit the brief with message: `discover: add brief for <activity-slug>`
-3. Report the file path and confirm the brief is saved.
+2. Open `<activity-dir>/CLAUDE.md` and append an `## Activity Brief` section containing:
+   - **Goal:** 1–2 sentence summary of the goal
+   - **Success Criteria:** Bulleted list of the key success criteria
+   - **Scope:** Brief summary of what's in and out of scope
+   - **Key Risks:** Top 2–3 risks
+   - A link to the full brief with a note to read it for complete context:
+     ```
+     For full details including background, open questions, and roadmap planning notes, see [the complete brief](docs/brief-<activity-slug>.md).
+     ```
+3. Stage and commit all changes with message: `discover: add brief for <activity-slug>`
+4. Report the file paths and confirm everything is saved.
 
 ## Cross-Skill Invocation
 
