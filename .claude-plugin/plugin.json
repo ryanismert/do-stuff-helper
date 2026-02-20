@@ -1,0 +1,13 @@
+{
+  "name": "do-stuff-helper",
+  "description": "A collection of skills, commands, and subagents for thoughtful execution of personal projects and programs.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Ryan Ismert",
+    "email": "ryanismert@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/ryanismert/do-stuff-helper",
+  "repository": "https://github.com/ryanismert/do-stuff-helper",
+  "license": "MIT",
+  "keywords": ["productivity", "project-management", "personal-projects", "execution"]
+}
