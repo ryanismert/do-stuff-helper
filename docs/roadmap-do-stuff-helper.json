@@ -231,6 +231,15 @@
       "dependencies": ["w6"],
       "why": "After running the pipeline on real activities, evaluate whether adding size labels (S/M/L/XL) to waypoints helps with prioritization, effort estimation, or planning.",
       "done_when": "A decision is made on whether t-shirt sizing adds value, and if so, the roadmap schema and roadmap skill are updated to support it."
+    },
+    {
+      "id": "w24",
+      "title": "Agent Teams Integration",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w4"],
+      "why": "Claude Code's experimental agent teams feature uses the same CLAUDE_CODE_TASK_LIST_ID mechanism we build on. Integrating it would let waypoint-implement spawn persistent teammate sessions instead of one-shot Task subagents, enabling longer-running workers and native coordination.",
+      "done_when": "waypoint-implement can optionally use agent teams for execution. Lead session spawns teammates that claim and execute tasks from the shared task list. Graceful fallback to Task-tool workers when agent teams is unavailable."
     }
   ]
 }
