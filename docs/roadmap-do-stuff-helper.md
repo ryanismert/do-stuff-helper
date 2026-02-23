@@ -19,10 +19,17 @@ Goal: Get the full discover → roadmap → waypoint design → decompose → ex
 **Dependencies:** None (brief and discover skill already exist)
 
 ### W2: Waypoint Storage Format
-**Status:** pending
+**Status:** in-progress
 **Why:** We need to decide how waypoints are stored before other skills can read/write them. Affects every downstream skill.
-**Done when:** A storage format is defined (likely markdown with structured frontmatter or a lightweight graph format), documented in CLAUDE.md, and the roadmap skill uses it.
+**Done when:** A storage format is defined, documented in CLAUDE.md, and the roadmap skill uses it.
 **Dependencies:** Informed by W1 design
+**Decisions made:**
+- JSON file (`roadmap-<slug>.json`) as source of truth for waypoint graph (status, dependencies, phase membership)
+- Human-readable markdown (`roadmap-<slug>.md`) auto-generated from JSON
+- Individual waypoint designs in `docs/waypoints/<waypoint-id>.md`
+- Waypoint design docs require **Objective** and **Done When** sections; everything else is freeform scaled to complexity
+- Phases tracked in JSON with completion status
+**Remaining:** Define the JSON schema and implement it in W1
 
 ### W3: Waypoint Design Skill
 **Status:** pending

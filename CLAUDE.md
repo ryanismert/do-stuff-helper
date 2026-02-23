@@ -61,8 +61,10 @@ activities/
 Skills are invoked in this order to take an activity from idea to execution:
 
 1. **organize** — Creates the activity directory structure
-2. **discover** — Conducts an expert interview and produces a detailed brief
-3. **roadmap** _(future)_ — Builds an execution plan from the brief
+2. **discover** — Conducts an expert interview and produces a detailed brief (suggest-and-confirm transition to roadmap)
+3. **roadmap** _(future)_ — Builds an adaptive waypoint-based execution plan from the brief
+4. **waypoint-design** _(future)_ — Designs individual waypoints with sufficient detail for decomposition
+5. **decompose & execute** _(future)_ — Recursive task decomposition and parallel worker execution
 
 ### Cross-Skill Invocation
 
@@ -70,9 +72,26 @@ Skills invoke each other using the pattern `do-stuff-helper:<skill-name>`. For e
 
 ### Artifact Naming
 
-Activity artifacts follow the pattern `<type>-<activity-slug>.md`:
+Activity artifacts follow the pattern `<type>-<activity-slug>.<ext>`:
 - `brief-my-fitness-app.md` — Discovery brief
-- `roadmap-my-fitness-app.md` — Execution plan _(future)_
+- `roadmap-my-fitness-app.json` — Waypoint graph (machine-readable source of truth)
+- `roadmap-my-fitness-app.md` — Human-readable roadmap overview (auto-generated from JSON)
+
+### Waypoint Storage
+
+Roadmaps use a two-layer format:
+
+1. **`docs/roadmap-<slug>.json`** — Source of truth. Contains waypoint metadata (id, status, dependencies, phase membership) in a structured JSON format. Skills read and write this file.
+2. **`docs/roadmap-<slug>.md`** — Auto-generated from the JSON. Human-readable overview for quick reference. Do not edit manually.
+3. **`docs/waypoints/<waypoint-id>.md`** — Individual waypoint design documents. Referenced by the JSON.
+
+**Waypoint design documents** have two required sections:
+- **Objective** — one sentence stating what this waypoint achieves
+- **Done When** — concrete acceptance criteria
+
+Everything else is freeform. The waypoint design agent scales detail to complexity — simple items get a sentence, complex ones get full designs.
+
+**Phases** are tracked in the JSON as grouping mechanisms with their own completion status, giving humans a sense of progress.
 
 ## Development Workflow
 - Use the `skill-creator` plugin to create and test new skills
