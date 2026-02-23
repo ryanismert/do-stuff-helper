@@ -5,7 +5,7 @@ description: This skill should be used when the user asks to "design a waypoint"
 
 # Waypoint Design
 
-Take a waypoint from the roadmap and produce a design document with enough detail for confident decomposition into parallelizable tasks. Scale effort to complexity — simple waypoints get a sentence, complex ones get full designs.
+Take a waypoint from the roadmap and produce a design document with enough detail that an agent or the user could confidently decompose it into executable tasks. Scale effort to complexity — simple waypoints get a sentence, complex ones get full designs.
 
 ## Checklist
 
@@ -82,24 +82,25 @@ For **detailed** waypoints, also consider:
 - **Schema / Format** — if the waypoint defines data structures, specify them
 - **Cross-Skill Invocation** — how this interacts with other skills
 
-### Step 6: Decompose into Tasks
+### Step 6: Evaluate the Design
 
-Use the TaskCreate tool to break the design into concrete, parallelizable tasks. Each task should be:
-- **Specific** — clear enough that an agent could execute it without asking questions
-- **Scoped** — small enough to complete in one focused session
-- **Independent where possible** — minimize sequential dependencies between tasks
+Before presenting to the user, review the design against this checklist:
 
-For **minimal** waypoints, this may be a single task. For **detailed** waypoints, this may be 3-8 tasks with dependency ordering via TaskUpdate (addBlockedBy/addBlocks).
+- [ ] **Decomposable** — could someone break this into specific, executable tasks without needing to ask clarifying questions?
+- [ ] **Unambiguous** — are all key decisions made? Are there open questions that would block implementation?
+- [ ] **Complete** — does the design cover everything in the "Done When" criteria?
+- [ ] **Bounded** — is the scope clear enough that an implementer knows what's in and out?
+- [ ] **Actionable** — does it describe what to build/do, not just what the outcome should be?
 
-Mark all tasks as `pending`. The user decides when to start execution.
+If any check fails, go back to Step 5 and add the missing detail. For gaps that require user input, note them as questions to ask in Step 7.
 
 ### Step 7: Present and Confirm
 
-Present the design to the user. Ask:
+Present the design to the user. If the evaluation in Step 6 surfaced questions, ask them now. Otherwise ask:
 
 > "Here's the design for [waypoint title]. Does this look right, or should we adjust anything before I save it?"
 
-If the user has feedback, incorporate it and update the tasks accordingly.
+If the user has feedback, incorporate it.
 
 ### Step 8: Save
 
@@ -111,7 +112,7 @@ If the user has feedback, incorporate it and update the tasks accordingly.
 
 After saving, check the roadmap for other unblocked waypoints that are ready for design:
 
-> "Design saved. [Other unblocked waypoints] are also ready for design. Want to continue with another, or start executing tasks for this waypoint?"
+> "Design saved. [Other unblocked waypoints] are also ready for design. Want to continue with another, or start executing this waypoint?"
 
 ## Edge Cases
 
