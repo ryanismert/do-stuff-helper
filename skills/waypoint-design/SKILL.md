@@ -91,8 +91,11 @@ Before presenting to the user, review the design against this checklist:
 - [ ] **Complete** — does the design cover everything in the "Done When" criteria?
 - [ ] **Bounded** — is the scope clear enough that an implementer knows what's in and out?
 - [ ] **Actionable** — does it describe what to build/do, not just what the outcome should be?
+- [ ] **Coherent** — does this waypoint represent a single coherent unit of *value* (not just work)? Could the value it delivers stand on its own? If the waypoint mixes unrelated value streams, it should be split before handoff to planning.
 
 If any check fails, go back to Step 5 and add the missing detail. For gaps that require user input, note them as questions to ask in Step 7.
+
+If the coherence check fails, propose splitting the waypoint to the user before continuing. If approved, update the roadmap JSON (add new waypoints, update dependencies) and design each piece separately.
 
 ### Step 7: Present and Confirm
 
@@ -110,9 +113,14 @@ If the user has feedback, incorporate it.
 
 ### Step 9: Suggest Next Steps
 
-After saving, check the roadmap for other unblocked waypoints that are ready for design:
+After saving, check the roadmap for other unblocked waypoints that are ready for design. Present options:
 
-> "Design saved. [Other unblocked waypoints] are also ready for design. Want to continue with another, or start executing this waypoint?"
+> "Design saved. [Other unblocked waypoints] are also ready for design. Want to:
+> 1. Plan the tasks for this waypoint now? (invokes waypoint-planner)
+> 2. Continue designing other unblocked waypoints?
+> 3. Stop here for now?"
+
+If the user chooses to plan, invoke `do-stuff-helper:waypoint-planner`.
 
 ## Edge Cases
 
@@ -125,3 +133,4 @@ After saving, check the roadmap for other unblocked waypoints that are ready for
 
 - **`do-stuff-helper:research`** — Invoke during Step 4 when external research would improve the design.
 - **Invoked by `do-stuff-helper:roadmap`** — The roadmap skill's Step 9 suggests designing unblocked waypoints, which leads here.
+- **`do-stuff-helper:waypoint-planner`** — Suggest in Step 9 after saving: offer to plan tasks for the designed waypoint.
