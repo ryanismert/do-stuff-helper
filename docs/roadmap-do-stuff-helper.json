@@ -28,7 +28,7 @@
     {
       "id": "w1",
       "title": "Roadmap Skill",
-      "status": "in-progress",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [],
       "why": "Every future activity needs this. We're bootstrapping manually right now, which doesn't scale.",
@@ -213,6 +213,15 @@
       "dependencies": [],
       "why": "Discover should prompt the user to continue to roadmap planning when it finishes.",
       "done_when": "Discover skill's Step 11 includes a suggest-and-confirm prompt to invoke the roadmap skill."
+    },
+    {
+      "id": "t5",
+      "title": "Mine CLAUDE.md for Activity Template Instructions",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w6"],
+      "why": "do-stuff-helper's CLAUDE.md contains instructions (how to use skills, conventions, etc.) that should be seeded into every new activity's CLAUDE.md so agents working in those repos know how to use the system.",
+      "done_when": "The organize skill (or a post-organize step) seeds new activity CLAUDE.md files with relevant do-stuff-helper instructions extracted from the plugin's own CLAUDE.md."
     }
   ]
 }
