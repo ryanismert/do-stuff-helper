@@ -165,8 +165,13 @@ If no gaps were found, skip to step 11.
      ```
 3. Stage and commit all changes with message: `discover: add brief for <activity-slug>`
 4. Report the file paths and confirm everything is saved.
+5. Suggest-and-confirm transition to roadmap planning:
+   > "The brief is saved. The next step is to create a roadmap — an adaptive plan with waypoints, phases, and dependencies. Want to continue to roadmap planning now?"
+   - If the user says yes, invoke `do-stuff-helper:roadmap`
+   - If the user says no, acknowledge and end
 
 ## Cross-Skill Invocation
 
 - **`do-stuff-helper:organize`** — Invoke in step 2 for new activities. Required before any files can be saved to the activity directory.
 - **`do-stuff-helper:research`** — Invoke at any point during the interview (step 6) when a topic surfaces that would benefit from investigation.
+- **`do-stuff-helper:roadmap`** — Suggest-and-confirm in step 11 after the brief is saved.

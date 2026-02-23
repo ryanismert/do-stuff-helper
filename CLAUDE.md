@@ -74,16 +74,14 @@ Skills invoke each other using the pattern `do-stuff-helper:<skill-name>`. For e
 
 Activity artifacts follow the pattern `<type>-<activity-slug>.<ext>`:
 - `brief-my-fitness-app.md` — Discovery brief
-- `roadmap-my-fitness-app.json` — Waypoint graph (machine-readable source of truth)
-- `roadmap-my-fitness-app.md` — Human-readable roadmap overview (auto-generated from JSON)
+- `roadmap-my-fitness-app.json` — Waypoint graph (source of truth)
 
 ### Waypoint Storage
 
-Roadmaps use a two-layer format:
+Roadmaps use two artifact types:
 
-1. **`docs/roadmap-<slug>.json`** — Source of truth. Contains waypoint metadata (id, status, dependencies, phase membership) in a structured JSON format. Skills read and write this file.
-2. **`docs/roadmap-<slug>.md`** — Auto-generated from the JSON. Human-readable overview for quick reference. Do not edit manually.
-3. **`docs/waypoints/<waypoint-id>.md`** — Individual waypoint design documents. Referenced by the JSON.
+1. **`docs/roadmap-<slug>.json`** — Source of truth. Contains waypoint metadata (id, status, dependencies, phase membership) in a structured JSON format. Skills read and write this file. LLMs read JSON directly — no auto-generated markdown needed.
+2. **`docs/waypoints/<waypoint-id>.md`** — Individual waypoint design documents. Referenced by the JSON.
 
 **Waypoint design documents** have two required sections:
 - **Objective** — one sentence stating what this waypoint achieves

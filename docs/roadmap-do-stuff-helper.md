@@ -24,8 +24,7 @@ Goal: Get the full discover → roadmap → waypoint design → decompose → ex
 **Done when:** A storage format is defined, documented in CLAUDE.md, and the roadmap skill uses it.
 **Dependencies:** Informed by W1 design
 **Decisions made:**
-- JSON file (`roadmap-<slug>.json`) as source of truth for waypoint graph (status, dependencies, phase membership)
-- Human-readable markdown (`roadmap-<slug>.md`) auto-generated from JSON
+- JSON file (`roadmap-<slug>.json`) as source of truth for waypoint graph (status, dependencies, phase membership) — LLMs read JSON directly, no auto-generated markdown
 - Individual waypoint designs in `docs/waypoints/<waypoint-id>.md`
 - Waypoint design docs require **Objective** and **Done When** sections; everything else is freeform scaled to complexity
 - Phases tracked in JSON with completion status
