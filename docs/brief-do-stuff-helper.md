@@ -82,7 +82,7 @@ Advisory agents that analyze across activities and engage in async dialog:
 - **Scope and momentum** — the system is ambitious and the user has limited hours. Risk of building infrastructure without ever realizing the value. Mitigation: strict priority ordering (execution → monitoring → coaching); validate with real pilot activities early
 - **Autonomous agent quality** — workers operating unsupervised could produce low-quality work that costs more to review than it saves. Mitigation: work checker agent, feedback loop with skill improvement, mandatory checkpoints for high-stakes decisions
 - **Platform coupling** — tight coupling to Claude Code's evolving plugin/skill/agent architecture means breaking changes could require significant rework. Mitigation: acceptable risk per user decision; MCP servers provide extension points to other tooling
-- **Bootstrap problem** — do-stuff-helper needs its own roadmap planner to plan itself, but the roadmap skill doesn't exist yet. Mitigation: bootstrap with a lighter-weight planning approach, then formalize once the roadmap skill is built
+- ~~**Bootstrap problem** — do-stuff-helper needs its own roadmap planner to plan itself, but the roadmap skill doesn't exist yet.~~ **Resolved:** Bootstrapped manually, roadmap skill now exists
 - **Infrastructure readiness** — home server browser automation capability is unverified. Mitigation: validate early before building skills that depend on it
 
 ## Open Questions
@@ -100,7 +100,7 @@ Advisory agents that analyze across activities and engage in async dialog:
 - The user has a home server running Claude Code in Docker, n8n for automation, email integration, and browser automation capability (unverified — needs setup and testing)
 - Telegram is set up but unverified; deferred until coaching/advisory subsystem
 - Each activity gets its own GitHub repo and Claude Code instance
-- The do-stuff-helper plugin (v0.2.0) already has working skills: organize (directory/repo bootstrapping), discover (expert interview → brief), and research (multi-angle web search with gap analysis)
+- The do-stuff-helper plugin has working skills: organize (directory/repo bootstrapping), discover (expert interview → brief), research (multi-angle web search with gap analysis), roadmap (adaptive waypoint-based planning), and waypoint-design (scaled design docs for decomposition)
 - The user is data-driven and prefers tracking and measurement over subjective assessment
 - For non-technical activities, agents serve as researchers, planners, trackers, and advisors — the user does the execution, agents make it easier and provide accountability
 - n8n can handle scheduled triggers (e.g., weekly forward motion analysis) and deterministic workflow steps

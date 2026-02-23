@@ -62,8 +62,8 @@ Skills are invoked in this order to take an activity from idea to execution:
 
 1. **organize** — Creates the activity directory structure
 2. **discover** — Conducts an expert interview and produces a detailed brief (suggest-and-confirm transition to roadmap)
-3. **roadmap** _(future)_ — Builds an adaptive waypoint-based execution plan from the brief
-4. **waypoint-design** _(future)_ — Designs individual waypoints with sufficient detail for decomposition
+3. **roadmap** — Builds an adaptive waypoint-based execution plan from the brief
+4. **waypoint-design** — Designs individual waypoints with sufficient detail for decomposition
 5. **decompose & execute** _(future)_ — Recursive task decomposition and parallel worker execution
 
 ### Cross-Skill Invocation
@@ -122,3 +122,7 @@ Everything else is freeform. The waypoint design agent scales detail to complexi
 - Autonomous agent quality — low-quality unsupervised work could cost more to review than it saves
 
 For full details including background, open questions, and roadmap planning notes, see [the complete brief](docs/brief-do-stuff-helper.md).
+
+## Current Status
+
+To understand what to work on next, read `docs/roadmap-do-stuff-helper.json`. It contains all waypoints with statuses and dependencies. Waypoints with status `pending` and all dependencies `done` are ready for design or execution. Waypoint design documents live in `docs/waypoints/<waypoint-id>.md`.
