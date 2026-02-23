@@ -84,3 +84,24 @@ Activity artifacts follow the pattern `<type>-<activity-slug>.md`:
 - After updating skills, bump `version` in both `plugin.json` and `marketplace.json`
 - Users install via: `/plugin marketplace add ryanismert/do-stuff-helper` then `/plugin install do-stuff-helper@do-stuff-helper`
 - Skills are not hotloaded — a new conversation is required after installing or updating
+
+## Activity Brief
+
+**Goal:** Build a skill and agent system on Claude Code that helps define, develop, and execute diverse personal activities — from software projects to life improvement goals — with maximum autonomy and minimum dependency on the user for routine work.
+
+**Success Criteria:**
+- 3-4 activities running simultaneously with autonomous workers making real progress
+- User time spent on decisions, not grunt work
+- Meaningful progress on previously-stalled life goals
+- System gets more autonomous over time through ask-and-learn permissions
+
+**Scope:**
+- In: Full activity execution pipeline (discover → roadmap → waypoint design → decompose → execute), monitoring dashboard with inbox, forward motion analysis, advisory coaching agent pattern, home server infrastructure (Docker, n8n, browser automation)
+- Out: Telegram/chat integration (deferred to coaching build), calendar/email integration, dashboard UI technology selection, custom chat interface
+
+**Key Risks:**
+- Air gaps where only the user can unblock progress, compounded by tendency to avoid hard tasks
+- Scope is ambitious; risk of building infrastructure without realizing value
+- Autonomous agent quality — low-quality unsupervised work could cost more to review than it saves
+
+For full details including background, open questions, and roadmap planning notes, see [the complete brief](docs/brief-do-stuff-helper.md).
