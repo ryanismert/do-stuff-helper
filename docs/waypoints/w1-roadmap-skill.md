@@ -73,7 +73,7 @@ Continue until the user says it looks good. Don't over-refine — the roadmap is
 #### Step 5: Build the Waypoint Graph
 
 For each waypoint, define:
-- `id` — short identifier (e.g., `w1`, `t1`)
+- `id` — short identifier (e.g., `w1`, `w2`)
 - `title` — human-readable name
 - `status` — initially `pending` (or `in-progress`/`done` if work has already started)
 - `phase` — which phase it belongs to

@@ -179,7 +179,7 @@
       "done_when": "Advisory agents can send messages and receive replies via a chat platform (likely Telegram). Monitoring notifications also route through this channel."
     },
     {
-      "id": "t1",
+      "id": "w18",
       "title": "Verify Home Server Browser Automation",
       "status": "pending",
       "phase": "phase-1",
@@ -188,7 +188,7 @@
       "done_when": "Browser automation is confirmed working on the home server, or we know what setup is needed."
     },
     {
-      "id": "t2",
+      "id": "w19",
       "title": "Fix Discover Skill Invocation Bug",
       "status": "pending",
       "phase": "phase-1",
@@ -197,7 +197,7 @@
       "done_when": "Root cause identified and fixed, or workaround documented."
     },
     {
-      "id": "t3",
+      "id": "w20",
       "title": "Plugin Update Workflow",
       "status": "pending",
       "phase": "phase-1",
@@ -206,7 +206,7 @@
       "done_when": "A documented (or automated) workflow exists for: bump version → commit → push → pull marketplace clone → reinstall plugin."
     },
     {
-      "id": "t4",
+      "id": "w21",
       "title": "Suggest-and-Confirm Transition in Discover",
       "status": "done",
       "phase": "phase-1",
@@ -215,13 +215,22 @@
       "done_when": "Discover skill's Step 11 includes a suggest-and-confirm prompt to invoke the roadmap skill."
     },
     {
-      "id": "t5",
+      "id": "w22",
       "title": "Mine CLAUDE.md for Activity Template Instructions",
       "status": "pending",
       "phase": "phase-1",
       "dependencies": ["w6"],
       "why": "do-stuff-helper's CLAUDE.md contains instructions (how to use skills, conventions, etc.) that should be seeded into every new activity's CLAUDE.md so agents working in those repos know how to use the system.",
       "done_when": "The organize skill (or a post-organize step) seeds new activity CLAUDE.md files with relevant do-stuff-helper instructions extracted from the plugin's own CLAUDE.md."
+    },
+    {
+      "id": "w23",
+      "title": "Evaluate T-Shirt Sizing for Waypoints",
+      "status": "pending",
+      "phase": "phase-2",
+      "dependencies": ["w6"],
+      "why": "After running the pipeline on real activities, evaluate whether adding size labels (S/M/L/XL) to waypoints helps with prioritization, effort estimation, or planning.",
+      "done_when": "A decision is made on whether t-shirt sizing adds value, and if so, the roadmap schema and roadmap skill are updated to support it."
     }
   ]
 }
