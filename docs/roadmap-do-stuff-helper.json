@@ -55,7 +55,7 @@
     {
       "id": "w4",
       "title": "Decompose & Execute Architecture",
-      "status": "pending",
+      "status": "in-progress",
       "phase": "phase-1",
       "dependencies": ["w3"],
       "why": "This is the core engine — recursive task decomposition and parallel worker execution.",
