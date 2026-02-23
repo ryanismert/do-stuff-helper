@@ -1,6 +1,6 @@
 ---
 name: roadmap
-description: This skill should be used when the user says "create a roadmap", "plan this activity", "let's build a roadmap", "what should we work on", or when transitioning from the discover skill after a brief is saved. Reads an activity brief, interviews the user about priorities and sequencing, and produces an adaptive waypoint-based roadmap as a JSON file with waypoint design stubs.
+description: This skill should be used when the user explicitly asks to "build a roadmap", "create a roadmap", or "make a roadmap" for an activity, or when transitioning from the discover skill after a brief is saved. Do NOT trigger for general planning, task work, or "what should we work on" — those are task-level activities, not roadmap creation.
 ---
 
 # Roadmap

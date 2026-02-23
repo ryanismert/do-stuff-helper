@@ -1,0 +1,218 @@
+{
+  "activity": "do-stuff-helper",
+  "created": "2026-02-23",
+  "updated": "2026-02-23",
+  "phases": [
+    {
+      "id": "phase-1",
+      "title": "Complete the Core Pipeline",
+      "goal": "Get the full discover → roadmap → waypoint design → decompose → execute loop working end-to-end."
+    },
+    {
+      "id": "phase-2",
+      "title": "Feedback & Replanning",
+      "goal": "Close the learning loops so the system improves itself and adapts to change."
+    },
+    {
+      "id": "phase-3",
+      "title": "Monitoring & Dashboard",
+      "goal": "Unified visibility across all activities with independent analysis agents."
+    },
+    {
+      "id": "phase-4",
+      "title": "Life Coaching & Advisory",
+      "goal": "Advisory agents that help the user stay aligned with their values and life goals."
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "w1",
+      "title": "Roadmap Skill",
+      "status": "in-progress",
+      "phase": "phase-1",
+      "dependencies": [],
+      "why": "Every future activity needs this. We're bootstrapping manually right now, which doesn't scale.",
+      "done_when": "A roadmap skill exists that reads a brief, interviews the user about priorities and sequencing, and produces an adaptive waypoint-based roadmap as JSON. Includes suggest-and-confirm transition from discover."
+    },
+    {
+      "id": "w2",
+      "title": "Waypoint Storage Format",
+      "status": "done",
+      "phase": "phase-1",
+      "dependencies": [],
+      "why": "We need to decide how waypoints are stored before other skills can read/write them. Affects every downstream skill.",
+      "done_when": "A storage format is defined, documented in CLAUDE.md, and the roadmap skill uses it."
+    },
+    {
+      "id": "w3",
+      "title": "Waypoint Design Skill",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w2"],
+      "why": "Waypoints need sufficient descriptions before they can be decomposed. This is the bridge between high-level planning and task execution.",
+      "done_when": "A skill exists that evaluates a waypoint, scales its design effort to complexity, and produces a description sufficient for confident decomposition. Simple waypoints get a sentence; complex ones get detailed designs or decision docs."
+    },
+    {
+      "id": "w4",
+      "title": "Decompose & Execute Architecture",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w3"],
+      "why": "This is the core engine — recursive task decomposition and parallel worker execution.",
+      "done_when": "A manager agent can take a designed waypoint, decompose it into parallelizable tasks, and orchestrate worker agents to execute them. Workers operate in their own context and report status back."
+    },
+    {
+      "id": "w5",
+      "title": "Autonomy Model",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w4"],
+      "why": "Workers need to know what they're allowed to do without asking.",
+      "done_when": "Permission tier system is implemented — built-ins and installed skills/MCP servers allowed by default, ask-and-learn for everything else with manual/once/always/never options. New 'always' approvals create skills automatically."
+    },
+    {
+      "id": "w6",
+      "title": "Pilot Activity — End-to-End",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w1", "w2", "w3", "w4", "w5"],
+      "why": "Validates the entire pipeline on a real activity before broadening.",
+      "done_when": "One pilot activity (wildlife cards or personal branding) has been run through discover → roadmap → waypoint design → decompose → execute, with at least one waypoint fully completed by workers."
+    },
+    {
+      "id": "w7",
+      "title": "Feedback Capture",
+      "status": "pending",
+      "phase": "phase-2",
+      "dependencies": ["w4"],
+      "why": "Without feedback, agent quality can't improve.",
+      "done_when": "User can give thumbs-down or typed feedback on any worker output. Feedback is recorded with context (input, output, rating) in the activity repo."
+    },
+    {
+      "id": "w8",
+      "title": "Skill-Improver Agent",
+      "status": "pending",
+      "phase": "phase-2",
+      "dependencies": ["w7"],
+      "why": "Turns feedback into actual improvements without requiring manual skill editing.",
+      "done_when": "An autonomous agent periodically reviews accumulated feedback, proposes updates to skills/prompts/CLAUDE.md, and presents changes for user approval before landing."
+    },
+    {
+      "id": "w9",
+      "title": "Backlog & Replanning Process",
+      "status": "pending",
+      "phase": "phase-2",
+      "dependencies": ["w1", "w2"],
+      "why": "The roadmap needs to adapt as we learn. New insights, scope changes, and discovered work need to be incorporated.",
+      "done_when": "An autonomous process captures updates (new waypoints, scope changes, reprioritizations) and periodically incorporates them into the roadmap. User is notified of significant changes."
+    },
+    {
+      "id": "w10",
+      "title": "Dashboard — Core",
+      "status": "pending",
+      "phase": "phase-3",
+      "dependencies": ["w4"],
+      "why": "As multiple activities run in parallel, the user needs a single place to see everything.",
+      "done_when": "A dashboard shows all activities with: current status, recent changelog, blockers assigned to user, next actions, and whether a Claude instance is actively working."
+    },
+    {
+      "id": "w11",
+      "title": "Inbox",
+      "status": "pending",
+      "phase": "phase-3",
+      "dependencies": ["w4", "w10"],
+      "why": "Workers need a way to ask questions async without blocking.",
+      "done_when": "Workers can send questions to a message queue. User can view and reply at their convenience. Worker picks up the response and continues."
+    },
+    {
+      "id": "w12",
+      "title": "Forward Motion Analyst",
+      "status": "pending",
+      "phase": "phase-3",
+      "dependencies": ["w10"],
+      "why": "Keeps the user focused on what matters most each week.",
+      "done_when": "A weekly agent reviews progress across activities, assesses alignment with goals, produces a week-ahead plan with 2-3 priorities, and refreshes as priorities are completed."
+    },
+    {
+      "id": "w13",
+      "title": "Work Checker",
+      "status": "pending",
+      "phase": "phase-3",
+      "dependencies": ["w4"],
+      "why": "Quality gate for autonomous worker output.",
+      "done_when": "An agent reviews worker output for quality, either at the manager level or as a standalone reviewer. Flags low-quality work before it's committed."
+    },
+    {
+      "id": "w14",
+      "title": "Priority Alignment & Blocker Auto-Resolution",
+      "status": "pending",
+      "phase": "phase-3",
+      "dependencies": ["w10", "w12"],
+      "why": "Surfaces misalignment between effort and stated priorities; auto-resolves blockers where possible.",
+      "done_when": "Agents periodically check effort distribution, surface observations on dashboard, and attempt to resolve blockers autonomously before escalating."
+    },
+    {
+      "id": "w15",
+      "title": "User Profile Builder",
+      "status": "pending",
+      "phase": "phase-4",
+      "dependencies": [],
+      "why": "All advisory agents need a profile of the user's personality, habits, and goals.",
+      "done_when": "An interview-based skill builds a user profile covering personality, work styles, habits, and life goals. Profile is stored and accessible to other agents."
+    },
+    {
+      "id": "w16",
+      "title": "Advisory Agent Pattern",
+      "status": "pending",
+      "phase": "phase-4",
+      "dependencies": ["w15", "w10"],
+      "why": "Multiple coach types share the same shape — design it once.",
+      "done_when": "A reusable pattern exists for advisory agents: maintain user profile access, observe across activities, initiate conversations, advisory-only. At least one concrete agent (life coach) built on the pattern."
+    },
+    {
+      "id": "w17",
+      "title": "Chat Integration & Notifications",
+      "status": "pending",
+      "phase": "phase-4",
+      "dependencies": ["w16"],
+      "why": "Advisory agents need a channel to engage in dialog with the user.",
+      "done_when": "Advisory agents can send messages and receive replies via a chat platform (likely Telegram). Monitoring notifications also route through this channel."
+    },
+    {
+      "id": "t1",
+      "title": "Verify Home Server Browser Automation",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [],
+      "why": "Execution agents may depend on browser capability. Needs verification before we build skills that assume it.",
+      "done_when": "Browser automation is confirmed working on the home server, or we know what setup is needed."
+    },
+    {
+      "id": "t2",
+      "title": "Fix Discover Skill Invocation Bug",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [],
+      "why": "The do-stuff-helper:discover skill returned a disable-model-invocation error when invoked via the Skill tool, despite not having that flag set.",
+      "done_when": "Root cause identified and fixed, or workaround documented."
+    },
+    {
+      "id": "t3",
+      "title": "Plugin Update Workflow",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [],
+      "why": "Updating the plugin currently requires manually pulling the marketplace clone. This friction slows development.",
+      "done_when": "A documented (or automated) workflow exists for: bump version → commit → push → pull marketplace clone → reinstall plugin."
+    },
+    {
+      "id": "t4",
+      "title": "Suggest-and-Confirm Transition in Discover",
+      "status": "done",
+      "phase": "phase-1",
+      "dependencies": [],
+      "why": "Discover should prompt the user to continue to roadmap planning when it finishes.",
+      "done_when": "Discover skill's Step 11 includes a suggest-and-confirm prompt to invoke the roadmap skill."
+    }
+  ]
+}
