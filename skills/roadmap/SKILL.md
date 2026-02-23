@@ -139,7 +139,7 @@ Identify all waypoints with no unresolved dependencies (i.e., dependencies are e
 
 > "The roadmap is saved. These waypoints have no blockers and are ready for design: [list waypoint IDs and titles]. Designing them now will enable parallel execution once the decompose & execute skill is built. Want to start designing them?"
 
-If the waypoint-design skill exists, offer to invoke it. If not, offer to do manual design (flesh out the waypoint design docs directly).
+If the user wants to continue, invoke `do-stuff-helper:waypoint-design` for the first unblocked waypoint.
 
 ## Edge Cases
 
@@ -151,4 +151,5 @@ If the waypoint-design skill exists, offer to invoke it. If not, offer to do man
 ## Cross-Skill Invocation
 
 - **`do-stuff-helper:research`** — May invoke during Step 4 if domain-specific sequencing questions arise that benefit from research.
+- **`do-stuff-helper:waypoint-design`** — Invoke in Step 9 when the user wants to start designing unblocked waypoints.
 - **Invoked by `do-stuff-helper:discover`** — Via suggest-and-confirm after the brief is saved.

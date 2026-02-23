@@ -46,7 +46,7 @@
     {
       "id": "w3",
       "title": "Waypoint Design Skill",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": ["w2"],
       "why": "Waypoints need sufficient descriptions before they can be decomposed. This is the bridge between high-level planning and task execution.",
