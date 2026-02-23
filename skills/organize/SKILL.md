@@ -55,10 +55,16 @@ Only run install commands for plugins that are not already present.
 
 Check if `<activity-dir>/CLAUDE.md` exists.
 
-**If it does not exist:**
+**If it does not exist**, run `claude init` in the activity directory to create a baseline CLAUDE.md.
 
-1. Run `claude init` in the activity directory to create a baseline CLAUDE.md.
-2. Append instructions for using do-stuff-helper skills:
+**Then, regardless of whether CLAUDE.md existed or was just created:**
+
+1. Read the current contents of `<activity-dir>/CLAUDE.md`.
+2. Check whether a `## do-stuff-helper` section exists in the file.
+3. **If the section is missing**, append the full block below to the end of CLAUDE.md.
+4. **If the section already exists**, update the `### Available Skills` list to match the canonical list below, and ensure the `### Task List` subsection exists with the correct task list ID (see Step 6).
+
+The canonical do-stuff-helper section:
 
 ```markdown
 ## do-stuff-helper
@@ -69,14 +75,40 @@ This project uses the do-stuff-helper plugin for guided project execution.
 - **organize** — Bootstrap project directory, plugins, and GitHub repo
 - **discover** — Expert-driven interview to produce a detailed project brief
 - **research** — Multi-angle web research with structured summaries
+- **roadmap** — Build an adaptive waypoint-based execution plan from the brief
+- **waypoint-design** — Design individual waypoints with sufficient detail for decomposition
+- **waypoint-planner** — Decompose a waypoint into executable tasks
+- **waypoint-implement** — Execute tasks from the waypoint plan
+
+### Task List
+This activity uses `CLAUDE_CODE_TASK_LIST_ID=<activity-slug>` for persistent cross-session task tracking.
 
 ### Usage
 Invoke skills via `do-stuff-helper:<skill-name>` or use the `/discover` command to start a guided discovery interview.
 ```
 
-**If it already exists**, skip this step.
+Replace `<activity-slug>` with the basename of `<activity-dir>` (e.g., if the directory is `/Users/me/Projects/my-fitness-app`, the slug is `my-fitness-app`).
 
-### Step 6: Git and GitHub Setup
+### Step 6: Configure Task List ID
+
+Derive the task list ID from the activity directory basename (`<activity-slug>`).
+
+1. Check if `<activity-dir>/.claude/settings.json` exists.
+2. **If it does not exist**, create the directory and file:
+   ```bash
+   mkdir -p <activity-dir>/.claude
+   ```
+   Write `<activity-dir>/.claude/settings.json` with:
+   ```json
+   {
+     "env": {
+       "CLAUDE_CODE_TASK_LIST_ID": "<activity-slug>"
+     }
+   }
+   ```
+3. **If it already exists**, read the file, merge the `env.CLAUDE_CODE_TASK_LIST_ID` key without overwriting other settings, and write it back.
+
+### Step 7: Git and GitHub Setup
 
 Check if `<activity-dir>` is inside a git repository:
 
@@ -106,14 +138,16 @@ git -C <activity-dir> rev-parse --is-inside-work-tree
 
 1. Stage, commit, and push any uncommitted changes from the setup steps.
 
-### Step 7: Confirm
+### Step 8: Confirm
 
 Report a summary of what was done:
 
 - Activity directory path
 - Whether `docs/` was created
-- Whether CLAUDE.md was initialized
+- Whether CLAUDE.md was initialized or updated (and what changed)
 - Whether plugins were installed
+- Whether `.claude/settings.json` was created or updated
+- The task list ID configured (`CLAUDE_CODE_TASK_LIST_ID=<activity-slug>`)
 - Whether a new GitHub repo was created (include the URL)
 - The current git remote URL
 
