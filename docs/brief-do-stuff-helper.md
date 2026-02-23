@@ -88,11 +88,12 @@ Advisory agents that analyze across activities and engage in async dialog:
 ## Open Questions
 - What life inventories or frameworks should the profile builder use for life goals assessment?
 - What strategy should we use for personality and habits profiling?
-- ~~What's the right storage format for adaptive roadmaps with waypoints?~~ **Resolved:** JSON file for waypoint graph (status, deps, phases), auto-generated markdown for human readability, individual markdown files per waypoint design. See CLAUDE.md Waypoint Storage section.
+- ~~What's the right storage format for adaptive roadmaps with waypoints?~~ **Resolved:** JSON file for waypoint graph (status, deps, phases) as sole source of truth — LLMs read JSON directly, no auto-generated markdown. Individual markdown files per waypoint design. See CLAUDE.md Waypoint Storage section.
 - What does the worker → manager → user escalation protocol look like in detail?
 - How should the dashboard UI be built? (Technology choice deferred)
 - Should the forward motion analyst and coaching agents share a unified user profile, or maintain separate views?
 - What's the right architecture for the manager/worker relationship? (Manager orchestrates workers who each decompose and execute, but exact boundaries need design)
+- ~~Should waypoints execute serially or in parallel?~~ **Resolved:** Waypoints can be in-progress simultaneously — don't block on full completion of one before starting another. Tasks must be tagged with their waypoint ID to track which belong to which waypoint when multiple are in-flight. Task decomposition should use Claude Code's Task tools (TaskCreate, TaskUpdate, TaskList).
 - How much waypoint design detail is "sufficient" for different activity types? (Software vs. life improvement may have different thresholds)
 
 ## Background & Context
