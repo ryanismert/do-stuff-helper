@@ -126,3 +126,22 @@ For full details including background, open questions, and roadmap planning note
 ## Current Status
 
 To understand what to work on next, read `docs/roadmap-do-stuff-helper.json`. It contains all waypoints with statuses and dependencies. Waypoints with status `pending` and all dependencies `done` are ready for design or execution. Waypoint design documents live in `docs/waypoints/<waypoint-id>.md`.
+
+## do-stuff-helper
+
+This project uses the do-stuff-helper plugin for guided project execution.
+
+### Available Skills
+- **organize** — Bootstrap project directory, plugins, and GitHub repo
+- **discover** — Expert-driven interview to produce a detailed project brief
+- **research** — Multi-angle web research with structured summaries
+- **roadmap** — Build an adaptive waypoint-based execution plan from the brief
+- **waypoint-design** — Design individual waypoints with sufficient detail for decomposition
+- **waypoint-planner** — Decompose a waypoint into executable tasks
+- **waypoint-implement** — Execute tasks from the waypoint plan
+
+### Task List
+This activity uses `CLAUDE_CODE_TASK_LIST_ID=do-stuff-helper` for persistent cross-session task tracking.
+
+### Usage
+Invoke skills via `do-stuff-helper:<skill-name>` or use the `/discover` command to start a guided discovery interview.
