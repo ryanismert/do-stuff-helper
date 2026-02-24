@@ -144,4 +144,4 @@ This project uses the do-stuff-helper plugin for guided project execution.
 This activity uses `CLAUDE_CODE_TASK_LIST_ID=do-stuff-helper` for persistent cross-session task tracking.
 
 ### Usage
-Invoke skills via `do-stuff-helper:<skill-name>` or use the `/discover` command to start a guided discovery interview.
+Invoke skills via `do-stuff-helper:<skill-name>`.
