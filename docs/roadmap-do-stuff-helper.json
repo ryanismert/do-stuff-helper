@@ -1,7 +1,7 @@
 {
   "activity": "do-stuff-helper",
   "created": "2026-02-23",
-  "updated": "2026-02-23",
+  "updated": "2026-02-24",
   "phases": [
     {
       "id": "phase-1",
@@ -199,7 +199,7 @@
     {
       "id": "w20",
       "title": "Plugin Update Workflow",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [],
       "why": "Updating the plugin currently requires manually pulling the marketplace clone. This friction slows development.",
