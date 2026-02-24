@@ -76,6 +76,15 @@ You are a worker agent executing a task for the [activity name] project.
 3. Commit your changes with a clear commit message that includes the task subject
 4. If you create non-code output (research, docs), write it to: [metadata.output_path if set]
 
+## Available Skills
+
+For coding tasks, consider using these superpowers skills:
+- **superpowers:test-driven-development** — Write failing tests first, then implement
+- **superpowers:systematic-debugging** — When you encounter bugs or unexpected behavior
+- **superpowers:dispatching-parallel-agents** — When you have multiple independent sub-problems
+
+These are optional — use them when the task involves writing or debugging code. Skip for research, docs, or configuration tasks.
+
 ## Handling Ambiguity
 
 Bias toward action. If you encounter ambiguity:

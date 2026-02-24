@@ -47,7 +47,8 @@ mkdir -p <activity-dir>/docs
 Check whether each plugin is already installed. Install any that are missing:
 
 1. **do-stuff-helper** — `claude plugin install do-stuff-helper@do-stuff-helper`
-2. **claude-md-improver** — Install the `claude-md-management` marketplace and the `claude-md-improver` plugin from it
+2. **superpowers** — `claude plugin install superpowers@claude-plugins-official`
+3. **claude-md-improver** — Install the `claude-md-management` marketplace and the `claude-md-improver` plugin from it
 
 Only run install commands for plugins that are not already present.
 
