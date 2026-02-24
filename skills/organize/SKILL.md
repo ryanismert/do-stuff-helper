@@ -83,11 +83,49 @@ This project uses the do-stuff-helper plugin for guided project execution.
 ### Task List
 This activity uses `CLAUDE_CODE_TASK_LIST_ID=<activity-slug>` for persistent cross-session task tracking.
 
+### Capabilities
+
+Workers and agents in this project have access to:
+
+**Skills:** organize, discover, research, roadmap, waypoint-design, waypoint-planner, waypoint-implement
+
+**MCP Servers:** <populated by organize>
+
+**CLI Tools:** <populated by organize>
+
+**Project Scripts:** <populated by organize>
+
 ### Usage
 Invoke skills via `do-stuff-helper:<skill-name>` or use the `/discover` command to start a guided discovery interview.
 ```
 
 Replace `<activity-slug>` with the basename of `<activity-dir>` (e.g., if the directory is `/Users/me/Projects/my-fitness-app`, the slug is `my-fitness-app`).
+
+### Step 5b: Discover and Populate Capabilities
+
+After initializing CLAUDE.md, discover the capabilities available in the activity environment and populate the `### Capabilities` subsection.
+
+#### MCP Servers
+
+1. Check if `<activity-dir>/.mcp.json` exists. If so, read it and extract the server names from the top-level keys. For each server, include the name and a brief description of what it does based on the server configuration (e.g., command, args, or URL).
+2. Also check `~/.claude.json` for user-level MCP servers under the `mcpServers` key. Include these as well with a note that they are user-level.
+3. Combine both lists. If no MCP servers are found, write "None detected".
+
+#### CLI Tools
+
+Check PATH for these key CLI tools: `gh`, `node`, `bun`, `docker`, `python3`, `npm`, `npx`, `make`.
+
+For each tool, run `which <tool>` to check if it exists. List only the tools that are found, including their version (run `<tool> --version` to get it). If none are found, write "None detected".
+
+#### Project Scripts
+
+1. Check if `<activity-dir>/package.json` exists. If so, read the `scripts` section and list each script name and its command.
+2. Check if `<activity-dir>/Makefile` exists. If so, list the available targets (parse lines matching `^target-name:` pattern).
+3. If neither file exists or no scripts/targets are found, write "None detected".
+
+#### Update CLAUDE.md
+
+Replace the placeholder values in the `### Capabilities` subsection of `<activity-dir>/CLAUDE.md` with the discovered values. Format each category as a comma-separated list or a brief bullet list depending on the number of items.
 
 ### Step 6: Configure Task List ID
 
@@ -148,6 +186,7 @@ Report a summary of what was done:
 - Whether plugins were installed
 - Whether `.claude/settings.json` was created or updated
 - The task list ID configured (`CLAUDE_CODE_TASK_LIST_ID=<activity-slug>`)
+- Capabilities discovered (MCP servers, CLI tools, project scripts found)
 - Whether a new GitHub repo was created (include the URL)
 - The current git remote URL
 
