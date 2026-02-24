@@ -180,12 +180,12 @@
     },
     {
       "id": "w18",
-      "title": "Verify Home Server Browser Automation",
+      "title": "Home Server Browser Automation Setup",
       "status": "pending",
       "phase": "phase-1",
       "dependencies": [],
-      "why": "Execution agents may depend on browser capability. Needs verification before we build skills that assume it.",
-      "done_when": "Browser automation is confirmed working on the home server, or we know what setup is needed."
+      "why": "Execution agents need browser capability for web tasks, authenticated site interaction, and data extraction. Claude in Chrome integration enables human intervention for CAPTCHAs and login flows.",
+      "done_when": "Xvfb + VNC + Chrome + Claude in Chrome extension are installed and working on the N100. Claude Code can control Chrome via --chrome flag. User can VNC in to observe or intervene. Setup survives reboot."
     },
     {
       "id": "w19",
