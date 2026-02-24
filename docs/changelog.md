@@ -1,5 +1,16 @@
 # Changelog
 
+## W19: Fix Discover Skill Invocation Bug
+
+### 2026-02-24 - [#1] [w19] Remove discover command and update references
+- Deleted `commands/discover.md` which had `disable-model-invocation: true` causing name collision with the discover skill
+- Updated `/discover` command references in `CLAUDE.md` and `skills/organize/SKILL.md` to remove the dead reference
+- Resolved merge conflict in CLAUDE.md (worktree had older version without the do-stuff-helper section)
+- Files changed: commands/discover.md (deleted), CLAUDE.md, skills/organize/SKILL.md
+
+### 2026-02-24 - Waypoint Complete
+- Fixed discover skill invocation by removing the redundant command that shared its name. The `disable-model-invocation: true` flag on the command was being picked up when the Skill tool resolved `do-stuff-helper:discover`.
+
 ## W20: Plugin Update Workflow
 
 ### 2026-02-23 - [#1] [w20] Write commands/publish.md

@@ -190,7 +190,7 @@
     {
       "id": "w19",
       "title": "Fix Discover Skill Invocation Bug",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [],
       "why": "The do-stuff-helper:discover skill returned a disable-model-invocation error when invoked via the Skill tool, despite not having that flag set.",
