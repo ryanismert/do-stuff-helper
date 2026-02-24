@@ -1,5 +1,12 @@
 # Changelog
 
+## W4: Decompose & Execute Architecture
+
+### 2026-02-24 - Waypoint Complete
+- Built `waypoint-planner` skill: decomposes designed waypoints into task DAGs with dependencies, metadata, and cross-session persistence
+- Built `waypoint-implement` skill: orchestrates parallel worker agents in git worktrees, handles merge, changelog, and waypoint lifecycle
+- Validated end-to-end on W20 (plugin update workflow) and W19 (discover bug fix), including merge conflict resolution
+
 ## W19: Fix Discover Skill Invocation Bug
 
 ### 2026-02-24 - [#1] [w19] Remove discover command and update references
