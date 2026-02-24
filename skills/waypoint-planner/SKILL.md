@@ -36,6 +36,8 @@ Complete each step in strict order. Do not skip steps.
 
 ### Step 4: Recursive Decomposition
 
+If the design doc leaves anything ambiguous that would significantly affect the task structure, ask the user before proceeding. Otherwise, use your best judgment and go straight to creating tasks — the user trusts the planner and can review or adjust tasks after creation.
+
 Start with the top-level deliverables from the design doc's "Done When" criteria. For each deliverable, ask: can this be done in a single focused session by one worker? If not, decompose further. Continue until all leaf nodes are atomic, executable tasks.
 
 Identify:
@@ -59,27 +61,13 @@ Identify:
   - `context_files`: array of file paths the worker should read for context
   - `link_from`: (optional) array of docs that should link to the output when done
 
-### Step 5: Present the DAG to the User
-
-Render the task tree showing:
-- Task hierarchy with indentation for structure
-- Dependencies (what blocks what)
-- Parallelism groups marked (tasks that can run simultaneously)
-- Human tasks flagged clearly
-
-Ask:
-
-> "Does this decomposition look right? Any tasks missing, too big, or wrongly assigned?"
-
-Iterate on feedback until the user confirms.
-
-### Step 6: Create Tasks
+### Step 5: Create Tasks
 
 - For each leaf task, call `TaskCreate` with subject, description, activeForm, and metadata
 - After all tasks are created, use `TaskUpdate` to wire up dependencies via `addBlockedBy`/`addBlocks`
 - Report the task IDs created
 
-### Step 7: Suggest Next Step
+### Step 6: Suggest Next Step
 
 Offer to invoke `do-stuff-helper:waypoint-implement` to start execution, or let the user review the task list first. Suggest-and-confirm pattern:
 
