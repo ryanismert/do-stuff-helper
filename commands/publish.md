@@ -23,7 +23,7 @@ Publish a new version of the do-stuff-helper plugin.
 
 5. **Stage, commit, and push**:
    ```
-   git add -A && git commit -m "chore: bump version to X.Y.Z" && git push
+   git add .claude-plugin/plugin.json .claude-plugin/marketplace.json && git commit -m "chore: bump version to X.Y.Z" && git push
    ```
    Replace `X.Y.Z` with the new version string.
 
