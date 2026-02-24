@@ -1,5 +1,28 @@
 # Changelog
 
+## W5: Autonomy Model
+
+### 2026-02-24 - [#2] [w5] Update organize skill with capabilities discovery
+- Added Step 5b to organize skill: discovers MCP servers, CLI tools, and project scripts
+- Extended canonical CLAUDE.md template with `### Capabilities` subsection
+- Updated Step 8 summary to report discovered capabilities
+- Files changed: skills/organize/SKILL.md
+
+### 2026-02-24 - [#3] [w5] Update waypoint-implement worker prompt
+- Added `## Capabilities` section instructing workers to read CLAUDE.md and write/execute ad-hoc scripts
+- Added self-unblocking instructions to `## Handling Ambiguity` section
+- Resolved merge conflict to preserve both `## Available Skills` and new `## Capabilities` sections
+- Files changed: skills/waypoint-implement/SKILL.md
+
+### 2026-02-24 - [#4] [w5] Run organize on do-stuff-helper to seed capabilities
+- Discovered CLI tools: gh, node, docker, python3, npm, npx, make
+- No MCP servers or project scripts detected
+- Populated `### Capabilities` subsection in CLAUDE.md
+- Files changed: CLAUDE.md
+
+### 2026-02-24 - Waypoint Complete
+- Workers now receive capability awareness (skills, MCP servers, CLI tools, project scripts) via CLAUDE.md and are instructed to self-unblock using available tools — including writing and executing ad-hoc code — before escalating.
+
 ## W4: Decompose & Execute Architecture
 
 ### 2026-02-24 - Waypoint Complete

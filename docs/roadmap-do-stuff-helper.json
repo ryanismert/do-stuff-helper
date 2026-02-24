@@ -64,7 +64,7 @@
     {
       "id": "w5",
       "title": "Autonomy Model",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": ["w4"],
       "why": "Workers need to know what they're allowed to do without asking.",
