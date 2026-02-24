@@ -117,8 +117,7 @@ After saving, check the roadmap for other unblocked waypoints that are ready for
 
 > "Design saved. [Other unblocked waypoints] are also ready for design. Want to:
 > 1. Plan the tasks for this waypoint now? (invokes waypoint-planner)
-> 2. Continue designing other unblocked waypoints?
-> 3. Stop here for now?"
+> 2. Continue designing other unblocked waypoints?"
 
 If the user chooses to plan, invoke `do-stuff-helper:waypoint-planner`.
 
