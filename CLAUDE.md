@@ -143,5 +143,17 @@ This project uses the do-stuff-helper plugin for guided project execution.
 ### Task List
 This activity uses `CLAUDE_CODE_TASK_LIST_ID=do-stuff-helper` for persistent cross-session task tracking.
 
+### Capabilities
+
+Workers and agents in this project have access to:
+
+**Skills:** organize, discover, research, roadmap, waypoint-design, waypoint-planner, waypoint-implement
+
+**MCP Servers:** None configured
+
+**CLI Tools:** gh 2.86.0, node 25.6.0, docker 29.1.5, python3 3.9.6, npm 11.8.0, npx 11.8.0, make 3.81
+
+**Project Scripts:** None (no package.json or Makefile)
+
 ### Usage
 Invoke skills via `do-stuff-helper:<skill-name>`.
