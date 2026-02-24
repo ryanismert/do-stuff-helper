@@ -181,7 +181,7 @@
     {
       "id": "w18",
       "title": "Home Server Browser Automation Setup",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [],
       "why": "Execution agents need browser capability for web tasks, authenticated site interaction, and data extraction. Claude in Chrome integration enables human intervention for CAPTCHAs and login flows.",
