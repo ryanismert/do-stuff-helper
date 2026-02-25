@@ -25,3 +25,7 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 **Dashboard SSH entry points:** The dashboard should eventually provide entry points to SSH into active Claude sessions (e.g., tmux session names, connect commands). Deferred from w10 MVP to keep scope focused on read-only status visibility.
 
 **Dashboard Git repository status:** Show per-activity Git status on the dashboard — open pull requests, pending reviews, unpushed commits, branch state. May also need to invest in proper CI pipelines (GitHub Actions) for activity repos so the dashboard can surface build/test status alongside PR state.
+
+## 2026-02-25 — w10 implementation
+
+**Verification step in waypoint-implement:** The implement skill has no structured testing or verification step. Workers may or may not test their output — it's up to their initiative. Add a verification step to the worker prompt and/or the post-merge flow (Step 6) so that implemented work is validated before being marked complete. Could range from "run the tests if they exist" to "verify the output matches the acceptance criteria in the task description."
