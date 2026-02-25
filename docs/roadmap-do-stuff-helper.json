@@ -82,7 +82,7 @@
     {
       "id": "w7",
       "title": "Feedback Capture",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-2",
       "dependencies": ["w4"],
       "why": "Without feedback, agent quality can't improve.",
@@ -91,7 +91,7 @@
     {
       "id": "w8",
       "title": "Skill-Improver Agent",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-2",
       "dependencies": ["w7"],
       "why": "Turns feedback into actual improvements without requiring manual skill editing.",
