@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-02-25 — Completed w10: Dashboard — Core
+Single-page activity dashboard with progress tracking, changelog timeline, blocker alerts, and next actions. Updated all lifecycle skills with changelog milestone writing, smart waypoint-implement mode, and blocker convention.
+
 ## 2026-02-25 — Completed w9: Backlog & Replanning Process
 Created replan skill and backlog conventions for capturing out-of-scope work and periodically incorporating it into the roadmap.
 

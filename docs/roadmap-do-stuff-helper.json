@@ -1,7 +1,7 @@
 {
   "activity": "do-stuff-helper",
   "created": "2026-02-23",
-  "updated": "2026-02-24",
+  "updated": "2026-02-25",
   "phases": [
     {
       "id": "phase-1",
@@ -91,7 +91,7 @@
     {
       "id": "w10",
       "title": "Dashboard — Core",
-      "status": "implementing",
+      "status": "done",
       "phase": "phase-3",
       "dependencies": ["w4"],
       "why": "As multiple activities run in parallel, the user needs a single place to see everything.",
