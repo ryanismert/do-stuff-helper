@@ -1,5 +1,43 @@
 # Changelog
 
+## 2026-02-25 — Completed w9: Backlog & Replanning Process
+Created replan skill and backlog conventions for capturing out-of-scope work and periodically incorporating it into the roadmap.
+
+## 2026-02-24 — Completed w18: Home Server Browser Automation Setup
+Installed Xvfb + VNC + Chrome + Claude in Chrome extension on the N100 with systemd services that survive reboot. Claude Code can control Chrome via --chrome flag and users can VNC in to observe or intervene.
+
+## 2026-02-24 — Completed w5: Autonomy Model
+Workers now receive capability awareness and self-unblocking instructions, using available tools (including writing ad-hoc scripts) before escalating to the user.
+
+## 2026-02-24 — Completed w4: Decompose & Execute Architecture
+Built waypoint-planner (recursive task decomposition) and waypoint-implement (parallel worker orchestration in git worktrees) skills, completing the core execution engine.
+
+## 2026-02-24 — Completed w19: Fix Discover Skill Invocation Bug
+Identified and fixed a name collision between the discover command and discover skill caused by `disable-model-invocation: true` on the command file.
+
+## 2026-02-23 — Completed w20: Plugin Update Workflow
+Created the `/publish` slash command that automates version bump, commit, push, marketplace update, and plugin reinstall.
+
+## 2026-02-23 — Completed w3: Waypoint Design Skill
+Built a skill that evaluates waypoints, scales design effort to complexity, and produces descriptions sufficient for confident decomposition.
+
+## 2026-02-23 — Completed w21: Suggest-and-Confirm Transition in Discover
+Added a suggest-and-confirm prompt at the end of the discover skill to offer transitioning directly into roadmap planning.
+
+## 2026-02-23 — Completed w1: Roadmap Skill
+Implemented a roadmap skill that reads a brief, interviews the user about priorities and sequencing, and produces an adaptive waypoint-based roadmap as JSON.
+
+## 2026-02-23 — Completed w2: Waypoint Storage Format
+Defined and documented the waypoint storage format (JSON source of truth + individual markdown design docs) and converted the roadmap to use it.
+
+## 2026-02-23 — Roadmap created: Do-Stuff-Helper
+Bootstrap roadmap created with phased waypoints covering the full pipeline from core execution to life coaching.
+
+## 2026-02-22 — Activity defined: Do-Stuff-Helper
+Expert interview completed, brief saved covering goals, scope, success criteria, and key risks for the do-stuff-helper activity.
+
+---
+
 ## W5: Autonomy Model
 
 ### 2026-02-24 - [#2] [w5] Update organize skill with capabilities discovery
