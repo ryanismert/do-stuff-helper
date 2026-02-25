@@ -16,7 +16,7 @@ Complete each step in strict order. Do not skip steps.
 - Call `TaskList` to see current state
 - If the user specified a waypoint, use `TaskGet` on each task to filter by `metadata.waypoint`
 - Show a summary to the user:
-  > "Task status: X total, Y done, Z pending, W in-progress, H human tasks"
+  > "Task status: X total, Y done, Z pending, W implementing, H human tasks"
 - If no tasks exist for the waypoint, tell the user to run waypoint-planner first and stop
 
 ### Step 2: Surface Human Tasks

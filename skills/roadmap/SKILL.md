@@ -64,7 +64,7 @@ Continue until the user confirms the roadmap looks good. Don't over-refine — t
 For each waypoint, define:
 - `id` — short identifier (e.g., `w1`, `w2`)
 - `title` — human-readable name
-- `status` — initially `pending` (or `in-progress`/`done` if work has already started)
+- `status` — initially `pending` (or `implementing`/`done` if work has already started)
 - `phase` — which phase it belongs to
 - `dependencies` — list of waypoint IDs that must complete first
 - `why` — one sentence on why this waypoint matters
@@ -105,7 +105,7 @@ Write `docs/roadmap-<slug>.json` using this schema:
 }
 ```
 
-**Phase status is derived, not stored:** `done` if all waypoints in the phase are `done`, `in-progress` if any are `in-progress`, `pending` otherwise.
+**Phase status is derived, not stored:** `done` if all waypoints in the phase are `done`, `implementing` if any are `implementing`, `pending` otherwise.
 
 ### Step 7: Create Waypoint Design Stubs
 
