@@ -99,7 +99,7 @@ Suggest next steps — e.g., designing newly added waypoints, or continuing with
 - **Empty backlog:** Tell the user and stop. Nothing to process.
 - **All items are informational:** Some backlog items may just be observations that don't require action. Categorize them as "no action" and ask the user if they should be cleared.
 - **Conflicting items:** If two backlog items contradict each other, flag the conflict and ask the user to resolve before applying.
-- **Item affects an in-progress waypoint:** Flag this clearly — changing a waypoint that's currently being worked on may invalidate active tasks.
+- **Item affects an implementing waypoint:** Flag this clearly — changing a waypoint that's currently being worked on may invalidate active tasks.
 - **No brief exists:** If the activity has no brief, the replan skill can still add tactical waypoints to the roadmap. Design updates without a brief should prompt the user to run discover first.
 
 ## Cross-Skill Invocation

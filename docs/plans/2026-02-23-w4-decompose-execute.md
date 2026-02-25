@@ -221,7 +221,7 @@ Orchestrate execution of tasks from the native task list. Dispatch parallel work
 
 Implements the 8 steps from the W4 design doc's "Skill 2: waypoint-implement" section:
 
-1. **Read the task list** — `TaskList` to see current state. If user specified a waypoint, use `TaskGet` on each task to filter by `metadata.waypoint`. Show a summary: X total, Y done, Z pending, W in-progress, H human.
+1. **Read the task list** — `TaskList` to see current state. If user specified a waypoint, use `TaskGet` on each task to filter by `metadata.waypoint`. Show a summary: X total, Y done, Z pending, W implementing, H human.
 2. **Surface human tasks** — find tasks with `metadata.assignee == "human"` that are not blocked. Present them clearly: "These tasks need you: [list]. [downstream task count] other tasks are waiting on them."
 3. **Check for worker questions** — find tasks with `metadata.question` set. Present each question to the user. After user answers, update the task description with the answer (append an "Additional Context" section), clear the question metadata, and re-queue for dispatch.
 4. **Identify ready agent tasks** — pending tasks where: `metadata.assignee == "agent"`, all `blockedBy` tasks are completed, no `metadata.question` set.
