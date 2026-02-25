@@ -125,7 +125,9 @@ For full details including background, open questions, and roadmap planning note
 
 ## Current Status
 
-To understand what to work on next, read `docs/roadmap-do-stuff-helper.json`. It contains all waypoints with statuses and dependencies. Waypoints with status `pending` and all dependencies `done` are ready for design or execution. Waypoint design documents live in `docs/waypoints/<waypoint-id>.md`.
+To understand what to work on next, read `docs/roadmap-do-stuff-helper.json`. It contains all waypoints with statuses and dependencies. Waypoint design documents live in `docs/waypoints/<waypoint-id>.md`.
+
+**Waypoint statuses:** `pending`, `in-progress`, `done`, `obsolete`. Waypoints with status `pending` and all dependencies `done` are ready for design or execution. `obsolete` waypoints are no longer planned — skip them when calculating what's unblocked.
 
 ## do-stuff-helper
 
