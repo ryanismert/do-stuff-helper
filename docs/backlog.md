@@ -19,3 +19,7 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 ## 2026-02-25 — user
 
 **Keep brief in sync with roadmap changes:** Any skill that adds waypoints or modifies the roadmap (roadmap, replan, or manual edits) should also update the activity brief to reflect the change. The brief should stay current as the source of "what this activity is about" — if we add new scope, the brief should mention it.
+
+## 2026-02-25 — w10 design
+
+**Dashboard SSH entry points:** The dashboard should eventually provide entry points to SSH into active Claude sessions (e.g., tmux session names, connect commands). Deferred from w10 MVP to keep scope focused on read-only status visibility.
