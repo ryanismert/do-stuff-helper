@@ -23,3 +23,5 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 ## 2026-02-25 — w10 design
 
 **Dashboard SSH entry points:** The dashboard should eventually provide entry points to SSH into active Claude sessions (e.g., tmux session names, connect commands). Deferred from w10 MVP to keep scope focused on read-only status visibility.
+
+**Dashboard Git repository status:** Show per-activity Git status on the dashboard — open pull requests, pending reviews, unpushed commits, branch state. May also need to invest in proper CI pipelines (GitHub Actions) for activity repos so the dashboard can surface build/test status alongside PR state.
