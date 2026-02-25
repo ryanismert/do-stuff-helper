@@ -67,7 +67,17 @@ Identify:
 - After all tasks are created, use `TaskUpdate` to wire up dependencies via `addBlockedBy`/`addBlocks`
 - Report the task IDs created
 
-### Step 6: Suggest Next Step
+### Step 6: Write Changelog
+
+Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
+```
+## YYYY-MM-DD — Planned <waypoint-id>: <Waypoint Title> (<N> tasks)
+<1-2 sentence summary of the decomposition — what categories of work and key themes.>
+```
+
+Stage and commit all changes with message: `waypoint-planner: plan <waypoint-id> <waypoint-title>`
+
+### Step 7: Suggest Next Step
 
 Offer to invoke `do-stuff-helper:waypoint-implement` to start execution, or let the user review the task list first. Suggest-and-confirm pattern:
 

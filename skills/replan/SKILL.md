@@ -73,7 +73,12 @@ On user confirmation:
    - Update the `updated` date
 3. **Create waypoint stubs** — for any new waypoints, create `docs/waypoints/<id>.md` with Objective and Done When sections
 4. **Clear processed items** — remove the processed entries from `docs/backlog.md`, leaving the header and any unprocessed items
-5. **Commit** — stage all changed files and commit with a message summarizing what was changed:
+5. **Write changelog** — prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
+   ```
+   ## YYYY-MM-DD — Replanned: <summary of changes>
+   <1-2 sentence summary — what was processed and how the roadmap changed.>
+   ```
+6. **Commit** — stage all changed files and commit with a message summarizing what was changed:
    ```
    replan: process backlog — <brief summary>
 

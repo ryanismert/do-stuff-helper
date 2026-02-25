@@ -130,8 +130,13 @@ These are stubs — the waypoint design skill (or manual design) will flesh them
 1. Write the JSON file to `docs/roadmap-<slug>.json`
 2. Create the `docs/waypoints/` directory if it doesn't exist
 3. Write all waypoint design stubs
-4. Stage and commit with message: `roadmap: create roadmap for <activity-slug>`
-5. Report file paths and confirm everything is saved
+4. Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
+   ```
+   ## YYYY-MM-DD — Roadmap created: <Activity Name>
+   <1-2 sentence summary — number of phases, number of waypoints, key themes.>
+   ```
+5. Stage and commit with message: `roadmap: create roadmap for <activity-slug>`
+6. Report file paths and confirm everything is saved
 
 ### Step 9: Suggest Next Steps
 
