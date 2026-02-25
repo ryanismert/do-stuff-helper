@@ -19,12 +19,44 @@ Complete each step in strict order. Do not skip steps.
   > "Task status: X total, Y done, Z pending, W implementing, H human tasks"
 - If no tasks exist for the waypoint, tell the user to run waypoint-planner first and stop
 
+### Step 1b: Set Status and Log Start
+
+- Read `docs/roadmap-<slug>.json` and set the waypoint status to `implementing`
+- Update the `updated` field on the roadmap to today's date (YYYY-MM-DD)
+- Prepend a milestone entry to `docs/changelog.md` (right after the `# Changelog` header line, above all existing entries):
+  ```
+  ## YYYY-MM-DD — Implementing <wN>: <Title>
+  <1 sentence about what's being worked on>
+  ```
+- If `docs/changelog.md` doesn't exist, create it with a `# Changelog` header first
+
+### Step 1c: Assess Complexity
+
+Evaluate whether the waypoint work warrants full parallel worker dispatch or inline execution:
+
+- **Use workers (complex mode)** when:
+  - More than 3 agent tasks AND at least some can run in parallel
+  - Tasks have significant scope or touch different parts of the codebase
+  - Multiple worktrees would avoid merge contention
+
+- **Execute inline (simple mode)** when:
+  - 3 or fewer agent tasks, OR all tasks are sequential (linear dependency chain)
+  - Tasks are straightforward changes (config edits, doc updates, small code changes)
+  - Spawning workers would add overhead without benefit
+
+**Simple mode**: Execute tasks directly in the current session — no worktrees, no subagents. Process tasks in dependency order, updating task status (`in_progress` → `completed`) and writing changelog entries as you go. Follow the same lifecycle as workers: commit changes, handle blockers, write to changelog. Skip Steps 5-6 and go straight from Step 4 to Step 7 (loop), doing the work inline.
+
+**Complex mode**: Proceed with the full worker pipeline (Steps 5-6) as designed below.
+
+Either path must handle the full lifecycle: status updates, changelog entries, blocker tracking, and waypoint completion.
+
 ### Step 2: Surface Human Tasks
 
 - Find tasks with `metadata.assignee == "human"` that are not blocked (no unresolved `blockedBy`)
 - Present them clearly:
   > "These tasks need you: [list with descriptions]. [N] other tasks are waiting on them."
 - Do not attempt to execute human tasks
+- **Write blockers**: For each unresolved human task, create or update `docs/blockers.json` with a blocker entry (see Blocker Tracking below). This ensures human-required work is visible even outside the task list.
 
 ### Step 3: Check for Worker Questions
 
@@ -160,20 +192,45 @@ Repeat steps 2-6 until one of these conditions is met:
 
 When all tasks (including human tasks) are done:
 
-1. Update `docs/roadmap-<slug>.json`: set waypoint status to `done`, update the `updated` date
-2. Append a completion summary to `docs/changelog.md`
-3. Report to the user:
+1. Update `docs/roadmap-<slug>.json`: set waypoint status to `done`, update the `updated` date (YYYY-MM-DD)
+2. Prepend a completion milestone to `docs/changelog.md` (right after the `# Changelog` header line):
+   ```
+   ## YYYY-MM-DD — Completed <wN>: <Title>
+   <1-2 sentence summary of what was accomplished>
+   ```
+3. Update any open blockers for this waypoint in `docs/blockers.json` to status `"resolved"`
+4. Report to the user:
    > "Waypoint [title] is complete. [summary of what was accomplished]"
-4. Check for other waypoints now unblocked by this completion and suggest next steps:
+5. Check for other waypoints now unblocked by this completion and suggest next steps:
    > "These waypoints are now unblocked: [list]. Want to design or plan any of them?"
 
 ## Changelog Management
 
-The skill manages `docs/changelog.md`:
+The skill manages `docs/changelog.md` at two levels:
+
+### Waypoint-Level Milestones (## headings)
+
+Milestone entries are **prepended** after the `# Changelog` header (newest first). They mark lifecycle transitions:
+
+- **At implementation start** (Step 1b):
+  ```markdown
+  ## YYYY-MM-DD — Implementing <wN>: <Title>
+  <1 sentence about what's being worked on>
+  ```
+
+- **At waypoint completion** (Step 8):
+  ```markdown
+  ## YYYY-MM-DD — Completed <wN>: <Title>
+  <1-2 sentence summary of what was accomplished>
+  ```
+
+### Task-Level Detail (### headings)
+
+Task entries are appended under a waypoint section heading (`## <Waypoint ID>: <Waypoint Title>`) as work progresses:
 
 - If the file doesn't exist, create it with a `# Changelog` header
-- If the waypoint heading doesn't exist, add `## <Waypoint ID>: <Waypoint Title>`
-- Each task completion appends an entry under the waypoint heading:
+- If the waypoint section heading doesn't exist, add it below the milestone entries
+- Each task completion appends an entry under the waypoint section heading:
 
 ```markdown
 ### YYYY-MM-DD - [<task-id>] <task subject>
@@ -182,18 +239,43 @@ The skill manages `docs/changelog.md`:
 - Files changed: <list>
 ```
 
-- When a waypoint completes (Step 8), append a summary entry:
+- When a waypoint completes (Step 8), append a summary entry under the waypoint section:
 
 ```markdown
 ### YYYY-MM-DD - Waypoint Complete
 - <overall summary of what the waypoint achieved>
 ```
 
+## Blocker Tracking
+
+The skill manages `docs/blockers.json` for human-required work:
+
+- If the file doesn't exist, create it with an empty array `[]`
+- When surfacing human tasks (Step 2) or when a worker encounters something requiring human action, add a blocker entry:
+
+```json
+[
+  {
+    "id": "blocker-N",
+    "waypoint": "wN",
+    "title": "Short description",
+    "description": "What the user needs to do and why",
+    "created": "YYYY-MM-DD",
+    "status": "open"
+  }
+]
+```
+
+- **Adding blockers**: Increment the blocker ID based on the highest existing ID in the file
+- **Resolving blockers**: When human tasks are completed and work resumes, update the blocker's status to `"resolved"`
+- **Waypoint completion** (Step 8): Resolve all open blockers for the completed waypoint
+
 ## Edge Cases
 
 - **No tasks exist for the waypoint:** Tell the user to run waypoint-planner first and stop.
 - **All tasks already completed:** Tell the user the waypoint is done. Offer to mark it done in the roadmap if not already.
-- **Session ends mid-execution:** Tasks persist via `CLAUDE_CODE_TASK_LIST_ID`. The user can re-invoke to resume. The skill picks up from current task states — Step 1 reads whatever state tasks are in.
+- **Session ends mid-execution:** Tasks persist via `CLAUDE_CODE_TASK_LIST_ID`. The user can re-invoke to resume. The skill picks up from current task states — Step 1 reads whatever state tasks are in. The roadmap status will remain `implementing` until Step 8 sets it to `done`.
+- **Resuming a waypoint already in `implementing` status:** Skip Step 1b (status is already set, start milestone already written). Proceed directly to Step 1c.
 - **Worker creates merge conflict:** Attempt auto-merge. If that fails, escalate with conflicting file details so the user can resolve manually.
 - **Task has no context_files:** Worker gets just the task description and the activity's CLAUDE.md.
 
