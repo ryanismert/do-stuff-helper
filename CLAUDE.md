@@ -91,6 +91,12 @@ Everything else is freeform. The waypoint design agent scales detail to complexi
 
 **Phases** are tracked in the JSON as grouping mechanisms with their own completion status, giving humans a sense of progress.
 
+### Backlog & Discovered Work
+
+- **In-scope discoveries:** When a worker discovers additional work needed for the current waypoint, it adds tasks directly to the task list and does them. No special process needed.
+- **Out-of-scope discoveries:** When a worker or the user discovers work that belongs to a different waypoint or is entirely new, append it to `docs/backlog.md`. The `replan` skill periodically processes the backlog into roadmap and brief updates.
+- **Backlog format:** Append-only, freeform sections with date and source. See `docs/backlog.md` for the format.
+
 ## Development Workflow
 - Use the `skill-creator` plugin to create and test new skills
 - Test skills locally before committing by installing the plugin at project scope
@@ -141,6 +147,7 @@ This project uses the do-stuff-helper plugin for guided project execution.
 - **waypoint-design** — Design individual waypoints with sufficient detail for decomposition
 - **waypoint-planner** — Decompose a waypoint into executable tasks
 - **waypoint-implement** — Execute tasks from the waypoint plan
+- **replan** — Process the backlog into roadmap and brief updates
 
 ### Task List
 This activity uses `CLAUDE_CODE_TASK_LIST_ID=do-stuff-helper` for persistent cross-session task tracking.
@@ -149,7 +156,7 @@ This activity uses `CLAUDE_CODE_TASK_LIST_ID=do-stuff-helper` for persistent cro
 
 Workers and agents in this project have access to:
 
-**Skills:** organize, discover, research, roadmap, waypoint-design, waypoint-planner, waypoint-implement
+**Skills:** organize, discover, research, roadmap, waypoint-design, waypoint-planner, waypoint-implement, replan
 
 **MCP Servers:** None configured
 

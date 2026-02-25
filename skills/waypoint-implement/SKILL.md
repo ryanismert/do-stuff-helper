@@ -107,6 +107,11 @@ Bias toward action. If you encounter ambiguity:
 - Only flag a question if you truly cannot proceed — two valid approaches with significantly different consequences, or missing information you can't infer
 - To flag a question: clearly state what you need and why at the END of your response, prefixed with "QUESTION:"
 
+## Discovered Work
+
+- **In-scope:** If you discover additional work needed for this waypoint, just do it and note it in your summary.
+- **Out-of-scope:** If you discover work that belongs to a different waypoint or is entirely new, append it to `docs/backlog.md` using the format: `## <date> — <source>\n\n<description>`
+
 ## When Done
 
 Report:

@@ -100,7 +100,7 @@
     {
       "id": "w9",
       "title": "Backlog & Replanning Process",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-2",
       "dependencies": ["w1", "w2"],
       "why": "The roadmap needs to adapt as we learn. New insights, scope changes, and discovered work need to be incorporated.",
