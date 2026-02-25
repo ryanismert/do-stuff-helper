@@ -91,7 +91,7 @@
     {
       "id": "w10",
       "title": "Dashboard — Core",
-      "status": "pending",
+      "status": "implementing",
       "phase": "phase-3",
       "dependencies": ["w4"],
       "why": "As multiple activities run in parallel, the user needs a single place to see everything.",
