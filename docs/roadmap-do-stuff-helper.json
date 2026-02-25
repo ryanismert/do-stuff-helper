@@ -1,5 +1,7 @@
 {
   "activity": "do-stuff-helper",
+  "name": "Do-Stuff-Helper",
+  "description": "A Claude Code plugin for guided execution of personal projects and life goals.",
   "created": "2026-02-23",
   "updated": "2026-02-25",
   "phases": [

@@ -82,6 +82,8 @@ Write `docs/roadmap-<slug>.json` using this schema:
 ```json
 {
   "activity": "<activity-slug>",
+  "name": "<Human-readable activity name>",
+  "description": "<One sentence describing the activity>",
   "created": "<ISO date>",
   "updated": "<ISO date>",
   "phases": [
