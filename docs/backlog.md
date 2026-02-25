@@ -6,8 +6,12 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 
 ---
 
+## 2026-02-25 — user
+
+**Scheduled backlog review via n8n:** Once user notifications are implemented (w17 or similar), add an n8n workflow that triggers the replan skill weekly to review the backlog. This keeps the roadmap fresh without requiring the user to remember to run it.
+
 ## 2026-02-25 — roadmap cleanup
 
-**Feedback Capture (formerly w7):** User can give thumbs-down or typed feedback on any worker output. Feedback is recorded with context (input, output, rating) in the activity repo. Marked obsolete because the quality strategy is skills/CLAUDE.md refinement and better data sources rather than continuous prompt feedback loops. Revisit if a lightweight feedback mechanism becomes available in Claude Code's UI.
+**Feedback Capture:** A way for users to give quick feedback (thumbs-down, typed comments) on worker output, recorded with context (input, output, rating) in the activity repo. Revisit if a lightweight feedback mechanism becomes available in Claude Code's UI.
 
-**Skill-Improver Agent (formerly w8):** An autonomous agent periodically reviews accumulated feedback, proposes updates to skills/prompts/CLAUDE.md, and presents changes for user approval before landing. Marked obsolete because it depended on w7's feedback data. Could be reimagined with a different input source (e.g., reviewing worker output quality directly, or user-flagged issues in the backlog).
+**Skill-Improver Agent:** An agent that periodically reviews worker output quality or user-flagged issues, proposes updates to skills/prompts/CLAUDE.md, and presents changes for user approval before landing. Could be triggered by patterns in the backlog, poor worker output, or direct user requests.

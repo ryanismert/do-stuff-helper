@@ -80,24 +80,6 @@
       "done_when": "One pilot activity (wildlife cards or personal branding) has been run through discover → roadmap → waypoint design → decompose → execute, with at least one waypoint fully completed by workers."
     },
     {
-      "id": "w7",
-      "title": "Feedback Capture",
-      "status": "obsolete",
-      "phase": "phase-2",
-      "dependencies": ["w4"],
-      "why": "Without feedback, agent quality can't improve.",
-      "done_when": "User can give thumbs-down or typed feedback on any worker output. Feedback is recorded with context (input, output, rating) in the activity repo."
-    },
-    {
-      "id": "w8",
-      "title": "Skill-Improver Agent",
-      "status": "obsolete",
-      "phase": "phase-2",
-      "dependencies": ["w7"],
-      "why": "Turns feedback into actual improvements without requiring manual skill editing.",
-      "done_when": "An autonomous agent periodically reviews accumulated feedback, proposes updates to skills/prompts/CLAUDE.md, and presents changes for user approval before landing."
-    },
-    {
       "id": "w9",
       "title": "Backlog & Replanning Process",
       "status": "done",
