@@ -33,3 +33,7 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 ## 2026-02-25 — w10 implementation
 
 **Verification step in waypoint-implement:** The implement skill has no structured testing or verification step. Workers may or may not test their output — it's up to their initiative. Add a verification step to the worker prompt and/or the post-merge flow (Step 6) so that implemented work is validated before being marked complete. Could range from "run the tests if they exist" to "verify the output matches the acceptance criteria in the task description."
+
+## 2026-02-26 — user
+
+**Ongoing monitoring activities (non-project):** Not everything the user cares about is a project with a clear endpoint. Things like personal health, spending more time with kids, or maintaining habits are ongoing concerns that benefit from monitoring, gentle nudges, and periodic reflection — but don't fit the discover → roadmap → implement pipeline. Consider a new activity type or waypoint pattern for ongoing monitoring: periodic check-ins, trend tracking, goal reminders, and advisory-style engagement rather than task execution.
