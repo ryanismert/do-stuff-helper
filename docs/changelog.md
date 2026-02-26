@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-02-26 — Planned w11: Inbox (11 tasks)
+Unified inbox for worker questions and human-task blockers, dashboard resolution UI with reply/resolve/discuss paths, n8n auto-resume workflow, implement skill updates, and discussion channel research spike.
+
 ## 2026-02-25 — Completed w10: Dashboard — Core
 Single-page activity dashboard with progress tracking, changelog timeline, blocker alerts, and next actions. Updated all lifecycle skills with changelog milestone writing, smart waypoint-implement mode, and blocker convention.
 
