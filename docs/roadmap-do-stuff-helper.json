@@ -102,7 +102,7 @@
     {
       "id": "w11",
       "title": "Inbox",
-      "status": "implementing",
+      "status": "done",
       "phase": "phase-3",
       "dependencies": ["w4", "w10"],
       "why": "Workers need a way to ask questions async without blocking.",

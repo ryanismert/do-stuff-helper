@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-02-26 — Completed w11: Inbox
+Unified inbox system replacing separate blockers.json. Workers write questions and human-task blockers to docs/inbox.json. Dashboard shows inbox section with reply/resolve/discuss actions. n8n resume-implement workflow polls for answered items and triggers webhook. Implement skill updated with waiting status, inbox tracking, and auto-resume flow. Research spike evaluated Claude remote control and Telegram bot for discussion channel.
+
 ## 2026-02-26 — Implementing w11: Inbox
 Unified inbox for async worker questions and human-task blockers, with dashboard resolution UI and n8n auto-resume.
 
