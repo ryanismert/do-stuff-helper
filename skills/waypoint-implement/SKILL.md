@@ -56,15 +56,43 @@ Either path must handle the full lifecycle: status updates, changelog entries, b
 - Present them clearly:
   > "These tasks need you: [list with descriptions]. [N] other tasks are waiting on them."
 - Do not attempt to execute human tasks
-- **Write blockers**: For each unresolved human task, create or update `docs/blockers.json` with a blocker entry (see Blocker Tracking below). This ensures human-required work is visible even outside the task list.
+- **Write to inbox**: For each unresolved human task, append a blocker entry to `docs/inbox.json` (see Inbox Tracking below). This ensures human-required work is visible on the dashboard even outside the task list.
 
-### Step 3: Check for Worker Questions
+  ```json
+  {
+    "id": "q-N",
+    "type": "blocker",
+    "task_id": "<task-id>",
+    "waypoint": "<waypoint-id>",
+    "subject": "[wN] <task subject>",
+    "body": "<description of what user needs to do>",
+    "context": "<what the worker was doing>",
+    "created": "<ISO timestamp>",
+    "status": "pending",
+    "resolution": null,
+    "resolved_at": null
+  }
+  ```
 
+### Step 3: Check for Answered Items
+
+Process answered items from two sources: in-session task metadata and the persistent inbox.
+
+**In-session questions (metadata.question):**
 - Find tasks with `metadata.question` set (from a previous worker run that flagged a question)
 - Present each question to the user with context: task subject, what the worker was trying to do, the question text
 - After user answers, update the task description with an "Additional Context" section containing the answer
 - Clear the `metadata.question` field via `TaskUpdate`
 - The task is now ready to be re-dispatched
+
+**Inbox items (docs/inbox.json):**
+- Read `docs/inbox.json` and find entries with `status: "answered"` for this waypoint
+- For each answered entry:
+  - If `type: "question"`: append the `resolution` text to the corresponding task's description as "Additional Context"
+  - If `type: "blocker"`: the task's human prerequisite is satisfied; the task is now unblocked
+  - Update the inbox entry's `status` to `"resolved"`
+  - Clear `metadata.question` on the task (if applicable) via `TaskUpdate`
+  - The task is now ready for re-dispatch
 
 ### Step 4: Identify Ready Agent Tasks
 
@@ -137,7 +165,7 @@ Before flagging a QUESTION, exhaust your options:
 Bias toward action. If you encounter ambiguity:
 - Make a reasonable decision and document your assumption in your commit message
 - Only flag a question if you truly cannot proceed — two valid approaches with significantly different consequences, or missing information you can't infer
-- To flag a question: clearly state what you need and why at the END of your response, prefixed with "QUESTION:"
+- To flag a question: clearly state what you need and why at the END of your response, prefixed with "QUESTION:". This will be written to the project inbox so the user can answer asynchronously from any device.
 
 ## Discovered Work
 
@@ -169,9 +197,26 @@ As each worker returns, handle the outcome:
 - Append entry to changelog noting what was done (e.g., research, validation)
 
 **Question (worker flagged QUESTION: in response):**
-- Set `metadata.question` on the task with the worker's question text
+- Write the question to `docs/inbox.json` as `type: "question"` (append to array, auto-increment ID based on highest existing `q-N` ID):
+  ```json
+  {
+    "id": "q-N",
+    "type": "question",
+    "task_id": "<task-id>",
+    "waypoint": "<waypoint-id>",
+    "subject": "[wN] <task subject>",
+    "body": "<the worker's question text>",
+    "context": "<what the worker was doing when it hit the question>",
+    "created": "<ISO timestamp>",
+    "status": "pending",
+    "resolution": null,
+    "resolved_at": null
+  }
+  ```
+- Also set `metadata.question` on the task for in-session visibility
 - Set status back to `pending`
-- Will be surfaced in Step 3 on next loop iteration
+- Commit the `docs/inbox.json` change so it is visible to the dashboard immediately
+- Will be surfaced in Step 3 on next loop iteration (or answered asynchronously via the dashboard)
 
 **Failure (worker errored or couldn't complete):**
 - Report failure details to the user
@@ -183,7 +228,13 @@ As each worker returns, handle the outcome:
 Repeat steps 2-6 until one of these conditions is met:
 
 - **All tasks for this waypoint are `completed`** — proceed to Step 8
-- **Only human tasks remain** — surface them and pause:
+- **All remaining tasks are blocked on inbox items** (questions pending or blockers pending with no answerable tasks left) — set waypoint status to `waiting` in `docs/roadmap-<slug>.json`, update the `updated` date, and report to the user:
+  > "All dispatchable tasks are done. These items are waiting on you:
+  > [list of pending inbox items with subjects]
+  >
+  > Answer them on the dashboard: http://exoself-dev1:3002
+  > The system will automatically resume when you respond."
+- **Only human tasks remain (not tracked in inbox)** — surface them and pause:
   > "All agent tasks are done. These human tasks remain: [list]. Resume when you've completed them."
 - **A failure blocks all remaining progress** — escalate:
   > "Execution is blocked. [details]. What would you like to do?"
@@ -198,7 +249,7 @@ When all tasks (including human tasks) are done:
    ## YYYY-MM-DD — Completed <wN>: <Title>
    <1-2 sentence summary of what was accomplished>
    ```
-3. Update any open blockers for this waypoint in `docs/blockers.json` to status `"resolved"`
+3. Resolve any open inbox items for this waypoint in `docs/inbox.json` — set `status` to `"resolved"` and `resolved_at` to the current ISO timestamp
 4. Report to the user:
    > "Waypoint [title] is complete. [summary of what was accomplished]"
 5. Check for other waypoints now unblocked by this completion and suggest next steps:
@@ -246,36 +297,56 @@ Task entries are appended under a waypoint section heading (`## <Waypoint ID>: <
 - <overall summary of what the waypoint achieved>
 ```
 
-## Blocker Tracking
+## Inbox Tracking
 
-The skill manages `docs/blockers.json` for human-required work:
+The skill manages `docs/inbox.json` as a unified store for all items waiting on the user — both questions from workers and human-task blockers. This replaces the previous `docs/blockers.json` format.
 
 - If the file doesn't exist, create it with an empty array `[]`
-- When surfacing human tasks (Step 2) or when a worker encounters something requiring human action, add a blocker entry:
+- All entries follow the same schema:
 
 ```json
 [
   {
-    "id": "blocker-N",
-    "waypoint": "wN",
-    "title": "Short description",
-    "description": "What the user needs to do and why",
-    "created": "YYYY-MM-DD",
-    "status": "open"
+    "id": "q-N",
+    "type": "question | blocker",
+    "task_id": "<task-id>",
+    "waypoint": "<waypoint-id>",
+    "subject": "[wN] <task subject>",
+    "body": "<question text or description of what user needs to do>",
+    "context": "<what the worker was doing>",
+    "created": "<ISO timestamp>",
+    "status": "pending | answered | resolved",
+    "resolution": null,
+    "resolved_at": null
   }
 ]
 ```
 
-- **Adding blockers**: Increment the blocker ID based on the highest existing ID in the file
-- **Resolving blockers**: When human tasks are completed and work resumes, update the blocker's status to `"resolved"`
-- **Waypoint completion** (Step 8): Resolve all open blockers for the completed waypoint
+**Fields:**
+- `type` — `"question"` (needs a text answer) or `"blocker"` (needs human action + confirmation)
+- `body` — the question text or description of what the user needs to do
+- `context` — what the worker was doing when it hit the question or blocker
+- `resolution` — the user's reply text (for questions) or a note about what they did (for blockers, optional)
+- `resolved_at` — ISO timestamp when the user responded
+
+**Statuses:**
+- `pending` — waiting on user (written by implement skill)
+- `answered` — user responded via dashboard or discussion (written by dashboard)
+- `resolved` — implement skill picked up the response and re-dispatched the task (written by implement skill)
+
+**Adding entries:** Append to the array. Auto-increment the ID based on the highest existing `q-N` ID in the file.
+
+**Processing answers (Step 3):** When an entry has `status: "answered"`, the implement skill reads the `resolution`, applies it to the task, and sets the entry to `status: "resolved"`.
+
+**Waypoint completion (Step 8):** Resolve all open inbox items for the completed waypoint.
 
 ## Edge Cases
 
 - **No tasks exist for the waypoint:** Tell the user to run waypoint-planner first and stop.
 - **All tasks already completed:** Tell the user the waypoint is done. Offer to mark it done in the roadmap if not already.
-- **Session ends mid-execution:** Tasks persist via `CLAUDE_CODE_TASK_LIST_ID`. The user can re-invoke to resume. The skill picks up from current task states — Step 1 reads whatever state tasks are in. The roadmap status will remain `implementing` until Step 8 sets it to `done`.
+- **Session ends mid-execution:** Tasks persist via `CLAUDE_CODE_TASK_LIST_ID`. The user can re-invoke to resume. The skill picks up from current task states — Step 1 reads whatever state tasks are in. The roadmap status will remain `implementing` until Step 7 sets it to `waiting` or Step 8 sets it to `done`.
 - **Resuming a waypoint already in `implementing` status:** Skip Step 1b (status is already set, start milestone already written). Proceed directly to Step 1c.
+- **Resuming a waypoint in `waiting` status:** Set status to `implementing` in the roadmap JSON, then proceed to Step 1c. Step 3 will pick up any answered inbox items and unblock the corresponding tasks. Continue the loop normally from there.
 - **Worker creates merge conflict:** Attempt auto-merge. If that fails, escalate with conflicting file details so the user can resolve manually.
 - **Task has no context_files:** Worker gets just the task description and the activity's CLAUDE.md.
 
