@@ -3,7 +3,7 @@
   "name": "Do-Stuff-Helper",
   "description": "A Claude Code plugin for guided execution of personal projects and life goals.",
   "created": "2026-02-23",
-  "updated": "2026-02-25",
+  "updated": "2026-02-26",
   "phases": [
     {
       "id": "phase-1",
@@ -102,7 +102,7 @@
     {
       "id": "w11",
       "title": "Inbox",
-      "status": "pending",
+      "status": "implementing",
       "phase": "phase-3",
       "dependencies": ["w4", "w10"],
       "why": "Workers need a way to ask questions async without blocking.",

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-02-26 — Implementing w11: Inbox
+Unified inbox for async worker questions and human-task blockers, with dashboard resolution UI and n8n auto-resume.
+
 ## 2026-02-26 — Planned w11: Inbox (11 tasks)
 Unified inbox for worker questions and human-task blockers, dashboard resolution UI with reply/resolve/discuss paths, n8n auto-resume workflow, implement skill updates, and discussion channel research spike.
 
