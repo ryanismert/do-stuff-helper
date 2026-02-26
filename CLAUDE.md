@@ -136,10 +136,11 @@ To understand what to work on next, read `docs/roadmap-do-stuff-helper.json`. It
 **Waypoint statuses:**
 - `pending` — Not started; waiting for dependencies or prioritization
 - `implementing` — A worker/agent is actively executing this waypoint
+- `waiting` — Blocked on user input; questions or human tasks are outstanding in the inbox. Set by the implement skill when all remaining tasks need user action. n8n monitors for this status and triggers resume when answers arrive.
 - `done` — Completed; acceptance criteria met
 - `obsolete` — No longer relevant; skip when calculating what's unblocked
 
-Waypoints with status `pending` and all dependencies `done` are ready for design or execution.
+Waypoints with status `pending` and all dependencies `done` are ready for design or execution. Waypoints in `waiting` status may resume automatically when the user answers inbox items.
 
 ## do-stuff-helper
 
