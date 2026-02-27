@@ -142,6 +142,17 @@ To understand what to work on next, read `docs/roadmap-do-stuff-helper.json`. It
 
 Waypoints with status `pending` and all dependencies `done` are ready for design or execution. Waypoints in `waiting` status may resume automatically when the user answers inbox items.
 
+### Infrastructure in Main Repo
+
+The dashboard and inbox infrastructure live in the **main exoselfai repo** (`~/exoselfai/`), not in this plugin repo. Key locations:
+
+- `scripts/dashboard/` — Dashboard service (server, collector, UI). Runs as Docker container on port 3002.
+- `scripts/discuss.js` — Tmux-based Claude remote-control session manager for inbox discussions.
+- `scripts/webhook-server.js` — Webhook API server (systemd, port 3001). Hosts discuss endpoints + task execution.
+- `docker-compose.yml` — `exoself-dashboard` service definition.
+
+Per-activity data (`docs/inbox.json`, `docs/changelog.md`, `docs/roadmap-*.json`) lives in each activity's own repo. See `docs/waypoints/w10.md` for the full file map.
+
 ## do-stuff-helper
 
 This project uses the do-stuff-helper plugin for guided project execution.
