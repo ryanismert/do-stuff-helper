@@ -16,7 +16,7 @@ do-stuff-helper/
 │       └── SKILL.md
 ├── agents/                  # Subagents (long-running autonomous tasks)
 │   └── *.md
-├── activities/              # Activity directories (created by organize skill)
+├── activities/              # Activity directories (user creates, organize bootstraps)
 │   └── <activity-slug>/
 ├── CLAUDE.md
 └── README.md
@@ -60,7 +60,7 @@ activities/
 
 Skills are invoked in this order to take an activity from idea to execution:
 
-1. **organize** — Creates the activity directory structure
+1. **organize** — Bootstraps the current activity directory with docs, plugins, CLAUDE.md, and GitHub repo
 2. **discover** — Conducts an expert interview and produces a detailed brief (suggest-and-confirm transition to roadmap)
 3. **roadmap** — Builds an adaptive waypoint-based execution plan from the brief
 4. **waypoint-design** — Designs individual waypoints with sufficient detail for decomposition
@@ -68,7 +68,7 @@ Skills are invoked in this order to take an activity from idea to execution:
 
 ### Cross-Skill Invocation
 
-Skills invoke each other using the pattern `do-stuff-helper:<skill-name>`. For example, the discovery skill invokes `do-stuff-helper:organize` to set up the directory before saving the brief.
+Skills invoke each other using the pattern `do-stuff-helper:<skill-name>`. For example, the discovery skill invokes `do-stuff-helper:organize` to bootstrap the activity directory before saving the brief. The user is expected to have already created and `cd`'d into the activity directory before running organize.
 
 ### Artifact Naming
 

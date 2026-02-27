@@ -20,7 +20,7 @@ Ask the user if they want to plan a new activity.
 
 ### Step 2: Invoke Organize
 
-Invoke `do-stuff-helper:organize` to create the activity directory structure. Pass the activity name. Confirm the slug and path with the user.
+Ensure the activity directory exists and `cd` into it first, then invoke `do-stuff-helper:organize` to bootstrap it with docs, plugins, CLAUDE.md, and a GitHub repo. Confirm the slug and path with the user.
 
 ### Step 3: Profile Check
 
@@ -212,7 +212,7 @@ If no gaps were found, skip to step 13.
 
 ## Cross-Skill Invocation
 
-- **`do-stuff-helper:organize`** — Invoke in step 2 for new activities. Required before any files can be saved to the activity directory.
+- **`do-stuff-helper:organize`** — Invoke in step 2 for new activities. Bootstraps the activity directory with docs, plugins, CLAUDE.md, and GitHub repo.
 - **`do-stuff-helper:user-profile-builder`** — Invoke in step 3 if the user wants to build a profile, or in step 13 if they want to update their profile after the interview.
 - **`do-stuff-helper:research`** — Invoke at any point during the interview (step 7) when a topic surfaces that would benefit from investigation.
 - **`do-stuff-helper:roadmap`** — Suggest-and-confirm in step 13 after the brief is saved.
