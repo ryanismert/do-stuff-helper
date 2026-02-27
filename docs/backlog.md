@@ -34,6 +34,12 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 
 **Verification step in waypoint-implement:** The implement skill has no structured testing or verification step. Workers may or may not test their output — it's up to their initiative. Add a verification step to the worker prompt and/or the post-merge flow (Step 6) so that implemented work is validated before being marked complete. Could range from "run the tests if they exist" to "verify the output matches the acceptance criteria in the task description."
 
+## 2026-02-27 — w15 implementation
+
+**Implement skill not writing human tasks to inbox.json:** During w15 implementation, the implement skill's Step 2 should have written the human task (#37, conduct profile interview) to `docs/inbox.json` as a blocker so it appeared on the dashboard. It didn't — possibly because the skill hadn't been reloaded since w11 changes, or because the implement skill code doesn't actually perform the inbox write yet. Verify this works correctly after a fresh session with the updated plugin. If it's a skill bug, fix the implement skill's Step 2 to write human tasks to inbox.json when surfacing them.
+
+**Implement skill should insert session-restart tasks in the dependency graph:** When agent tasks produce new skills or other artifacts that require a session restart before subsequent tasks can use them, the implement skill should recognize this and insert a human task (e.g., "Restart session to reload updated plugin") into the dependency graph between the producing task and the consuming task. During w15, the interview task (#37) depended on the SKILL.md being loaded, but the user would have needed to restart the session first — this wasn't captured as a task or surfaced as a blocker.
+
 ## 2026-02-26 — user
 
 **Ongoing monitoring activities (non-project):** Not everything the user cares about is a project with a clear endpoint. Things like personal health, spending more time with kids, or maintaining habits are ongoing concerns that benefit from monitoring, gentle nudges, and periodic reflection — but don't fit the discover → roadmap → implement pipeline. Consider a new activity type or waypoint pattern for ongoing monitoring: periodic check-ins, trend tracking, goal reminders, and advisory-style engagement rather than task execution.
