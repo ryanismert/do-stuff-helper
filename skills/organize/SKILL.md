@@ -1,7 +1,6 @@
 ---
 name: organize
 description: This skill should only be invoked directly by other skills (e.g., `do-stuff-helper:organize`) or by the user explicitly asking to "organize a new activity" or "set up a new project". It bootstraps the current activity directory with docs, CLAUDE.md, plugins, and a GitHub repository.
-disable-model-invocation: true
 ---
 
 # Organize
