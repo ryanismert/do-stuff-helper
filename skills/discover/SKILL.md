@@ -9,7 +9,7 @@ Conduct an iterative, expert-driven interview to produce a descriptive brief for
 
 ## Checklist
 
-Complete each step in strict order. Do not skip steps. Do not proceed to brief construction (step 8) until the interview is complete and the user confirms they are done (step 7).
+Complete each step in strict order. Do not skip steps. Do not proceed to brief construction (step 10) until the interview is complete and the user confirms they are done (step 8).
 
 ### Step 1: Determine New vs. Existing Activity
 
@@ -22,7 +22,21 @@ Ask the user if they want to plan a new activity.
 
 Invoke `do-stuff-helper:organize` to create the activity directory structure. Pass the activity name. Confirm the slug and path with the user.
 
-### Step 3: Collect Existing Materials
+### Step 3: Profile Check
+
+Check if the user has a life profile at `~/exoselfai/docs/user-profile.json` (use the Read tool; handle file-not-found gracefully).
+
+- **If NO profile exists**, tell the user:
+  > "Before we dive in, I notice you don't have a life profile yet. Having one would help me understand how this activity fits into your broader goals. Would you like to build one now, or continue without it?"
+  - If yes: invoke `do-stuff-helper:user-profile-builder`, then return here and continue to step 4.
+  - If no: continue to step 4.
+- **If a profile EXISTS**, note it to the user:
+  > "I can see your life profile — I'll use it to understand how this activity connects to your broader goals."
+  Continue to step 4.
+
+This step is a gentle offer, not a blocker. The discover flow works with or without a profile.
+
+### Step 4: Collect Existing Materials
 
 Ask the user if they have any existing materials related to this activity:
 
@@ -33,7 +47,7 @@ Ask the user if they have any existing materials related to this activity:
 
 If materials exist, read and incorporate them. If not, acknowledge and move on.
 
-### Step 4: Initial Description
+### Step 5: Initial Description
 
 Let the user describe the activity in their own words. Do not interrupt or steer — capture their natural framing. Ask a single open-ended question:
 
@@ -41,7 +55,7 @@ Let the user describe the activity in their own words. Do not interrupt or steer
 
 Listen actively. Note key themes, goals, constraints, and motivations for use in subsequent steps.
 
-### Step 5: Expert Context Analysis
+### Step 6: Expert Context Analysis
 
 Based on the user's description, determine:
 
@@ -50,13 +64,13 @@ Based on the user's description, determine:
 3. **Expert questions:** What would an expert ask to evaluate this activity's feasibility and design?
 4. **Expert concerns:** What risks or pitfalls would an expert worry about?
 
-Do not present this analysis to the user. Use it internally to guide the interview in step 6.
+Do not present this analysis to the user. Use it internally to guide the interview in step 7.
 
-### Step 6: Iterative Expert Interview
+### Step 7: Iterative Expert Interview
 
 Conduct the interview one question at a time. Each question should:
 
-- Draw on the expert context from step 5
+- Draw on the expert context from step 6
 - Build on previous answers (do not repeat ground already covered)
 - Target a specific aspect of the brief template (goal, scope, success criteria, risks, etc.)
 - Be concrete and specific, not generic
@@ -67,7 +81,7 @@ Conduct the interview one question at a time. Each question should:
 - Adapt follow-up questions based on what the user reveals
 - Research can be invoked **at any point during the interview** when a topic surfaces that would benefit from investigation — trust your judgment on when research helps
 
-**Coverage targets** (ensure the interview addresses all of these before moving to step 7):
+**Coverage targets** (ensure the interview addresses all of these before moving to step 8):
 - Goal and motivation
 - Success criteria and how to measure them
 - Scope boundaries (what is in, what is out)
@@ -77,18 +91,35 @@ Conduct the interview one question at a time. Each question should:
 - Dependencies on external factors
 - Background context that a planner would need
 
-### Step 7: Coverage Check
+### Step 8: Coverage Check
 
-When the interview has covered all targets from step 6, ask the user:
+When the interview has covered all targets from step 7, ask the user:
 
 > "We've covered [list topics]. Are there other angles or topics you'd like to explore before I draft the brief? Or does this feel complete?"
 
-- If the user raises new topics, return to step 6 and continue the interview.
-- If the user confirms they are done, proceed to step 8.
+- If the user raises new topics, return to step 7 and continue the interview.
+- If the user confirms they are done, proceed to step 9.
 
-**Hard gate: Cannot proceed to step 8 until the user explicitly confirms the interview is complete.**
+**Hard gate: Cannot proceed to step 10 until the user explicitly confirms the interview is complete.**
 
-### Step 8: Construct the Brief
+### Step 9: Life Goals Connection
+
+If a user profile exists (checked in step 3), use this step to connect the activity to the user's broader life context. If no profile exists, skip to step 10.
+
+Ask the user:
+
+> "How does [activity name] relate to your life goals?"
+
+Then ask:
+
+> "Does anything in your profile need updating based on this new activity?"
+
+- If updates are needed: note this for step 13, where you will suggest invoking `do-stuff-helper:user-profile-builder` in update mode after saving the brief.
+- If no updates needed: continue to step 10.
+
+Keep this brief — it should feel like a natural checkpoint, not a second interview.
+
+### Step 10: Construct the Brief
 
 Draft the brief using the template below. Fill every section with specific, concrete content drawn from the interview. Do not use placeholder text.
 
@@ -131,7 +162,7 @@ Domain knowledge, prior work, constraints, and any other context a planner would
 Timeline expectations, resource constraints, dependencies, phasing suggestions, and anything else relevant to building an execution plan.
 ```
 
-### Step 9: Self-Review
+### Step 11: Self-Review
 
 Before presenting the brief, review it against this checklist:
 
@@ -143,15 +174,15 @@ Before presenting the brief, review it against this checklist:
 - [ ] No placeholder or vague language remains
 - [ ] Open questions are genuine (not things already answered in the interview)
 
-Note any gaps found during self-review for step 10.
+Note any gaps found during self-review for step 12.
 
-### Step 10: Final Questions
+### Step 12: Final Questions
 
-If the self-review surfaced gaps, ask the user targeted questions to fill them. Keep this round brief — 1–3 questions maximum. Incorporate answers into the brief.
+If the self-review surfaced gaps, ask the user targeted questions to fill them. Keep this round brief — 1-3 questions maximum. Incorporate answers into the brief.
 
-If no gaps were found, skip to step 11.
+If no gaps were found, skip to step 13.
 
-### Step 11: Save and Update CLAUDE.md
+### Step 13: Save and Update CLAUDE.md
 
 1. Save the brief to `<activity-dir>/docs/brief-<activity-slug>.md`
 2. Open `<activity-dir>/CLAUDE.md` and append an `## Activity Brief` section containing:
@@ -170,7 +201,11 @@ If no gaps were found, skip to step 11.
    ```
 4. Stage and commit all changes with message: `discover: add brief for <activity-slug>`
 5. Report the file paths and confirm everything is saved.
-6. Suggest-and-confirm transition to roadmap planning:
+6. If step 9 flagged that the user's profile needs updating, suggest it now:
+   > "You mentioned your profile could use an update. Would you like to do that now before moving on?"
+   - If yes: invoke `do-stuff-helper:user-profile-builder` (it will detect the existing profile and enter update mode), then continue to the roadmap suggestion below.
+   - If no: continue to the roadmap suggestion below.
+7. Suggest-and-confirm transition to roadmap planning:
    > "The brief is saved. The next step is to create a roadmap — an adaptive plan with waypoints, phases, and dependencies. Want to continue to roadmap planning now?"
    - If the user says yes, invoke `do-stuff-helper:roadmap`
    - If the user says no, acknowledge and end
@@ -178,5 +213,6 @@ If no gaps were found, skip to step 11.
 ## Cross-Skill Invocation
 
 - **`do-stuff-helper:organize`** — Invoke in step 2 for new activities. Required before any files can be saved to the activity directory.
-- **`do-stuff-helper:research`** — Invoke at any point during the interview (step 6) when a topic surfaces that would benefit from investigation.
-- **`do-stuff-helper:roadmap`** — Suggest-and-confirm in step 11 after the brief is saved.
+- **`do-stuff-helper:user-profile-builder`** — Invoke in step 3 if the user wants to build a profile, or in step 13 if they want to update their profile after the interview.
+- **`do-stuff-helper:research`** — Invoke at any point during the interview (step 7) when a topic surfaces that would benefit from investigation.
+- **`do-stuff-helper:roadmap`** — Suggest-and-confirm in step 13 after the brief is saved.
