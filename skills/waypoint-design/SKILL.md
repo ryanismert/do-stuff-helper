@@ -68,7 +68,11 @@ Write the design document. The required sections are:
 <concrete acceptance criteria — bulleted list>
 ```
 
-Everything beyond these two sections is freeform, scaled to complexity. For **standard** and **detailed** waypoints, consider including:
+Everything beyond these two sections is freeform, scaled to complexity.
+
+**If this waypoint involves building software** (writing code, designing architecture, creating APIs, or building technical systems), read `references/software-engineering-guide.md` for additional design sections and principles. Not every section applies to every software waypoint — use the complexity assessment from Step 3 to judge relevance.
+
+For **standard** and **detailed** waypoints, consider including:
 
 - **Design** — how it works, architecture, key components
 - **Inputs / Outputs** — what it consumes and produces
