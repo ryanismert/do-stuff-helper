@@ -45,7 +45,7 @@ An aggregation surface and set of independent analysis agents:
 
 ### 3. Life Coaching & Advisory Agents (Third Priority)
 Advisory agents that analyze across activities and engage in async dialog:
-- **Profile Builder** — interviews the user to establish personality, habits, work styles, and life goals. Uses life inventories for goals; needs a developed strategy for personality/habits assessment
+- **Profile Builder** *(designed — w15)* — AI-guided life inventory interview based on the 8760 Hours methodology (Alex Vermeer). Covers twelve life areas with present reality, ideal future, major goals, and a skills/strengths/habits assessment. Profile stored at `~/exoselfai/docs/user-profile.json`. Discover skill checks for profile on new activities and offers to build or update it
 - **Advisory Agent Pattern** — extensible pattern for multiple coach types: life coach, business coach, time management/scaling agent, self-improvement agent. All share the same shape: maintain a user profile, observe across activities, initiate conversations with insights and questions. Advisory only — no authority to pause or reprioritize, but engages in dialog about what it finds
 - **Chat Integration** — advisory agents communicate via a chat platform (likely Telegram, to be evaluated when this subsystem is built). Notifications from the monitoring layer (e.g., aging blockers, priority drift) may also route through this channel, since notifications are likely advisory in nature
 - The coaching system specifically watches for the user's known tendencies: avoiding hard/important tasks in favor of easy progress, and letting air gaps (tasks only the user can do) persist too long
@@ -86,12 +86,12 @@ Advisory agents that analyze across activities and engage in async dialog:
 - ~~**Infrastructure readiness** — home server browser automation capability is unverified.~~ **Resolved:** Browser automation set up and working (w18). Xvfb + VNC + Chrome + Claude in Chrome extension on N100 with systemd services
 
 ## Open Questions
-- What life inventories or frameworks should the profile builder use for life goals assessment?
-- What strategy should we use for personality and habits profiling?
+- ~~What life inventories or frameworks should the profile builder use for life goals assessment?~~ **Resolved:** 8760 Hours v2 methodology (Alex Vermeer) — twelve life areas, present reality snapshot, ideal future vision, major goals. See w15 design.
+- ~~What strategy should we use for personality and habits profiling?~~ **Resolved:** Supplementary Phase 4 in the profile interview covers work habits, known tendencies, strengths, skills inventory, and learning style. Personality typing frameworks (MBTI, Big Five) deferred as optional extensions. See w15 design.
 - ~~What's the right storage format for adaptive roadmaps with waypoints?~~ **Resolved:** JSON file for waypoint graph (status, deps, phases) as sole source of truth — LLMs read JSON directly, no auto-generated markdown. Individual markdown files per waypoint design. See CLAUDE.md Waypoint Storage section.
 - What does the worker → manager → user escalation protocol look like in detail?
 - ~~How should the dashboard UI be built?~~ **Resolved:** Single-page vanilla HTML/JS/CSS served by Express in a Docker container. No framework needed — keeps it simple and self-contained
-- Should the forward motion analyst and coaching agents share a unified user profile, or maintain separate views?
+- ~~Should the forward motion analyst and coaching agents share a unified user profile, or maintain separate views?~~ **Resolved:** Unified profile at `~/exoselfai/docs/user-profile.json`. All agents (forward motion, priority alignment, advisory) read the same profile. Profile is updated via the user-profile-builder skill. See w15 design.
 - What's the right architecture for the manager/worker relationship? (Manager orchestrates workers who each decompose and execute, but exact boundaries need design)
 - ~~Should waypoints execute serially or in parallel?~~ **Resolved:** Waypoints can be implementing simultaneously — don't block on full completion of one before starting another. Tasks must be tagged with their waypoint ID to track which belong to which waypoint when multiple are in-flight. Task decomposition should use Claude Code's Task tools (TaskCreate, TaskUpdate, TaskList).
 - How much waypoint design detail is "sufficient" for different activity types? (Software vs. life improvement may have different thresholds)
