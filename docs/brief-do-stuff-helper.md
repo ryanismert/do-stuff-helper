@@ -36,8 +36,8 @@ The core pipeline for taking an activity from idea to ongoing execution:
 
 ### 2. Monitoring & Dashboard (Second Priority)
 An aggregation surface and set of independent analysis agents:
-- **Dashboard** — shows all activities with current status, recent changelog, blockers (tasks assigned to user), next actions, and whether a Claude instance is actively working. Provides entry points to SSH into active sessions
-- **Inbox** — async message queue where workers send questions and the user replies at their convenience, decoupled from execution. Primary mechanism for worker-to-user communication in the execution layer
+- **Dashboard** *(done — w10)* — single-page activity dashboard showing progress, changelog timeline, next actions, and active work indicators. Runs as a Docker container (`exoself-dashboard`, port 3002) accessible via Tailscale. Auto-refreshes every 60 seconds. Collapsible detail sections per activity. Code lives in the main exoselfai repo at `scripts/dashboard/`
+- **Inbox** *(done — w11)* — unified inbox replacing separate blockers.json. Workers write questions and human-task blockers to `docs/inbox.json` per activity. Dashboard shows inbox with reply/resolve/discuss actions. Discuss launches Claude remote-control sessions via tmux (`scripts/discuss.js`). n8n workflow polls for answered items and triggers auto-resume. Activity filter bar and envelope icon for quick navigation. Webhook server (`scripts/webhook-server.js`, port 3001) hosts discuss endpoints
 - **Forward Motion Analyst** — weekly agent that reviews progress, assesses alignment with goals, and prepares a week-ahead plan with 2-3 super-important priorities. Continuously checks whether those priorities are being accomplished and refreshes the plan as needed
 - **Priority Alignment Agent** — periodically checks whether effort distribution across activities matches stated priorities and values. Surfaces observations on the dashboard
 - **Blocker Auto-Resolution** — a component that autonomously attempts to resolve blockers before escalating to the user
@@ -75,7 +75,7 @@ Advisory agents that analyze across activities and engage in async dialog:
 - Auto-rater agent for learning what "good" looks like (deferred until concrete use case emerges)
 - Custom chat interface (evaluate existing platforms first when coaching is built)
 - Goal-to-activity mapping model (deferred for further design)
-- Dashboard UI technology selection (deferred)
+- ~~Dashboard UI technology selection (deferred)~~ **Resolved:** vanilla HTML/JS/CSS
 
 ## Key Risks
 - **Air gaps** — activities stall when blocked on non-delegatable user actions (phone calls, interviews, decisions). The user's known tendency to avoid these in favor of easier work compounds this risk. Mitigation: monitoring agents aggressively surface aging blockers; coaching agents challenge avoidance patterns
@@ -83,27 +83,28 @@ Advisory agents that analyze across activities and engage in async dialog:
 - **Autonomous agent quality** — workers operating unsupervised could produce low-quality work that costs more to review than it saves. Mitigation: work checker agent, feedback loop with skill improvement, mandatory checkpoints for high-stakes decisions
 - **Platform coupling** — tight coupling to Claude Code's evolving plugin/skill/agent architecture means breaking changes could require significant rework. Mitigation: acceptable risk per user decision; MCP servers provide extension points to other tooling
 - ~~**Bootstrap problem** — do-stuff-helper needs its own roadmap planner to plan itself, but the roadmap skill doesn't exist yet.~~ **Resolved:** Bootstrapped manually, roadmap skill now exists
-- **Infrastructure readiness** — home server browser automation capability is unverified. Mitigation: validate early before building skills that depend on it
+- ~~**Infrastructure readiness** — home server browser automation capability is unverified.~~ **Resolved:** Browser automation set up and working (w18). Xvfb + VNC + Chrome + Claude in Chrome extension on N100 with systemd services
 
 ## Open Questions
 - What life inventories or frameworks should the profile builder use for life goals assessment?
 - What strategy should we use for personality and habits profiling?
 - ~~What's the right storage format for adaptive roadmaps with waypoints?~~ **Resolved:** JSON file for waypoint graph (status, deps, phases) as sole source of truth — LLMs read JSON directly, no auto-generated markdown. Individual markdown files per waypoint design. See CLAUDE.md Waypoint Storage section.
 - What does the worker → manager → user escalation protocol look like in detail?
-- How should the dashboard UI be built? (Technology choice deferred)
+- ~~How should the dashboard UI be built?~~ **Resolved:** Single-page vanilla HTML/JS/CSS served by Express in a Docker container. No framework needed — keeps it simple and self-contained
 - Should the forward motion analyst and coaching agents share a unified user profile, or maintain separate views?
 - What's the right architecture for the manager/worker relationship? (Manager orchestrates workers who each decompose and execute, but exact boundaries need design)
 - ~~Should waypoints execute serially or in parallel?~~ **Resolved:** Waypoints can be implementing simultaneously — don't block on full completion of one before starting another. Tasks must be tagged with their waypoint ID to track which belong to which waypoint when multiple are in-flight. Task decomposition should use Claude Code's Task tools (TaskCreate, TaskUpdate, TaskList).
 - How much waypoint design detail is "sufficient" for different activity types? (Software vs. life improvement may have different thresholds)
 
 ## Background & Context
-- The user has a home server running Claude Code in Docker, n8n for automation, email integration, and browser automation capability (unverified — needs setup and testing)
+- The user has a home server (N100 mini PC) running Claude Code natively, n8n for automation, email integration (Gmail MCP), and browser automation (Xvfb + VNC + Chrome, verified and working)
 - Telegram is set up but unverified; deferred until coaching/advisory subsystem
 - Each activity gets its own GitHub repo and Claude Code instance
-- The do-stuff-helper plugin has working skills: organize (directory/repo bootstrapping), discover (expert interview → brief), research (multi-angle web search with gap analysis), roadmap (adaptive waypoint-based planning), and waypoint-design (scaled design docs for decomposition)
+- The do-stuff-helper plugin has working skills: organize, discover, research, roadmap, waypoint-design, waypoint-planner, waypoint-implement, replan, and publish
+- Dashboard and inbox infrastructure live in the main exoselfai repo (`scripts/dashboard/`, `scripts/discuss.js`, `scripts/webhook-server.js`). Per-activity data (`docs/inbox.json`, `docs/changelog.md`) lives in each activity's own repo
 - The user is data-driven and prefers tracking and measurement over subjective assessment
 - For non-technical activities, agents serve as researchers, planners, trackers, and advisors — the user does the execution, agents make it easier and provide accountability
-- n8n can handle scheduled triggers (e.g., weekly forward motion analysis) and deterministic workflow steps
+- n8n can handle scheduled triggers (e.g., weekly forward motion analysis, inbox polling for auto-resume) and deterministic workflow steps
 - Voice input is available via physical recorder with an upload pipeline, but not live streaming
 
 ## Notes for Roadmap Planning
@@ -111,7 +112,7 @@ Advisory agents that analyze across activities and engage in async dialog:
 - **Bootstrap strategy:** Use a lightweight planning approach for do-stuff-helper itself before the formal roadmap skill exists
 - **Pilot activities:** do-stuff-helper (self-referential first test), wildlife cards business idea, personal branding effort
 - **Early validation:** Get the discover → plan → execute loop working end-to-end on one pilot before broadening
-- **Infrastructure validation:** Home server browser automation needs early verification since execution agents may depend on it
+- ~~**Infrastructure validation:** Home server browser automation needs early verification since execution agents may depend on it~~ **Done:** w18 completed
 - **The advisory agent pattern** (used by life coach and related agents) should be designed as a reusable pattern from the start since multiple agents will share it
 - **Naming conventions:** Activities (not projects), waypoints (not epics), workers/manager (execution agents)
 - **1-2 hours weekday, more on weekends** — the system should be designed to maximize async autonomous work and minimize synchronous user dependency
