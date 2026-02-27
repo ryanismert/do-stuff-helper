@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "q-1",
+    "type": "blocker",
+    "task_id": "37",
+    "waypoint": "w15",
+    "subject": "[w15] Conduct full profile interview with user",
+    "body": "The user-profile-builder skill is ready. Run it in a new session to conduct the life inventory interview (invoke do-stuff-helper:user-profile-builder). The interview covers twelve life areas and can be spread across multiple sessions.",
+    "context": "All agent tasks for w15 are complete: interview guide distilled from 8760 Hours, SKILL.md created, discover skill updated with profile check. The only remaining step is the actual interview, which requires the user's participation.",
+    "created": "2026-02-27T00:00:00Z",
+    "status": "pending",
+    "resolution": null,
+    "resolved_at": null
+  }
+]
