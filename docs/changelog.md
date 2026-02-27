@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-02-27 — Implementing w15: User Profile Builder
+Created user-profile-builder skill with interview guide distilled from 8760 Hours methodology. Skill supports full interview and update modes across twelve life areas. Updated discover skill with profile check integration. Awaiting user to conduct initial profile interview.
+
 ## 2026-02-26 — Completed w11: Inbox
 Unified inbox system replacing separate blockers.json. Workers write questions and human-task blockers to docs/inbox.json. Dashboard shows inbox section with reply/resolve/discuss actions. n8n resume-implement workflow polls for answered items and triggers webhook. Implement skill updated with waiting status, inbox tracking, and auto-resume flow. Research spike evaluated Claude remote control and Telegram bot for discussion channel.
 
