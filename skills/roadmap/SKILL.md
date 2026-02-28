@@ -69,6 +69,7 @@ For each waypoint, define:
 - `dependencies` — list of waypoint IDs that must complete first
 - `why` — one sentence on why this waypoint matters
 - `done_when` — concrete acceptance criteria (1-3 sentences)
+- `due` — (optional) ISO date string (e.g., `2026-04-15`). Only include when the user indicates a time constraint, deadline, or natural target date for the waypoint. Do not invent due dates — omit the field entirely when there is no time pressure.
 
 For each phase, define:
 - `id` — short identifier (e.g., `phase-1`)
@@ -101,11 +102,23 @@ Write `docs/roadmap-<slug>.json` using this schema:
       "phase": "phase-1",
       "dependencies": [],
       "why": "Why this matters",
+      "done_when": "Concrete acceptance criteria",
+      "due": "2026-04-15"
+    },
+    {
+      "id": "w2",
+      "title": "Another Waypoint",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": ["w1"],
+      "why": "Why this matters",
       "done_when": "Concrete acceptance criteria"
     }
   ]
 }
 ```
+
+**`due` is optional:** Only include it when the user specifies a deadline or natural target date. Most waypoints will not have one. Omit the field entirely rather than setting it to `null`.
 
 **Phase status is derived, not stored:** `done` if all waypoints in the phase are `done`, `implementing` if any are `implementing`, `pending` otherwise.
 
