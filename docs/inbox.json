@@ -5,11 +5,11 @@
     "task_id": "37",
     "waypoint": "w15",
     "subject": "[w15] Conduct full profile interview with user",
-    "body": "The user-profile-builder skill is ready. Run it in a new session to conduct the life inventory interview (invoke do-stuff-helper:user-profile-builder). The interview covers twelve life areas and can be spread across multiple sessions.",
-    "context": "All agent tasks for w15 are complete: interview guide distilled from 8760 Hours, SKILL.md created, discover skill updated with profile check. The only remaining step is the actual interview, which requires the user's participation.",
+    "body": "Resume the life inventory interview — Phase 2 is COMPLETE. A draft exists at ~/exoselfai/docs/user-profile-draft.json. Invoke do-stuff-helper:user-profile-builder to resume.\n\nCompleted: Phase 1 (overview) + all 12 Phase 2 areas.\n\nRemaining: Phase 3 (ideal future & goals — per-area ideal, importance ratings, yearly theme, major goals), Phase 4 (skills, strengths & habits — work habits, known tendencies, strengths/skills inventory).\n\nEstimated remaining time: ~30-40 minutes.",
+    "context": "Interview started 2026-02-28, Phase 2 completed 2026-02-28. The skill will auto-detect the draft and offer to resume at Phase 3. Key themes: side business ($50K/year net) as a meta-goal unlocking multiple areas, schedule consistency as a keystone habit, location dissatisfaction (Novato) with financial constraints, career focus bottleneck at work, social life and adventure are the weakest areas (both rated 2), novelty-over-completion pattern in personal projects, household time tax consuming best energy.",
     "created": "2026-02-27T00:00:00Z",
-    "status": "pending",
-    "resolution": null,
-    "resolved_at": null
+    "status": "resolved",
+    "resolution": "Profile interview completed. All four phases finished: Phase 1 (overview), Phase 2 (all 12 life areas with ratings and bottlenecks), Phase 3 (ideal future, importance ratings, yearly theme 'Year of Launch', 6 major goals), Phase 4 (work habits, known tendencies, strengths & skills). Final profile saved to ~/exoselfai/docs/user-profile.json and committed.",
+    "resolved_at": "2026-03-02T00:00:00Z"
   }
 ]
