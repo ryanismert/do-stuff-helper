@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-03 — Completed w12: Forward Motion Analyst
+Forward-motion skill with plan and review modes, "This Week" dashboard panel with per-item feedback, plan API endpoints, refresh hooks on inbox resolve and waypoint completion, n8n Sunday review workflow, and initial plan seeded from real activity data. Plugin bumped to 0.10.0.
+
 ## 2026-03-03 — Implementing w12: Forward Motion Analyst
 Weekly priority agent that reviews all activity state, scores candidates by goal alignment and leverage, and produces a week-ahead plan with 2-3 priorities.
 
@@ -96,6 +99,9 @@ Expert interview completed, brief saved covering goals, scope, success criteria,
 - Created forward-motion-weekly.json: Sunday 8 PM Pacific schedule trigger → webhook POST
 - Workflow pushed to n8n and activated (ID: ogeXnkbo98bbZOTt)
 - Files changed: ~/exoselfai/n8n-workflows/forward-motion-weekly.json
+
+### 2026-03-03 - Waypoint Complete
+- Built full forward-motion analyst: skill with plan + review modes, dashboard panel, API endpoints, refresh hooks, n8n workflow, and initial plan from real data
 
 ## W5: Autonomy Model
 

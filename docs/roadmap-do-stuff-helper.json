@@ -131,7 +131,7 @@
     {
       "id": "w12",
       "title": "Forward Motion Analyst",
-      "status": "implementing",
+      "status": "done",
       "phase": "phase-3",
       "dependencies": [
         "w10"
