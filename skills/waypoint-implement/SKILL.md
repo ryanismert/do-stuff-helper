@@ -252,7 +252,14 @@ When all tasks (including human tasks) are done:
 3. Resolve any open inbox items for this waypoint in `docs/inbox.json` — set `status` to `"resolved"` and `resolved_at` to the current ISO timestamp
 4. Report to the user:
    > "Waypoint [title] is complete. [summary of what was accomplished]"
-5. Check for other waypoints now unblocked by this completion and suggest next steps:
+5. Trigger a plan refresh so forward-motion priorities reflect the completed waypoint. Use a fire-and-forget Bash command:
+   ```bash
+   curl -s -X POST http://localhost:3001/webhook/execute \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer $CLAUDE_WEBHOOK_TOKEN" \
+     -d '{"task":"Run the forward-motion skill in plan mode to refresh priorities. Invoke do-stuff-helper:forward-motion"}' &
+   ```
+6. Check for other waypoints now unblocked by this completion and suggest next steps:
    > "These waypoints are now unblocked: [list]. Want to design or plan any of them?"
 
 ### Manual Waypoint Completion
