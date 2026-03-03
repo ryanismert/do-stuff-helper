@@ -15,9 +15,8 @@ Complete each step in strict order. Do not skip steps.
 
 - If the user specifies a waypoint ID, use that one
 - If not, read `docs/roadmap-<slug>.json` and identify waypoints where:
-  - Status is `pending` or has a design doc beyond the stub
+  - Status is `designed`
   - All dependencies are `done`
-  - Has a design doc at `docs/waypoints/<waypoint-id>.md` with content beyond the stub (Objective + Done When only = stub)
 - Present candidates and ask the user which to plan
 - If no candidates, tell the user to run waypoint-design first and stop
 
@@ -67,15 +66,15 @@ Identify:
 - After all tasks are created, use `TaskUpdate` to wire up dependencies via `addBlockedBy`/`addBlocks`
 - Report the task IDs created
 
-### Step 6: Write Changelog
+### Step 6: Update Status and Write Changelog
 
-Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
-```
-## YYYY-MM-DD — Planned <waypoint-id>: <Waypoint Title> (<N> tasks)
-<1-2 sentence summary of the decomposition — what categories of work and key themes.>
-```
-
-Stage and commit all changes with message: `waypoint-planner: plan <waypoint-id> <waypoint-title>`
+1. Update the waypoint's status to `implementing` in `docs/roadmap-<slug>.json` and set the `updated` date to today
+2. Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
+   ```
+   ## YYYY-MM-DD — Planned <waypoint-id>: <Waypoint Title> (<N> tasks)
+   <1-2 sentence summary of the decomposition — what categories of work and key themes.>
+   ```
+3. Stage and commit all changes with message: `waypoint-planner: plan <waypoint-id> <waypoint-title>`
 
 ### Step 7: Suggest Next Step
 

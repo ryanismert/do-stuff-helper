@@ -21,8 +21,9 @@ Complete each step in strict order. Do not skip steps.
 
 ### Step 1b: Set Status and Log Start
 
-- Read `docs/roadmap-<slug>.json` and set the waypoint status to `implementing`
-- Update the `updated` field on the roadmap to today's date (YYYY-MM-DD)
+- Read `docs/roadmap-<slug>.json` and check the waypoint status
+- If status is already `implementing`: skip this step (planner already set the status and the "Planned" milestone is in the changelog)
+- Otherwise, set the waypoint status to `implementing` and update the `updated` field to today's date (YYYY-MM-DD)
 - Prepend a milestone entry to `docs/changelog.md` (right after the `# Changelog` header line, above all existing entries):
   ```
   ## YYYY-MM-DD — Implementing <wN>: <Title>
@@ -363,7 +364,7 @@ The skill manages `docs/inbox.json` as a unified store for all items waiting on 
 - **No tasks exist for the waypoint:** Tell the user to run waypoint-planner first and stop.
 - **All tasks already completed:** Tell the user the waypoint is done. Offer to mark it done in the roadmap if not already.
 - **Session ends mid-execution:** Tasks persist via `CLAUDE_CODE_TASK_LIST_ID`. The user can re-invoke to resume. The skill picks up from current task states — Step 1 reads whatever state tasks are in. The roadmap status will remain `implementing` until Step 7 sets it to `waiting` or Step 8 sets it to `done`.
-- **Resuming a waypoint already in `implementing` status:** Skip Step 1b (status is already set, start milestone already written). Proceed directly to Step 1c.
+- **Waypoint already in `implementing` status (normal after planning):** Step 1b detects this and skips. Proceed directly to Step 1c.
 - **Resuming a waypoint in `waiting` status:** Set status to `implementing` in the roadmap JSON, then proceed to Step 1c. Step 3 will pick up any answered inbox items and unblock the corresponding tasks. Continue the loop normally from there.
 - **Worker creates merge conflict:** Attempt auto-merge. If that fails, escalate with conflicting file details so the user can resolve manually.
 - **Task has no context_files:** Worker gets just the task description and the activity's CLAUDE.md.
