@@ -112,13 +112,14 @@ If the user has feedback, incorporate it.
 ### Step 8: Save
 
 1. Write the design document to `docs/waypoints/<waypoint-id>.md`
-2. Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
+2. Update the waypoint's status to `implementing` in `docs/roadmap-<slug>.json` — a designed waypoint is in progress
+3. Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
    ```
    ## YYYY-MM-DD — Designed <waypoint-id>: <Waypoint Title>
    <1-2 sentence summary of the design — what it covers and key decisions.>
    ```
-3. Stage and commit with message: `waypoint-design: design <waypoint-id> <waypoint-title>`
-4. Report the file path and confirm saved
+4. Stage and commit with message: `waypoint-design: design <waypoint-id> <waypoint-title>`
+5. Report the file path and confirm saved
 
 ### Step 9: Suggest Next Steps
 
