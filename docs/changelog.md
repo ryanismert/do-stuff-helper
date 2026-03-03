@@ -62,6 +62,41 @@ Expert interview completed, brief saved covering goals, scope, success criteria,
 
 ---
 
+## W12: Forward Motion Analyst
+
+### 2026-03-03 - [#38] [w12] Create forward-motion skill SKILL.md
+- Created `skills/forward-motion/SKILL.md` with plan mode (8 steps) and review mode (5 steps)
+- Includes full JSON schema for current-plan.json, stability principle, staleness tracking, tendency checks, feedback processing
+- Files changed: skills/forward-motion/SKILL.md
+
+### 2026-03-03 - [#40] [w12] Add plan feedback API endpoint to dashboard server
+- Added GET /api/plan, GET /api/plan/review, POST /api/plan/feedback endpoints to dashboard server
+- Feedback endpoint triggers plan refresh via webhook (fire-and-forget)
+- Files changed: ~/exoselfai/scripts/dashboard/server.js
+
+### 2026-03-03 - [#39] [w12] Create forward-motion artifact directory and seed initial plan
+- Generated initial current-plan.json with real priorities from user profile and activity data
+- Priority 1: Create wildlife-cards activity (blind spot, Year of Launch theme)
+- Priority 2: Plan spring Oregon trip to visit parents (blind spot, time-sensitive)
+- Priority 3: Run do-stuff-helper pilot activity w6 (waypoint, comfortable item)
+- Files changed: ~/exoselfai/docs/forward-motion/current-plan.json
+
+### 2026-03-03 - [#41] [w12] Build "This Week" dashboard panel
+- Added full "This Week" plan panel to dashboard UI above inbox and activity cards
+- Priority cards with rank, activity badge, rationale, status, feedback input
+- Lingering/stuck indicators, age badges for blocked items, blind spots, deferred section, weekly review toggle
+- Files changed: ~/exoselfai/scripts/dashboard/public/index.html
+
+### 2026-03-03 - [#42] [w12] Add plan refresh hooks to waypoint-implement and inbox resolve
+- Added triggerPlanRefresh() calls to inbox reply and resolve endpoints in dashboard server
+- Added plan refresh trigger instruction to waypoint-implement Step 8 (curl command)
+- Files changed: ~/exoselfai/scripts/dashboard/server.js, skills/waypoint-implement/SKILL.md
+
+### 2026-03-03 - [#43] [w12] Create n8n workflow for Sunday weekly review
+- Created forward-motion-weekly.json: Sunday 8 PM Pacific schedule trigger → webhook POST
+- Workflow pushed to n8n and activated (ID: ogeXnkbo98bbZOTt)
+- Files changed: ~/exoselfai/n8n-workflows/forward-motion-weekly.json
+
 ## W5: Autonomy Model
 
 ### 2026-02-24 - [#2] [w5] Update organize skill with capabilities discovery
