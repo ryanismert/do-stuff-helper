@@ -81,7 +81,7 @@
     {
       "id": "w6",
       "title": "Pilot Activity — End-to-End",
-      "status": "pending",
+      "status": "implementing",
       "phase": "phase-1",
       "dependencies": [
         "w1",

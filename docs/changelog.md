@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-03 — Implementing w6: Pilot Activity — End-to-End
+Summit Mt Whitney is the pilot activity. Running through the full discover → roadmap → waypoint design → decompose → execute pipeline to validate end-to-end.
+
 ## 2026-03-03 — Completed w12: Forward Motion Analyst
 Forward-motion skill with plan and review modes, "This Week" dashboard panel with per-item feedback, plan API endpoints, refresh hooks on inbox resolve and waypoint completion, n8n Sunday review workflow, and initial plan seeded from real activity data. Plugin bumped to 0.10.0.
 
