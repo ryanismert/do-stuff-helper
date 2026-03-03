@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-02 — Completed w15: User Profile Builder
+Full four-phase profile interview completed: overview, all 12 life areas with ratings and bottlenecks, ideal future with importance ratings and yearly theme ("Year of Launch"), work habits and known tendencies. Final profile saved to ~/exoselfai/docs/user-profile.json.
+
 ## 2026-02-27 — Implementing w15: User Profile Builder
 Created user-profile-builder skill with interview guide distilled from 8760 Hours methodology. Skill supports full interview and update modes across twelve life areas. Updated discover skill with profile check integration. Awaiting user to conduct initial profile interview.
 

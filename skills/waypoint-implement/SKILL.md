@@ -255,6 +255,17 @@ When all tasks (including human tasks) are done:
 5. Check for other waypoints now unblocked by this completion and suggest next steps:
    > "These waypoints are now unblocked: [list]. Want to design or plan any of them?"
 
+### Manual Waypoint Completion
+
+Sometimes a waypoint is completed outside this skill's lifecycle — for example, a human task is finished in a discuss session or the user marks it done in conversation. Whoever completes the waypoint must perform the same actions as Step 8:
+
+1. Update `docs/roadmap-<slug>.json`: set waypoint status to `done`, update the `updated` date
+2. Prepend a "Completed" milestone to `docs/changelog.md`
+3. Resolve any open inbox items for this waypoint in `docs/inbox.json`
+4. Commit the changes
+
+If you are marking a waypoint as done and the changelog doesn't already have a "Completed" entry for it, add one.
+
 ## Changelog Management
 
 The skill manages `docs/changelog.md` at two levels:

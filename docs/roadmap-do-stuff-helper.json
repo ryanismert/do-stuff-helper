@@ -165,7 +165,7 @@
     {
       "id": "w15",
       "title": "User Profile Builder",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-4",
       "dependencies": [],
       "why": "All advisory agents need a profile of the user's personality, habits, and goals.",
