@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-03 — Implementing w12: Forward Motion Analyst
+Weekly priority agent that reviews all activity state, scores candidates by goal alignment and leverage, and produces a week-ahead plan with 2-3 priorities.
+
+## 2026-03-03 — Planned w12: Forward Motion Analyst (7 tasks)
+Weekly agent that reviews progress across activities, produces a week-ahead plan with priorities, and refreshes as work completes. Includes skill, dashboard panel, API endpoint, n8n workflow, and lifecycle hooks.
+
 ## 2026-03-02 — Completed w15: User Profile Builder
 Full four-phase profile interview completed: overview, all 12 life areas with ratings and bottlenecks, ideal future with importance ratings and yearly theme ("Year of Launch"), work habits and known tendencies. Final profile saved to ~/exoselfai/docs/user-profile.json.
 
