@@ -101,12 +101,11 @@ Everything else is freeform. The waypoint design agent scales detail to complexi
 - Use the `skill-creator` plugin to create and test new skills
 - Test skills locally before committing by installing the plugin at project scope
 - Keep skill descriptions precise — vague descriptions cause false triggers
+- **When you change any skill, command, or agent:** run `/publish` before pushing. This bumps the version, pushes, and updates the marketplace so other projects pick up the changes. Skills are not hotloaded — a new conversation is required after updating.
 
 ### Plugin Distribution
 - `marketplace.json` uses `"./"` as source for self-referencing plugins — other formats (`"."`, `github`, `url`) failed or used SSH
-- After updating skills, bump `version` in both `plugin.json` and `marketplace.json`
 - Users install via: `/plugin marketplace add ryanismert/do-stuff-helper` then `/plugin install do-stuff-helper@do-stuff-helper`
-- Skills are not hotloaded — a new conversation is required after installing or updating
 
 ## Activity Brief
 
