@@ -68,7 +68,7 @@ Identify:
 
 ### Step 6: Update Status and Write Changelog
 
-1. Update the waypoint's status to `implementing` in `docs/roadmap-<slug>.json` and set the `updated` date to today
+1. Update the waypoint's status to `planned` in `docs/roadmap-<slug>.json` and set the `updated` date to today
 2. Prepend a milestone entry to `docs/changelog.md` (insert after the `# Changelog` header, newest first):
    ```
    ## YYYY-MM-DD — Planned <waypoint-id>: <Waypoint Title> (<N> tasks)
