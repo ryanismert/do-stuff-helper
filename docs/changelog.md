@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-04 — Completed w6: Pilot Activity — End-to-End
+Summit Mt Whitney validated the full pipeline: discover → roadmap → waypoint design → plan → implement. Multiple waypoints designed, planned, and progressing with workers.
+
 ## 2026-03-03 — Implementing w6: Pilot Activity — End-to-End
 Summit Mt Whitney is the pilot activity. Running through the full discover → roadmap → waypoint design → decompose → execute pipeline to validate end-to-end.
 
