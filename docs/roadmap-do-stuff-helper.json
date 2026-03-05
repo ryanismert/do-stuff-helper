@@ -8,7 +8,7 @@
     {
       "id": "phase-1",
       "title": "Complete the Core Pipeline",
-      "goal": "Get the full discover → roadmap → waypoint design → decompose → execute loop working end-to-end."
+      "goal": "Get the full discover \u2192 roadmap \u2192 waypoint design \u2192 decompose \u2192 execute loop working end-to-end."
     },
     {
       "id": "phase-2",
@@ -64,7 +64,7 @@
       "dependencies": [
         "w3"
       ],
-      "why": "This is the core engine — recursive task decomposition and parallel worker execution.",
+      "why": "This is the core engine \u2014 recursive task decomposition and parallel worker execution.",
       "done_when": "A manager agent can take a designed waypoint, decompose it into parallelizable tasks, and orchestrate worker agents to execute them. Workers operate in their own context and report status back."
     },
     {
@@ -76,11 +76,11 @@
         "w4"
       ],
       "why": "Workers need to know what they're allowed to do without asking.",
-      "done_when": "Permission tier system is implemented — built-ins and installed skills/MCP servers allowed by default, ask-and-learn for everything else with manual/once/always/never options. New 'always' approvals create skills automatically."
+      "done_when": "Permission tier system is implemented \u2014 built-ins and installed skills/MCP servers allowed by default, ask-and-learn for everything else with manual/once/always/never options. New 'always' approvals create skills automatically."
     },
     {
       "id": "w6",
-      "title": "Pilot Activity — End-to-End",
+      "title": "Pilot Activity \u2014 End-to-End",
       "status": "done",
       "phase": "phase-1",
       "dependencies": [
@@ -91,7 +91,7 @@
         "w5"
       ],
       "why": "Validates the entire pipeline on a real activity before broadening.",
-      "done_when": "One pilot activity (wildlife cards or personal branding) has been run through discover → roadmap → waypoint design → decompose → execute, with at least one waypoint fully completed by workers."
+      "done_when": "One pilot activity (wildlife cards or personal branding) has been run through discover \u2192 roadmap \u2192 waypoint design \u2192 decompose \u2192 execute, with at least one waypoint fully completed by workers."
     },
     {
       "id": "w9",
@@ -107,7 +107,7 @@
     },
     {
       "id": "w10",
-      "title": "Dashboard — Core",
+      "title": "Dashboard \u2014 Core",
       "status": "done",
       "phase": "phase-3",
       "dependencies": [
@@ -142,25 +142,27 @@
     {
       "id": "w13",
       "title": "Work Checker",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-3",
       "dependencies": [
         "w4"
       ],
       "why": "Quality gate for autonomous worker output.",
-      "done_when": "An agent reviews worker output for quality, either at the manager level or as a standalone reviewer. Flags low-quality work before it's committed."
+      "done_when": "An agent reviews worker output for quality, either at the manager level or as a standalone reviewer. Flags low-quality work before it's committed.",
+      "updated": "2026-03-05"
     },
     {
       "id": "w14",
       "title": "Priority Alignment & Blocker Auto-Resolution",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-3",
       "dependencies": [
         "w10",
         "w12"
       ],
       "why": "Surfaces misalignment between effort and stated priorities; auto-resolves blockers where possible.",
-      "done_when": "Agents periodically check effort distribution, surface observations on dashboard, and attempt to resolve blockers autonomously before escalating."
+      "done_when": "Agents periodically check effort distribution, surface observations on dashboard, and attempt to resolve blockers autonomously before escalating.",
+      "updated": "2026-03-05"
     },
     {
       "id": "w15",
@@ -174,25 +176,27 @@
     {
       "id": "w16",
       "title": "Advisory Agent Pattern",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-4",
       "dependencies": [
         "w15",
         "w10"
       ],
-      "why": "Multiple coach types share the same shape — design it once.",
-      "done_when": "A reusable pattern exists for advisory agents: maintain user profile access, observe across activities, initiate conversations, advisory-only. At least one concrete agent (life coach) built on the pattern."
+      "why": "Multiple coach types share the same shape \u2014 design it once.",
+      "done_when": "A reusable pattern exists for advisory agents: maintain user profile access, observe across activities, initiate conversations, advisory-only. At least one concrete agent (life coach) built on the pattern.",
+      "updated": "2026-03-05"
     },
     {
       "id": "w17",
       "title": "Chat Integration & Notifications",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-4",
       "dependencies": [
         "w16"
       ],
       "why": "Advisory agents need a channel to engage in dialog with the user.",
-      "done_when": "Advisory agents can send messages and receive replies via a chat platform (likely Telegram). Monitoring notifications also route through this channel."
+      "done_when": "Advisory agents can send messages and receive replies via a chat platform (likely Telegram). Monitoring notifications also route through this channel.",
+      "updated": "2026-03-05"
     },
     {
       "id": "w18",
@@ -219,7 +223,7 @@
       "phase": "phase-1",
       "dependencies": [],
       "why": "Updating the plugin currently requires manually pulling the marketplace clone. This friction slows development.",
-      "done_when": "A documented (or automated) workflow exists for: bump version → commit → push → pull marketplace clone → reinstall plugin."
+      "done_when": "A documented (or automated) workflow exists for: bump version \u2192 commit \u2192 push \u2192 pull marketplace clone \u2192 reinstall plugin."
     },
     {
       "id": "w21",
@@ -233,24 +237,26 @@
     {
       "id": "w22",
       "title": "Mine CLAUDE.md for Activity Template Instructions",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [
         "w6"
       ],
       "why": "do-stuff-helper's CLAUDE.md contains instructions (how to use skills, conventions, etc.) that should be seeded into every new activity's CLAUDE.md so agents working in those repos know how to use the system.",
-      "done_when": "The organize skill (or a post-organize step) seeds new activity CLAUDE.md files with relevant do-stuff-helper instructions extracted from the plugin's own CLAUDE.md."
+      "done_when": "The organize skill (or a post-organize step) seeds new activity CLAUDE.md files with relevant do-stuff-helper instructions extracted from the plugin's own CLAUDE.md.",
+      "updated": "2026-03-05"
     },
     {
       "id": "w23",
       "title": "Evaluate T-Shirt Sizing for Waypoints",
-      "status": "pending",
+      "status": "obsolete",
       "phase": "phase-2",
       "dependencies": [
         "w6"
       ],
       "why": "After running the pipeline on real activities, evaluate whether adding size labels (S/M/L/XL) to waypoints helps with prioritization, effort estimation, or planning.",
-      "done_when": "A decision is made on whether t-shirt sizing adds value, and if so, the roadmap schema and roadmap skill are updated to support it."
+      "done_when": "A decision is made on whether t-shirt sizing adds value, and if so, the roadmap schema and roadmap skill are updated to support it.",
+      "updated": "2026-03-05"
     },
     {
       "id": "w24",

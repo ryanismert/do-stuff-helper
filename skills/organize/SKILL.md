@@ -45,7 +45,7 @@ Check if `CLAUDE.md` exists in the current directory.
 3. **If the section is missing**, append the full block below to the end of CLAUDE.md.
 4. **If the section already exists**, update the `### Available Skills` list to match the canonical list below, and ensure the `### Task List` subsection exists with the correct task list ID (see Step 4).
 
-The canonical do-stuff-helper section:
+The canonical do-stuff-helper section. Read `references/activity-conventions.md` and include its content (starting from `## Activity Lifecycle`) as subsections under the `## do-stuff-helper` heading:
 
 ```markdown
 ## do-stuff-helper
@@ -79,7 +79,24 @@ Workers and agents in this project have access to:
 
 ### Usage
 Invoke skills via `do-stuff-helper:<skill-name>`.
+
+### Activity Lifecycle
+<content from references/activity-conventions.md — Activity Lifecycle section>
+
+### Artifact Naming
+<content from references/activity-conventions.md — Artifact Naming section>
+
+### Waypoint Storage
+<content from references/activity-conventions.md — Waypoint Storage section>
+
+### Waypoint Statuses
+<content from references/activity-conventions.md — Waypoint Statuses section>
+
+### Backlog
+<content from references/activity-conventions.md — Backlog section>
 ```
+
+**Important:** Do not copy-paste the placeholder lines above. Read `references/activity-conventions.md` at runtime and inject the actual content from each section. This keeps the reference file as the single source of truth.
 
 Replace `<activity-slug>` with the basename of the current directory (e.g., if the directory is `/home/user/projects/my-fitness-app`, the slug is `my-fitness-app`).
 

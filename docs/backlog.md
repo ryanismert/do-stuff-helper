@@ -22,10 +22,6 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 
 ## 2026-02-25 — w10 design
 
-**Dashboard SSH entry points:** The dashboard should eventually provide entry points to SSH into active Claude sessions (e.g., tmux session names, connect commands). Deferred from w10 MVP to keep scope focused on read-only status visibility.
-
-**Dashboard Git repository status:** Show per-activity Git status on the dashboard — open pull requests, pending reviews, unpushed commits, branch state. May also need to invest in proper CI pipelines (GitHub Actions) for activity repos so the dashboard can surface build/test status alongside PR state.
-
 ## 2026-02-25 — user
 
 **Dashboard mobile and at-a-glance improvements:** The dashboard looks nice on mobile but needs to be more compact and show more information at a glance. Consider condensing the layout — tighter spacing, smaller cards, collapsible sections, or a summary bar at the top with key stats. Same improvements would benefit the desktop version too.
@@ -51,6 +47,12 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 ## 2026-02-26 — user
 
 **Ongoing monitoring activities (non-project):** Not everything the user cares about is a project with a clear endpoint. Things like personal health, spending more time with kids, or maintaining habits are ongoing concerns that benefit from monitoring, gentle nudges, and periodic reflection — but don't fit the discover → roadmap → implement pipeline. Consider a new activity type or waypoint pattern for ongoing monitoring: periodic check-ins, trend tracking, goal reminders, and advisory-style engagement rather than task execution.
+
+## 2026-02-28 — user (summit-mt-whitney discover)
+
+## 2026-03-05 — user
+
+**Auto-dispatch ready tasks without human kick-off:** When agent tasks become unblocked (dependencies completed, no pending questions), the system should automatically start executing them rather than waiting for a human to invoke waypoint-implement. This could be an n8n workflow that polls for ready tasks and triggers execution via the webhook, or a post-merge hook in the implement skill that checks for newly unblocked work. The goal is continuous autonomous progress — the user should only need to intervene for human tasks and decisions, not to say "go" on work that's already planned and ready.
 
 ## 2026-02-28 — user (summit-mt-whitney discover)
 
