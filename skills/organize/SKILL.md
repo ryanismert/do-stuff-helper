@@ -92,6 +92,9 @@ Invoke skills via `do-stuff-helper:<skill-name>`.
 ### Waypoint Statuses
 <content from references/activity-conventions.md — Waypoint Statuses section>
 
+### Keeping the Brief Current
+<content from references/activity-conventions.md — Keeping the Brief Current section>
+
 ### Backlog
 <content from references/activity-conventions.md — Backlog section>
 

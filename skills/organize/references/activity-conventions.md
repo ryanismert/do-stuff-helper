@@ -40,6 +40,10 @@ Activity artifacts follow the pattern `<type>-<activity-slug>.<ext>`:
 - `done` — Completed; acceptance criteria met
 - `obsolete` — No longer relevant; skip when calculating what's unblocked
 
+## Keeping the Brief Current
+
+The brief (`docs/brief-<slug>.md`) is the source of truth for what an activity is about. When a conversation results in material scope changes — new capabilities, obsoleted waypoints, or shifted priorities — update the brief to reflect the change. Don't wait for a replan cycle; update it while the context is fresh.
+
 ## Backlog
 
 - **In-scope discoveries:** Workers add tasks directly and do them. No special process.

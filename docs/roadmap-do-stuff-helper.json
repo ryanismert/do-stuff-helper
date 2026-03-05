@@ -261,7 +261,7 @@
     {
       "id": "w25",
       "title": "Brief-Roadmap Synchronization",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [
         "w9"
