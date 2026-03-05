@@ -45,3 +45,7 @@ Activity artifacts follow the pattern `<type>-<activity-slug>.<ext>`:
 - **In-scope discoveries:** Workers add tasks directly and do them. No special process.
 - **Out-of-scope discoveries:** Append to `docs/backlog.md` with date and source. The `replan` skill processes the backlog into roadmap updates.
 - **Format:** Append-only sections: `## YYYY-MM-DD — <source>\n\n<description>`
+
+## Plugin Version Bumps
+
+**Always bump the do-stuff-helper plugin version when changing any skill, command, or agent.** Run `/publish` before pushing. This bumps the version, commits, pushes, and updates the marketplace so other projects pick up the changes. Skills are not hotloaded — a new conversation is required after updating.

@@ -94,6 +94,9 @@ Invoke skills via `do-stuff-helper:<skill-name>`.
 
 ### Backlog
 <content from references/activity-conventions.md — Backlog section>
+
+### Plugin Version Bumps
+<content from references/activity-conventions.md — Plugin Version Bumps section>
 ```
 
 **Important:** Do not copy-paste the placeholder lines above. Read `references/activity-conventions.md` at runtime and inject the actual content from each section. This keeps the reference file as the single source of truth.
