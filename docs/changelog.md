@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-05 — Replanned: backlog review, 7 new waypoints
+Processed 13 backlog items. Added w25-w31 (brief-roadmap sync, rhythm capability, replan reminder, auto-dispatch, implement bugs, worker verification, front-end plugin). Moved w24 (Agent Teams) to backlog. Marked w13, w14, w16, w17, w22, w23 obsolete/done. Updated brief with rhythm, ongoing monitoring, and brief-sync scope.
+
 ## 2026-03-04 — Completed w6: Pilot Activity — End-to-End
 Summit Mt Whitney validated the full pipeline: discover → roadmap → waypoint design → plan → implement. Multiple waypoints designed, planned, and progressing with workers.
 

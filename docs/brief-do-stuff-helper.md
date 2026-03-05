@@ -66,6 +66,9 @@ Advisory agents that analyze across activities and engage in async dialog:
 - Infrastructure: Docker containers on home server, n8n for scheduling/automation, browser automation (needs verification)
 - Voice input pipeline (recordings from physical device into project context)
 - do-stuff-helper as first test case; wildlife cards business and personal branding as pilot activities
+- **Rhythms** — recurring progressive schedules as activity artifacts (e.g., training plans, writing habits). Integrates with roadmap (waypoint produces a rhythm), dashboard (rhythm status/adherence), and calendar tools
+- **Ongoing monitoring activities** — non-project activity type for habits, health, and ongoing concerns. Periodic check-ins, trend tracking, and advisory engagement rather than task execution
+- **Brief-roadmap synchronization** — skills that modify the roadmap must also update the brief to keep it current as the source of "what this activity is about"
 
 ### Out of Scope
 - Telegram/chat platform integration (deferred to life coaching subsystem build)
@@ -117,3 +120,5 @@ Advisory agents that analyze across activities and engage in async dialog:
 - **Naming conventions:** Activities (not projects), waypoints (not epics), workers/manager (execution agents)
 - **1-2 hours weekday, more on weekends** — the system should be designed to maximize async autonomous work and minimize synchronous user dependency
 - **Telegram and notifications** — deferred and bundled with the coaching/advisory agent build; all notifications are likely advisory in nature
+- **Brief-roadmap sync** — all skills that add waypoints or modify the roadmap should also update the brief. This is a process rule, not just a one-time fix
+- ~~**Advisory agent pattern** — design as reusable pattern~~ **Resolved:** Deferred as obsolete (w16). Forward-motion analyst covers the core advisory need. Extract pattern later if a second advisory agent is built

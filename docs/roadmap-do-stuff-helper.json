@@ -259,15 +259,88 @@
       "updated": "2026-03-05"
     },
     {
-      "id": "w24",
-      "title": "Agent Teams Integration",
+      "id": "w25",
+      "title": "Brief-Roadmap Synchronization",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [
+        "w9"
+      ],
+      "why": "Skills that modify the roadmap don't update the brief, causing drift between what the activity is about and what it's actually doing.",
+      "done_when": "All skills that add or modify waypoints (roadmap, replan, waypoint-design) also update the relevant sections of the brief. Brief stays current as the source of truth for activity scope.",
+      "updated": "2026-03-05"
+    },
+    {
+      "id": "w26",
+      "title": "Build Rhythm Capability",
       "status": "pending",
       "phase": "phase-1",
       "dependencies": [
         "w4"
       ],
-      "why": "Claude Code's experimental agent teams feature uses the same CLAUDE_CODE_TASK_LIST_ID mechanism we build on. Integrating it would let waypoint-implement spawn persistent teammate sessions instead of one-shot Task subagents, enabling longer-running workers and native coordination.",
-      "done_when": "waypoint-implement can optionally use agent teams for execution. Lead session spawns teammates that claim and execute tasks from the shared task list. Graceful fallback to Task-tool workers when agent teams is unavailable."
+      "why": "Activities produce recurring progressive schedules (training plans, writing habits) that don't fit the one-time task/waypoint model.",
+      "done_when": "A rhythm artifact type exists that captures recurring behavioral patterns. Rhythms integrate with the roadmap (waypoint produces a rhythm), dashboard (show rhythm status), and can be exported to calendar tools.",
+      "updated": "2026-03-05"
+    },
+    {
+      "id": "w27",
+      "title": "Add Replan Reminder via n8n",
+      "status": "pending",
+      "phase": "phase-2",
+      "dependencies": [
+        "w9"
+      ],
+      "why": "Backlog review depends on the user remembering to run it. A scheduled trigger keeps the roadmap fresh automatically.",
+      "done_when": "An n8n workflow triggers the replan skill on a recurring schedule (e.g., weekly) via the Claude webhook.",
+      "updated": "2026-03-05"
+    },
+    {
+      "id": "w28",
+      "title": "Auto-Dispatch Ready Work",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [
+        "w4"
+      ],
+      "why": "Remove human bottleneck from starting planned work. Users should only intervene for decisions, not to say 'go'.",
+      "done_when": "An n8n workflow or webhook hook detects waypoints in planned status with unblocked dependencies and triggers waypoint-implement automatically.",
+      "updated": "2026-03-05"
+    },
+    {
+      "id": "w29",
+      "title": "Implement Skill Bug Fixes",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [
+        "w4"
+      ],
+      "why": "Known bugs: human tasks not written to inbox.json, session-restart tasks not inserted in dependency graph.",
+      "done_when": "Both bugs verified fixed: human tasks appear in inbox.json when surfaced, and session-restart dependencies are inserted when skills change mid-implementation.",
+      "updated": "2026-03-05"
+    },
+    {
+      "id": "w30",
+      "title": "Worker Verification Step",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [
+        "w4"
+      ],
+      "why": "Workers don't systematically verify output against acceptance criteria before marking tasks complete.",
+      "done_when": "The implement skill includes a verification step where workers validate their output matches acceptance criteria before marking tasks complete.",
+      "updated": "2026-03-05"
+    },
+    {
+      "id": "w31",
+      "title": "Front-End Design Plugin in Organize",
+      "status": "pending",
+      "phase": "phase-1",
+      "dependencies": [
+        "w6"
+      ],
+      "why": "Activities involving UI work lack design system guidance out of the box.",
+      "done_when": "The organize skill installs a front-end/UI design plugin when bootstrapping activities that involve building user interfaces.",
+      "updated": "2026-03-05"
     }
   ]
 }
