@@ -36,7 +36,7 @@ Only run install commands for plugins that are not already present at project le
 
 Check if `CLAUDE.md` exists in the current directory.
 
-**If it does not exist**, run `claude init` to create a baseline CLAUDE.md.
+**If it does not exist**, run `/init` to create a baseline CLAUDE.md.
 
 **Then, regardless of whether CLAUDE.md existed or was just created:**
 
