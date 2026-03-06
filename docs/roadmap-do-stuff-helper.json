@@ -333,7 +333,7 @@
     {
       "id": "w31",
       "title": "Front-End Design Plugin in Organize",
-      "status": "planned",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [
         "w6"

@@ -29,6 +29,8 @@ Check whether each plugin is already installed **at the project level**. Install
    This ensures collaborators who clone the repo also get the do-stuff-helper skills. The user already has it at user level, but project-level installation makes it portable.
 2. **superpowers** — `claude plugin install superpowers@claude-plugins-official`
 3. **claude-md-improver** — Install the `claude-md-management` marketplace and the `claude-md-improver` plugin from it
+4. **frontend-design** — `claude plugin install frontend-design@claude-plugins-official`
+   Provides design system guidance for activities that involve building user interfaces.
 
 Only run install commands for plugins that are not already present at project level.
 
