@@ -285,14 +285,14 @@
     {
       "id": "w27",
       "title": "Add Replan Reminder via n8n",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-2",
       "dependencies": [
         "w9"
       ],
       "why": "Backlog review depends on the user remembering to run it. A scheduled trigger keeps the roadmap fresh automatically.",
       "done_when": "An n8n workflow triggers the replan skill on a recurring schedule (e.g., weekly) via the Claude webhook.",
-      "updated": "2026-03-05"
+      "updated": "2026-03-06"
     },
     {
       "id": "w28",
@@ -308,15 +308,15 @@
     },
     {
       "id": "w29",
-      "title": "Implement Skill Bug Fixes",
-      "status": "pending",
+      "title": "Human Task Inbox Write Guardrail",
+      "status": "designed",
       "phase": "phase-1",
       "dependencies": [
         "w4"
       ],
-      "why": "Known bugs: human tasks not written to inbox.json, session-restart tasks not inserted in dependency graph.",
-      "done_when": "Both bugs verified fixed: human tasks appear in inbox.json when surfaced, and session-restart dependencies are inserted when skills change mid-implementation.",
-      "updated": "2026-03-05"
+      "why": "The implement skill's Step 2 sometimes fails to write human tasks to inbox.json, leaving them invisible on the dashboard.",
+      "done_when": "Step 2 includes a verify-after-write check and explicit commit. Confirmed working on a waypoint with human tasks.",
+      "updated": "2026-03-06"
     },
     {
       "id": "w30",

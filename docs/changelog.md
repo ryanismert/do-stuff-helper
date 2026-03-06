@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-06 — Designed w29: Human Task Inbox Write Guardrail
+Add verify-after-write check to implement skill's Step 2. Narrowed from original two-bug scope after confirming the inbox write works but isn't reliable. Session-restart bug deferred to backlog.
+
+## 2026-03-06 — Completed w27: Add Replan Reminder via n8n
+Dashboard backlog section (collector reads docs/backlog.md, UI shows collapsible item list per activity) and weekly n8n workflow that checks backlog counts and creates inbox reminders for activities with 6+ items.
+
 ## 2026-03-06 — Completed w31: Front-End Design Plugin in Organize
 Added frontend-design plugin to organize skill's Step 2 install list. All new activities will now have design system guidance available.
 
