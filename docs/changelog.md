@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-06 — Designed w31: Front-End Design Plugin in Organize
+Add frontend-design plugin to organize skill's Step 2 install list. No conditional detection — install for all activities since it's cheap and avoids predicting which need UI work.
+
 ## 2026-03-05 — Replanned: backlog review, 7 new waypoints
 Processed 13 backlog items. Added w25-w31 (brief-roadmap sync, rhythm capability, replan reminder, auto-dispatch, implement bugs, worker verification, front-end plugin). Moved w24 (Agent Teams) to backlog. Marked w13, w14, w16, w17, w22, w23 obsolete/done. Updated brief with rhythm, ongoing monitoring, and brief-sync scope.
 
