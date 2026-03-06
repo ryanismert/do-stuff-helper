@@ -75,6 +75,9 @@ Either path must handle the full lifecycle: status updates, changelog entries, b
   }
   ```
 
+- **Verify the write**: After writing, read `docs/inbox.json` back. For each unblocked human task, confirm an entry exists with a matching `task_id` and `status: "pending"`. If any are missing, write them now.
+- **Commit immediately**: If any entries were written (or the file was created), commit `docs/inbox.json` right away so the dashboard picks it up. Do not defer this to a later step.
+
 ### Step 3: Check for Answered Items
 
 Process answered items from two sources: in-session task metadata and the persistent inbox.

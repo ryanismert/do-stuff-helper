@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-06 — Completed w29: Human Task Inbox Write Guardrail
+Added verify-after-write and immediate commit to implement skill's Step 2. Session-restart bug deferred to backlog.
+
 ## 2026-03-06 — Designed w29: Human Task Inbox Write Guardrail
 Add verify-after-write check to implement skill's Step 2. Narrowed from original two-bug scope after confirming the inbox write works but isn't reliable. Session-restart bug deferred to backlog.
 

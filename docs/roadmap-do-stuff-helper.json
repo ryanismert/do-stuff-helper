@@ -309,7 +309,7 @@
     {
       "id": "w29",
       "title": "Human Task Inbox Write Guardrail",
-      "status": "designed",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [
         "w4"
