@@ -333,14 +333,14 @@
     {
       "id": "w31",
       "title": "Front-End Design Plugin in Organize",
-      "status": "designed",
+      "status": "planned",
       "phase": "phase-1",
       "dependencies": [
         "w6"
       ],
       "why": "Activities involving UI work lack design system guidance out of the box.",
       "done_when": "The organize skill installs a front-end/UI design plugin when bootstrapping activities that involve building user interfaces.",
-      "updated": "2026-03-05"
+      "updated": "2026-03-06"
     }
   ]
 }

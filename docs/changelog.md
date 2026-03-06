@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-06 — Planned w31: Front-End Design Plugin in Organize (1 task)
+Single agent task: add frontend-design plugin to organize skill's Step 2 install list.
+
 ## 2026-03-06 — Designed w31: Front-End Design Plugin in Organize
 Add frontend-design plugin to organize skill's Step 2 install list. No conditional detection — install for all activities since it's cheap and avoids predicting which need UI work.
 
