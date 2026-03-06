@@ -176,11 +176,20 @@ Bias toward action. If you encounter ambiguity:
 - **In-scope:** If you discover additional work needed for this waypoint, just do it and note it in your summary.
 - **Out-of-scope:** If you discover work that belongs to a different waypoint or is entirely new, append it to `docs/backlog.md` using the format: `## <date> — <source>\n\n<description>`
 
+## Verify Before Finishing
+
+Before reporting done, review the task description's acceptance criteria:
+1. List each acceptance criterion or requirement from the task description
+2. For each one, verify it is satisfied — run the code, check the file exists, confirm the behavior
+3. If any criterion is NOT met, fix it before finishing
+4. If a criterion cannot be verified (e.g., requires user judgment), note it as "cannot verify — NEEDS REVIEW"
+
 ## When Done
 
 Report:
 - What you did (summary)
 - Files changed
+- Verification: [for each acceptance criterion: criterion — PASS or NEEDS REVIEW]
 - Any assumptions you made
 - Any questions (if truly blocked — see above)
 ```
@@ -190,7 +199,8 @@ Report:
 As each worker returns, handle the outcome:
 
 **Success (worker completed, worktree has changes):**
-- `TaskUpdate` status to `completed`
+- Check the worker's summary for verification results. If any criterion is marked "NEEDS REVIEW", do NOT auto-complete — present the items to the user and ask whether to accept or re-dispatch the task.
+- If all criteria pass (or no NEEDS REVIEW items): `TaskUpdate` status to `completed`
 - Merge the worktree branch: run `git merge <branch> --no-edit` on main
 - If merge conflict: attempt auto-resolution. If that fails, report conflicting files to the user and pause
 - If `metadata.link_from` is set, update those docs with a link to `metadata.output_path`

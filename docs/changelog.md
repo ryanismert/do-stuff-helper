@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-06 — Completed w30: Worker Verification Step
+Added verify-before-finishing section and verification checklist to worker prompt. Step 6 now flags NEEDS REVIEW items for user instead of auto-completing.
+
 ## 2026-03-06 — Completed w29: Human Task Inbox Write Guardrail
 Added verify-after-write and immediate commit to implement skill's Step 2. Session-restart bug deferred to backlog.
 

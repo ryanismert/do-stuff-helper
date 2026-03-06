@@ -20,6 +20,10 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 
 **Agent Teams Integration:** Claude Code's experimental agent teams feature uses the same CLAUDE_CODE_TASK_LIST_ID mechanism we build on. Integrating it would let waypoint-implement spawn persistent teammate sessions instead of one-shot Task subagents, enabling longer-running workers and native coordination. Revisit when agent teams matures or when worker session duration becomes a bottleneck.
 
+## 2026-03-06 — w30 follow-up
+
+**Verification Agent for Task Completion:** If worker self-verification (added in w30) proves insufficient — workers still ship low-quality output despite the verify-before-finishing instructions — consider adding a separate verification agent that independently reviews worker output against acceptance criteria before marking tasks complete. This adds latency and cost, so only pursue if quality is a recurring problem.
+
 ## 2026-03-06 — w27 verification
 
 **Verify W27 Replan Reminder End-to-End:** The weekly n8n workflow (replan-reminder-weekly) needs real-world verification with an activity that has 6+ backlog items. Likely candidate is the upcoming Overland activity once it accumulates enough backlog. Trigger the workflow manually or wait for Sunday and confirm it creates inbox notifications correctly.

@@ -321,14 +321,14 @@
     {
       "id": "w30",
       "title": "Worker Verification Step",
-      "status": "pending",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [
         "w4"
       ],
       "why": "Workers don't systematically verify output against acceptance criteria before marking tasks complete.",
-      "done_when": "The implement skill includes a verification step where workers validate their output matches acceptance criteria before marking tasks complete.",
-      "updated": "2026-03-05"
+      "done_when": "Worker prompt includes verify-before-finishing section, When Done requires verification checklist, Step 6 flags NEEDS REVIEW items for user instead of auto-completing.",
+      "updated": "2026-03-06"
     },
     {
       "id": "w31",
