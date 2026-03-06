@@ -121,15 +121,9 @@ If the user has feedback, incorporate it.
 4. Stage and commit with message: `waypoint-design: design <waypoint-id> <waypoint-title>`
 5. Report the file path and confirm saved
 
-### Step 9: Suggest Next Steps
+### Step 9: Plan the Waypoint
 
-After saving, check the roadmap for other unblocked waypoints that are ready for design. Present options:
-
-> "Design saved. [Other unblocked waypoints] are also ready for design. Want to:
-> 1. Plan the tasks for this waypoint now? (invokes waypoint-planner)
-> 2. Continue designing other unblocked waypoints?"
-
-If the user chooses to plan, invoke `do-stuff-helper:waypoint-planner`.
+After saving, immediately invoke `do-stuff-helper:waypoint-planner` for the just-designed waypoint. The user's design approval in Step 7 is sufficient authorization to proceed with task decomposition — do not ask again.
 
 ## Edge Cases
 
@@ -142,4 +136,4 @@ If the user chooses to plan, invoke `do-stuff-helper:waypoint-planner`.
 
 - **`do-stuff-helper:research`** — Invoke during Step 4 when external research would improve the design.
 - **Invoked by `do-stuff-helper:roadmap`** — The roadmap skill's Step 9 suggests designing unblocked waypoints, which leads here.
-- **`do-stuff-helper:waypoint-planner`** — Suggest in Step 9 after saving: offer to plan tasks for the designed waypoint.
+- **`do-stuff-helper:waypoint-planner`** — Auto-invoked in Step 9 after saving: design approval is sufficient authorization for planning.

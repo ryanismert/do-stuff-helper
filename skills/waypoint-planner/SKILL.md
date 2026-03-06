@@ -76,11 +76,14 @@ Identify:
    ```
 3. Stage and commit all changes with message: `waypoint-planner: plan <waypoint-id> <waypoint-title>`
 
-### Step 7: Suggest Next Step
+### Step 7: Report
 
-Offer to invoke `do-stuff-helper:waypoint-implement` to start execution, or let the user review the task list first. Suggest-and-confirm pattern:
+Report what was created:
+- Number of tasks, how many are agent vs human
+- Note any human-assigned tasks that will appear in the inbox
+- Tell the user the waypoint is ready to implement when they're ready (invoke `do-stuff-helper:waypoint-implement`)
 
-> "Tasks created. Want to start implementing this waypoint now? (invokes waypoint-implement)"
+Do not auto-invoke waypoint-implement. The user decides when to start execution.
 
 ## Edge Cases
 
@@ -91,6 +94,6 @@ Offer to invoke `do-stuff-helper:waypoint-implement` to start execution, or let 
 
 ## Cross-Skill Invocation
 
-- **Invoked by `do-stuff-helper:waypoint-design`** — After saving a design (Step 9), the user can choose to plan the waypoint.
-- **`do-stuff-helper:waypoint-implement`** — Suggest in Step 7 after tasks are created: offer to start execution.
+- **Invoked by `do-stuff-helper:waypoint-design`** — Auto-invoked after saving a design (Step 9). Design approval is sufficient authorization.
+- **`do-stuff-helper:waypoint-implement`** — Mentioned in Step 7 report but not auto-invoked. User decides when to start.
 - **`do-stuff-helper:research`** — May invoke during Step 4 if decomposition reveals knowledge gaps that need investigation.
