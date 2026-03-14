@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-14 — Planned w32: ClaudePluginBuild Integration (4 tasks)
+Schema documentation, organize plugin install, waypoint-design detection/delegation, waypoint-implement delegated handling. 4 agent tasks, 2 parallel tracks after schema task.
+
 ## 2026-03-14 — Designed w32: ClaudePluginBuild Integration
 Waypoint-design detects software-build waypoints and recommends delegating to ClaudePluginBuild's pipeline (PRD → design → plan → implement). PRD seeded from brief + waypoint context. Organize installs the plugin. Waypoint-implement recognizes delegated waypoints via `delegation` field in roadmap JSON.
 
