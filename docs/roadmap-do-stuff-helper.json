@@ -345,7 +345,7 @@
     {
       "id": "w32",
       "title": "ClaudePluginBuild Integration",
-      "status": "started",
+      "status": "done",
       "phase": "phase-1",
       "dependencies": [
         "w4"

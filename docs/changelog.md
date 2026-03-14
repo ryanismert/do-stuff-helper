@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-14 — Completed w32: ClaudePluginBuild Integration
+Added software-build detection to waypoint-design, delegation handling to waypoint-implement, ClaudePluginBuild installation to organize, and documented the delegation field in activity conventions.
+
 ## 2026-03-14 — Implementing w32: ClaudePluginBuild Integration
 Adding software-build detection and ClaudePluginBuild delegation to the waypoint pipeline.
 
