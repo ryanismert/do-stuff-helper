@@ -31,6 +31,8 @@ Check whether each plugin is already installed **at the project level**. Install
 3. **claude-md-improver** — Install the `claude-md-management` marketplace and the `claude-md-improver` plugin from it
 4. **frontend-design** — `claude plugin install frontend-design@claude-plugins-official`
    Provides design system guidance for activities that involve building user interfaces.
+5. **ClaudePluginBuild** — First add the marketplace if not already present: `claude plugin marketplace add ryanismert/claude-plugin-build`. Then install the plugin: `claude plugin install build@claude-plugin-build`.
+   Provides specialized software build pipeline (PRD → design → plan → implement) with TDD, multi-lens code review, and CI scaffolding. Used when waypoint-design detects a software-build waypoint.
 
 Only run install commands for plugins that are not already present at project level.
 
