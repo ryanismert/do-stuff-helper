@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-03-14 — Implementing w32: ClaudePluginBuild Integration
+Adding software-build detection and ClaudePluginBuild delegation to the waypoint pipeline.
+
 ## 2026-03-14 — Planned w32: ClaudePluginBuild Integration (4 tasks)
 Schema documentation, organize plugin install, waypoint-design detection/delegation, waypoint-implement delegated handling. 4 agent tasks, 2 parallel tracks after schema task.
 

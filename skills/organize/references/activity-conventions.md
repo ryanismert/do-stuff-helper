@@ -15,6 +15,8 @@ Skills are invoked in this order to take an activity from idea to execution:
 
 Skills invoke each other via `do-stuff-helper:<skill-name>`.
 
+**Software-build delegation:** When `waypoint-design` detects a waypoint is primarily a software build, it can delegate to ClaudePluginBuild's pipeline (`/build:prd` → `/build:design` → `/build:plan` → `/build:implement`) instead of steps 5-6 above. The waypoint's `delegation` field in the roadmap JSON signals this. See the Roadmap JSON Fields section.
+
 ## Artifact Naming
 
 Activity artifacts follow the pattern `<type>-<activity-slug>.<ext>`:
@@ -29,6 +31,22 @@ Activity artifacts follow the pattern `<type>-<activity-slug>.<ext>`:
 
 - **`docs/roadmap-<slug>.json`** — Source of truth. Contains waypoint metadata (id, status, dependencies, phases) as structured JSON.
 - **`docs/waypoints/<waypoint-id>.md`** — Design documents with two required sections: **Objective** (one sentence) and **Done When** (acceptance criteria). Everything else is freeform, scaled to complexity.
+
+### Roadmap JSON Fields
+
+Each waypoint entry in the roadmap JSON supports these fields:
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `id` | yes | Waypoint identifier (e.g., `"w4"`) |
+| `title` | yes | Short descriptive title |
+| `status` | yes | Lifecycle status (see Waypoint Statuses below) |
+| `phase` | yes | Which roadmap phase this belongs to |
+| `dependencies` | yes | Array of waypoint IDs that must complete first |
+| `why` | yes | Motivation for this waypoint |
+| `done_when` | yes | Acceptance criteria |
+| `updated` | no | Date of last status change (YYYY-MM-DD) |
+| `delegation` | no | External plugin handling this waypoint's planning and execution (e.g., `"ClaudePluginBuild"`). When set, `waypoint-planner` is skipped and `waypoint-implement` delegates to the named plugin instead of dispatching its own workers. |
 
 ## Waypoint Statuses
 
