@@ -66,6 +66,26 @@ Based on the user's description, determine:
 
 Do not present this analysis to the user. Use it internally to guide the interview in step 7.
 
+### Step 6b: Software-Build Detection
+
+If the user's description is primarily about building a piece of software (an app, API, service, tool, platform, etc.), the brief risks becoming a product spec rather than a project plan. ClaudePluginBuild handles the software spec — the brief should capture everything *around* the build.
+
+**When detected**, tell the user:
+
+> "It sounds like the core of this project is building a piece of software. When we get to implementation, ClaudePluginBuild will handle the PRD, technical design, and code — so we don't need to specify the software in detail here. Instead, let's make sure we capture the bigger picture: what needs to happen beyond writing the code to make this project successful."
+
+Then **steer the remaining interview (Step 7)** toward these topics in addition to the standard coverage targets:
+
+- **Users and validation** — who are the target users, how will you test with real people?
+- **Deployment and infrastructure** — where does it run, how do you ship updates?
+- **Launch and distribution** — how do people find out about it?
+- **Business model** (if applicable) — how does it sustain itself?
+- **Post-launch** — what happens after v1? Maintenance, support, iteration?
+
+The standard coverage targets (goal, scope, risks, etc.) still apply — this step adds topics, it doesn't replace them. The key shift is: the Description section of the brief should describe what the software *does* at a high level (enough to seed a PRD later), but should not decompose the software architecture, features, or implementation.
+
+**When NOT detected** (non-software or mixed activities), skip this step entirely.
+
 ### Step 7: Iterative Expert Interview
 
 Conduct the interview one question at a time. Each question should:
