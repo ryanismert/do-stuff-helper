@@ -51,6 +51,24 @@ Evaluate whether the waypoint work warrants full parallel worker dispatch or inl
 
 Either path must handle the full lifecycle: status updates, changelog entries, blocker tracking, and waypoint completion.
 
+### Step 1d: Check for Delegation
+
+Read the waypoint's entry in `docs/roadmap-<slug>.json` and check for a `delegation` field.
+
+**If `delegation` is set (e.g., `"ClaudePluginBuild"`):** This waypoint's planning and execution are handled by an external plugin. Skip the normal task dispatch pipeline (Steps 2-7) and instead:
+
+1. **Check execution state** by looking for ClaudePluginBuild artifacts in `docs/`:
+   - No `docs/prd-*.md` → ClaudePluginBuild hasn't started yet. Invoke `/build:prd` to begin. The waypoint design doc's "Context for PRD" section provides the seed.
+   - `docs/prd-*.md` exists but no `docs/implement-*.md` → ClaudePluginBuild is mid-pipeline. Invoke the next incomplete step:
+     - No `docs/design-*.md` → invoke `/build:design`
+     - No `docs/plan-*.md` → invoke `/build:plan`
+     - Plan exists but no completion report → invoke `/build:implement`
+   - `docs/implement-*.md` exists → ClaudePluginBuild has finished. Proceed to Step 8 (Complete Waypoint).
+
+2. After invoking the appropriate ClaudePluginBuild skill, let its pipeline take over. When it finishes, return here and proceed to Step 8.
+
+**If `delegation` is not set:** Proceed with the normal flow (Step 2 onwards).
+
 ### Step 2: Surface Human Tasks
 
 - Find tasks with `metadata.assignee == "human"` that are not blocked (no unresolved `blockedBy`)
@@ -381,9 +399,11 @@ The skill manages `docs/inbox.json` as a unified store for all items waiting on 
 - **Resuming a waypoint in `waiting` status:** Set status to `started` in the roadmap JSON, then proceed to Step 1c. Step 3 will pick up any answered inbox items and unblock the corresponding tasks. Continue the loop normally from there.
 - **Worker creates merge conflict:** Attempt auto-merge. If that fails, escalate with conflicting file details so the user can resolve manually.
 - **Task has no context_files:** Worker gets just the task description and the activity's CLAUDE.md.
+- **Waypoint is delegated to an external plugin:** Step 1d detects the `delegation` field and routes execution to the named plugin (e.g., ClaudePluginBuild). The normal task dispatch pipeline (Steps 2-7) is skipped entirely. When the external plugin finishes, Step 8 completes the waypoint as normal.
 
 ## Cross-Skill Invocation
 
 - **Invoked by `do-stuff-helper:waypoint-planner`** — via suggest-and-confirm after task creation (Step 7 of waypoint-planner).
+- **`/build:prd`, `/build:design`, `/build:plan`, `/build:implement`** — Invoked in Step 1d for delegated waypoints. ClaudePluginBuild handles its own pipeline.
 - Uses `superpowers:dispatching-parallel-agents` pattern for parallel dispatch via the `Task` tool with `isolation: "worktree"`.
 - Future: W24 (Agent Teams) will enhance the dispatch mechanism with persistent teammate sessions.
