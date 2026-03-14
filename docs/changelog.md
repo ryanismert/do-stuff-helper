@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-03-14 — Designed w32: ClaudePluginBuild Integration
+Waypoint-design detects software-build waypoints and recommends delegating to ClaudePluginBuild's pipeline (PRD → design → plan → implement). PRD seeded from brief + waypoint context. Organize installs the plugin. Waypoint-implement recognizes delegated waypoints via `delegation` field in roadmap JSON.
+
+## 2026-03-14 — Added w32: ClaudePluginBuild Integration
+New waypoint to delegate software-build waypoints to ClaudePluginBuild's specialized pipeline (TDD, multi-lens review, CI scaffolding). Changes organize, waypoint-design, and waypoint-implement skills.
+
 ## 2026-03-06 — Completed w30: Worker Verification Step
 Added verify-before-finishing section and verification checklist to worker prompt. Step 6 now flags NEEDS REVIEW items for user instead of auto-completing.
 

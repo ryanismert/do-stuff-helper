@@ -341,6 +341,18 @@
       "why": "Activities involving UI work lack design system guidance out of the box.",
       "done_when": "The organize skill installs a front-end/UI design plugin when bootstrapping activities that involve building user interfaces.",
       "updated": "2026-03-06"
+    },
+    {
+      "id": "w32",
+      "title": "ClaudePluginBuild Integration",
+      "status": "designed",
+      "phase": "phase-1",
+      "dependencies": [
+        "w4"
+      ],
+      "why": "Software-building waypoints get generic task execution, but ClaudePluginBuild has specialized capabilities (TDD, multi-lens review, worker profiles, CI scaffolding). Delegating software waypoints to it produces higher quality output.",
+      "done_when": "waypoint-design detects software-build waypoints and recommends delegating to ClaudePluginBuild. organize skill ensures ClaudePluginBuild is installed. waypoint-implement knows to skip delegated waypoints. PRD is seeded from the brief and waypoint design context.",
+      "updated": "2026-03-14"
     }
   ]
 }
