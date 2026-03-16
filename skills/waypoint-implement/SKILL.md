@@ -286,11 +286,11 @@ When all tasks (including human tasks) are done:
    > "Waypoint [title] is complete. [summary of what was accomplished]"
 5. Trigger a plan refresh so forward-motion priorities reflect the completed waypoint. Use a fire-and-forget Bash command:
    ```bash
-   curl -s -X POST http://localhost:3001/webhook/execute \
+   curl -s -X POST http://localhost:3002/api/activity-progress \
      -H "Content-Type: application/json" \
-     -H "Authorization: Bearer $CLAUDE_WEBHOOK_TOKEN" \
-     -d '{"task":"Run the forward-motion skill in plan mode to refresh priorities. Invoke do-stuff-helper:forward-motion"}' &
+     -d "{\"activity\":\"$(basename $PWD)\",\"event\":\"waypoint-complete\",\"detail\":\"<wN> completed\"}" &
    ```
+   This calls the dashboard's activity-progress endpoint (no auth required), which triggers a forward-motion plan refresh via the webhook server.
 6. Check for other waypoints now unblocked by this completion and suggest next steps:
    > "These waypoints are now unblocked: [list]. Want to design or plan any of them?"
 
