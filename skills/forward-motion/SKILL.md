@@ -35,7 +35,7 @@ Read all of the following. If a file is missing, note it but continue with what 
 4. **All activity changelogs** — scan `~/exoselfai/activities/*/docs/changelog.md`
    - Recent progress (last 7 days) to understand momentum
 5. **Existing plan** — `~/exoselfai/docs/forward-motion/current-plan.json`
-   - Previous priorities, `first_appeared` timestamps, `refreshes_without_progress` counts, user feedback
+   - Previous priorities, `first_appeared` timestamps, `last_progress_at` timestamps, user feedback
 
 If this is the first run and no plan exists, proceed to Step 2 — all tracking fields will be initialized fresh.
 
@@ -91,9 +91,9 @@ The plan should feel like a reliable to-do list, not something that reshuffles u
 **On each refresh:**
 
 - **Preserve the existing priority ranking** unless there is a concrete reason to change it
-- For each item carried forward from the previous plan, increment `refreshes_without_progress` by 1 unless there is evidence of progress (changelog entry, waypoint status change, inbox resolution)
-- If progress occurred, reset `refreshes_without_progress` to 0
+- For each item carried forward, check for evidence of progress (changelog entry, waypoint status change, inbox resolution). If progress occurred, update `last_progress_at` to the current timestamp.
 - Preserve each item's `first_appeared` timestamp from when it was first added to the plan
+- Calculate `weeks_without_progress` as `floor((now - last_progress_at) / 7 days)` — this is a derived value computed on each refresh, not a stored counter
 
 **Reasons to change the list:**
 - A priority item is marked done (rotate in a new one)
@@ -107,7 +107,7 @@ The plan should feel like a reliable to-do list, not something that reshuffles u
 - Minor progress on a non-priority waypoint
 - Routine inbox items arriving
 
-**Staleness signal:** Items with `refreshes_without_progress >= 3` are flagged as stalled. This is the primary staleness indicator — not waypoint age. Stalled items get a tendency flag noting the pattern.
+**Staleness signal:** Items with `weeks_without_progress >= 3` are flagged as stalled. This uses real calendar time, not refresh frequency. Stalled items get a tendency flag noting the pattern.
 
 Mid-week refreshes are **incremental**. The Sunday run is the **full re-evaluation** where rankings can shift more freely.
 
@@ -119,12 +119,12 @@ Read `user-profile.json` -> `known_tendencies` and check for these patterns:
 2. **Building over selling** — For business activities, is progress all on product/code while customer-facing tasks (outreach, sales, marketing) persist untouched?
 3. **Air gap persistence** — Inbox items aging beyond 3 days, waypoints in `waiting` with no movement.
 4. **Self-deprioritization** — Personal goals (health, relationships, fun) consistently absent from the plan or always ranked last.
-5. **Plan-item avoidance** — Items lingering on the plan for 3+ refreshes without progress (`refreshes_without_progress >= 3`).
+5. **Plan-item avoidance** — Items lingering on the plan for 3+ weeks without progress (`weeks_without_progress >= 3`).
 
 **Tendency flags are constructive nudges, not guilt trips.** Only surface a flag when the pattern is actually present in the data. Do not flag every week by default.
 
 Attach relevant `tendency_flag` strings to individual priority items when applicable. Example flags:
-- `"This has been on the plan for 4 refreshes without progress — possible avoidance pattern"`
+- `"This has been on the plan for 4 weeks without progress — possible avoidance pattern"`
 - `"All recent progress is on building; customer outreach remains untouched"`
 - `"Health goals have no active work despite approaching timeframe"`
 
@@ -141,7 +141,7 @@ Check each priority item for `user_feedback`. If set, process it:
 | "Done" | Update `status` to `done`, trigger refresh to rotate in new priority |
 | Free-form context | Store in `user_feedback`, factor into next reasoning pass |
 
-When user provides any feedback, reset `refreshes_without_progress` to 0 for that item.
+When user provides any feedback, update `last_progress_at` to the current timestamp for that item (feedback counts as engagement).
 
 ### Step 7: Write Plan
 
@@ -173,7 +173,8 @@ Write `~/exoselfai/docs/forward-motion/current-plan.json` with the following sch
       "goal_alignment": ["Goal description 1", "Goal description 2"],
       "status": "not_started | in_progress | done",
       "first_appeared": "ISO-8601 timestamp",
-      "refreshes_without_progress": 0,
+      "last_progress_at": "ISO-8601 timestamp — set to first_appeared initially, updated when progress detected or user gives feedback",
+      "weeks_without_progress": 0,
       "tendency_flag": "string or null",
       "user_feedback": "string or null",
       "deferred_until": "ISO-8601 date or null"
@@ -282,7 +283,7 @@ Show the review to the user. Ask for any reflections or corrections before savin
 After the review is saved, run a **full plan re-evaluation** for the new week:
 - Execute Plan Mode Steps 1-8 with fresh scoring (not incremental)
 - The new plan's `created` timestamp marks the start of the new week
-- All `refreshes_without_progress` counters carry forward (they do not reset on new week — only on actual progress)
+- All `last_progress_at` timestamps carry forward (they do not reset on new week — only on actual progress)
 - Rankings can shift freely on the Sunday run, unlike mid-week incremental refreshes
 
 ---
