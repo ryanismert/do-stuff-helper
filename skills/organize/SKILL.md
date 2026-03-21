@@ -47,7 +47,10 @@ Check if `CLAUDE.md` exists in the current directory.
 1. Read the current contents of `CLAUDE.md`.
 2. Check whether a `## do-stuff-helper` section exists in the file.
 3. **If the section is missing**, append the full block below to the end of CLAUDE.md.
-4. **If the section already exists**, update the `### Available Skills` list to match the canonical list below, and ensure the `### Task List` subsection exists with the correct task list ID (see Step 4).
+4. **If the section already exists**, reconcile it:
+   - Update the `### Available Skills` list to match the canonical list below.
+   - Ensure the `### Task List` subsection exists with the correct task list ID (see Step 4).
+   - **Reconcile convention subsections:** For each section in `references/activity-conventions.md`, check if a matching `### <Section Title>` subsection exists under `## do-stuff-helper`. If missing, insert it in the canonical order (after the last existing convention subsection, or before `### Plugin Version Bumps`). If present, leave it as-is — do not overwrite existing content, since projects may have customized it. Only add missing sections.
 
 The canonical do-stuff-helper section. Read `references/activity-conventions.md` and include its content (starting from `## Activity Lifecycle`) as subsections under the `## do-stuff-helper` heading:
 
@@ -101,6 +104,9 @@ Invoke skills via `do-stuff-helper:<skill-name>`.
 
 ### Backlog
 <content from references/activity-conventions.md — Backlog section>
+
+### Skill Priorities
+<content from references/activity-conventions.md — Skill Priorities section>
 
 ### Plugin Version Bumps
 <content from references/activity-conventions.md — Plugin Version Bumps section>

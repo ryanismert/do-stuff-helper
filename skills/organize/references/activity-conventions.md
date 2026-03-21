@@ -68,6 +68,17 @@ The brief (`docs/brief-<slug>.md`) is the source of truth for what an activity i
 - **Out-of-scope discoveries:** Append to `docs/backlog.md` with date and source. The `replan` skill processes the backlog into roadmap updates.
 - **Format:** Append-only sections: `## YYYY-MM-DD — <source>\n\n<description>`
 
+## Skill Priorities
+
+When a do-stuff-helper skill and a superpowers skill both apply to the same task, prefer the do-stuff-helper skill. Use superpowers skills only when no do-stuff-helper skill covers the need. Specific overlaps:
+
+- **Starting a new project/idea:** Use `discover`, not `superpowers:brainstorming`
+- **Creating a plan:** Use `roadmap`, `waypoint-design`, or `waypoint-planner`, not `superpowers:writing-plans`
+- **Executing a plan:** Use `waypoint-implement`, not `superpowers:executing-plans` or `superpowers:subagent-driven-development`
+- **Creating/editing skills:** Use `skill-creator:skill-creator`, not `superpowers:writing-skills`
+
+Superpowers skills that have no do-stuff-helper equivalent should still be used normally: `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `using-git-worktrees`, `dispatching-parallel-agents`.
+
 ## Plugin Version Bumps
 
 **Always bump the do-stuff-helper plugin version when changing any skill, command, or agent.** Run `/publish` before pushing. This bumps the version, commits, pushes, and updates the marketplace so other projects pick up the changes. Skills are not hotloaded — a new conversation is required after updating.

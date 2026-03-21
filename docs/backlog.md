@@ -31,3 +31,11 @@ Ideas, scope changes, and discovered work that are **out of scope** for the curr
 ## 2026-03-06 — w29 scope reduction
 
 **Session-Restart Task Insertion:** When agent tasks produce new skills or artifacts that require a session restart before subsequent tasks can use them, the implement skill should recognize this and insert a dependency. Deferred from w29 — skill updates are increasingly rare, so the cost-benefit doesn't justify the complexity right now. Revisit if session-restart issues recur.
+
+## 2026-03-17 — user feedback
+
+**Dashboard Activity Ordering:** Add the ability to reorder activities on the dashboard so the most important ones appear at the top. Currently activities are displayed in an uncontrolled order — the user wants manual priority ordering to keep focus on what matters most.
+
+## 2026-03-17 — user feedback
+
+**Forward Motion Planner Revisit:** Two issues: (1) The skill always tops up to three items in the weekly plan, which may not be useful once activities are completed or priorities shift — the fixed count doesn't adapt to actual capacity or remaining work. (2) The n8n trigger for forward motion isn't firing consistently, so the automated weekly planning cycle isn't reliable. Review both the skill logic and the n8n workflow to ensure forward motion works as intended.
