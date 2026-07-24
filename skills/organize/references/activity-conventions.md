@@ -79,6 +79,23 @@ When a do-stuff-helper skill and a superpowers skill both apply to the same task
 
 Superpowers skills that have no do-stuff-helper equivalent should still be used normally: `test-driven-development`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `using-git-worktrees`, `dispatching-parallel-agents`.
 
+## Git Branching Policy: Work Only on Branches
+
+**No session — worker, primary/owner, or XO — commits directly to local `main` in an activity repo** (Ryan, 2026-07-24). Every change, including roadmap and changelog edits, goes onto a branch and merges via a PR into `origin/main`.
+
+- Local `main` is a **pure mirror** of `origin/main`. It only advances by pulling (`git fetch && git merge --ff-only origin/main`), never by a local commit.
+- Why: PRs are the check-in control on `main`, and fast-forward-only pulls keep the working copy (and anything reading it, like the waypoint dashboard) showing merged reality. A local main that diverges from origin hides merged work — this is the failure that hid PR work from the dashboard on 2026-07-24.
+- The primary session still *authors* roadmap/changelog changes, but as branch commits that land via PR — it does not commit them to local main.
+
+## Git Worktrees
+
+When running multiple Claude instances on the same activity and they need different branches, use git worktrees placed in `~/worktrees/`, **not** inside `~/exoselfai/activities/`.
+
+- The forward-motion skill discovers activities by scanning `activities/*/docs/roadmap-*.json`. A worktree inside `activities/` that checks out a branch with a roadmap file would appear as a duplicate activity on the dashboard.
+- The primary Claude session stays in `activities/<name>/` and remains the author of roadmap and changelog PRs (see branching policy above).
+- Secondary sessions use worktrees in `~/worktrees/` for isolated branch work, then merge back via PR.
+- Example: `git worktree add ~/worktrees/wildlifecards-feature feature-branch`
+
 ## Plugin Version Bumps
 
 **Always bump the do-stuff-helper plugin version when changing any skill, command, or agent.** Run `/publish` before pushing. This bumps the version, commits, pushes, and updates the marketplace so other projects pick up the changes. Skills are not hotloaded — a new conversation is required after updating.
