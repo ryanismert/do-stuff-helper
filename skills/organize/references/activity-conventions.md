@@ -89,12 +89,21 @@ Superpowers skills that have no do-stuff-helper equivalent should still be used 
 
 ## Git Worktrees
 
-When running multiple Claude instances on the same activity and they need different branches, use git worktrees placed in `~/worktrees/`, **not** inside `~/exoselfai/activities/`.
+Two locations, by who runs the session (clarified with Ryan 2026-07-24):
 
-- The forward-motion skill discovers activities by scanning `activities/*/docs/roadmap-*.json`. A worktree inside `activities/` that checks out a branch with a roadmap file would appear as a duplicate activity on the dashboard.
-- The primary Claude session stays in `activities/<name>/` and remains the author of roadmap and changelog PRs (see branching policy above).
-- Secondary sessions use worktrees in `~/worktrees/` for isolated branch work, then merge back via PR.
-- Example: `git worktree add ~/worktrees/wildlifecards-feature feature-branch`
+- **Dispatched/automated sessions** (visualizer dispatches, XO workers, native
+  tooling) use the repo's own `.claude/worktrees/<task>/` — Claude Code's
+  native location. It's inside the project directory, so no permission
+  prompt, and it's invisible to forward-motion discovery: the scan glob
+  `activities/*/docs/roadmap-*.json` cannot reach
+  `activities/<name>/.claude/worktrees/<wt>/docs/`.
+- **Manually-run secondary sessions** use `~/worktrees/`
+  (e.g. `git worktree add ~/worktrees/wildlifecards-feature feature-branch`).
+- What's banned is a worktree as a sibling directory directly under
+  `activities/` — that WOULD match the scan glob and appear as a phantom
+  duplicate activity on the dashboard.
+- The primary Claude session stays in `activities/<name>/` and remains the
+  author of roadmap and changelog PRs (see branching policy above).
 
 ## Plugin Version Bumps
 
